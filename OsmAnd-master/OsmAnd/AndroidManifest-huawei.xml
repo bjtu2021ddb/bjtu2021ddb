@@ -3,8 +3,8 @@
 	xmlns:tools="http://schemas.android.com/tools">
 
 	<application
-		android:icon="@mipmap/icon_free"
-		android:label="OsmAnd - Offline Maps and GPS Navigation"
+		android:icon="@mipmap/icon"
+		android:label="@string/app_name"
 		tools:replace="android:icon, android:label">
 
 		<meta-data
