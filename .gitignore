@@ -1,6 +1,6 @@
 # 两个资源打包以来的文件
-help/
-resources/
+./help/
+./resources/
 
 .DS_Store
 
