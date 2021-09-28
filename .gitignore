@@ -1,9 +1,7 @@
-# 两个资源打包以来的文件
-./help/
-./resources/
-
 .DS_Store
-
+# 帮助文件和资源打包文件
+/help
+/resources
 # Built application files
 *.apk
 *.aar
