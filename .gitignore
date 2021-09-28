@@ -1,5 +1,7 @@
-help
-resources
+# 两个资源打包以来的文件
+help/
+resources/
+
 .DS_Store
 
 # Built application files

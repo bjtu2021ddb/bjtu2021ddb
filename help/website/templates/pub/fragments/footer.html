@@ -1,0 +1,54 @@
+<script type="text/javascript">
+function contactus() {
+  var link = "m" + "ail" + "to" + ':';
+  link = link + "contactus" + "@" + "osmand.net";
+  window.location = link;
+}
+</script>
+
+<div class="footer">
+    <div class="footercontent">
+        <div class="logoblock">
+            <a href="/" class="footerlogo"></a>  
+            <a data-gatag="contactus" href="javascript:contactus();" class="contactus" th:text="#{top_contact_us}">Contact Us</a>
+        </div>
+        <div class="menublock">
+            <div class="footerlinks">
+                <div class="footerlinkstitle" th:text="#{top_website}">Website</div>
+                <ul>
+                    <li><a data-gatag="home" href="/" th:href="'/'+${locale_path}" th:text="#{top_home}">Home</a></li>
+                    <li><a data-gatag="features" href="/features" th:href="'/'+${locale_path}+'features'" th:text="#{top_features}">Features</a></li>
+                    <li><a data-gatag="blog" href="/blog" th:href="'/'+${locale_path}+'blog'" th:text="#{top_blog}">Blog</a></li>
+                    <li><a data-gatag="build" href="/build_it" th:href="'/'+${locale_path}+'build_it'" th:text="#{top_build_it}">Build it</a></li>
+                    <li><a data-gatag="giveaway" href="/giveaway" th:href="'/'+${locale_path}+'giveaway'" th:text="#{top_give_away}">Giveaway</a></li>
+                    <li><a data-gatag="help" href="/help-online" th:href="'/'+${locale_path}+'help-online'" th:text="#{top_help}">Help</a></li>
+                    <li><a data-gatag="downloads" href="/downloads" th:href="'/'+${locale_path}+'downloads'" th:text="#{top_downloads}">Downloads</a></li>
+                </ul>
+            </div>
+            <div class="footerlinks">
+                <div class="footerlinkstitle"  th:text="#{top_externallinks}">External links</div>
+                <ul>
+                    <li><a data-gatag="fb" href="https://www.facebook.com/osmandapp">OsmAnd Facebook</a></li>
+                    <li><a data-gatag="twitter" href="https://twitter.com/osmandapp">OsmAnd Twitter</a></li>
+                    <li><a data-gatag="source_code" href="https://github.com/osmandapp/">OsmAnd Github</a></li>
+                    <li><a data-gatag="google_groups" href="https://github.com/osmandapp/OsmAnd/discussions">Github Discussions (forum)</a></li>
+                    <li><a data-gatag="merch" href="https://www.redbubble.com/people/osmand/works/26426633-osmand">Get OsmAnd Merchandise</a></li>
+                    <li><a data-gatag="osmand_cz" href="https://osmand.cz/">OsmAnd CZ Manuals</a></li>
+                    <li><a data-gatag="osm" href="https://www.openstreetmap.org/">OpenStreetMap</a></li>
+                </ul>
+            </div>
+            <div class="footerlinks">
+                <div class="footerlinkstitle">Telegram - Chat</div>
+                <ul>
+                    <li><a href="https://t.me/OsmAndMaps">English</a></li>
+                    <li><a href="https://t.me/frosmand">French</a></li>
+                    <li><a href="https://t.me/deosmand">German</a></li>
+                    <li><a href="https://t.me/itosmand">Italian</a></li>
+                    <li><a href="https://t.me/ruosmand">Russian</a></li>
+                    <li><a href="https://t.me/uaosmand">Ukrainian</a></li>
+                    <li><a href="https://t.me/osmand_pl">Polish</a></li>
+                </ul>
+            </div>       
+        </div>
+    </div>
+</div>

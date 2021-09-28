@@ -1,0 +1,17 @@
+# MacOSX
+.DS_Store
+
+# Embedded resources generated files
+/embed-resources.list
+/embed-resources.index
+/embed-resources-cpp.index
+/embed-resources_*.list
+/.embed-resources.stamp
+
+# Misc
+_rendering-testcases
+
+*.swp
+
+# Search obfs
+/test-resources/search/*.obf

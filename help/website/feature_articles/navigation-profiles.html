@@ -1,0 +1,365 @@
+<h2>Navigation (Application) Profiles</h2>
+
+<li><a href="#navprof_android"><b>Navigation (Application) profile for Android version</b></a></li>
+<ul class="innerlist">
+<li><a href="#create">How to create a Navigation (Application) Profile</a></li>
+<li><a href="#parameters">How to set parameters to the new Navigation (Application) Profile</a></li>
+<li><a href="#videotutorial">Video tutorial</a></li>
+<li><a href="#create_brouter">How to create a Navigation Profile with Third-party routing (BRouter)</a></li>
+</ul>
+
+<li><a href="#navprof_ios"><b>Navigation (Application) profile for iOS version</b></a></li>
+<ul class="innerlist">
+<li><a href="#create_ios">How to create a Navigation (Application) Profile</a></li>
+<li><a href="#parameters_ios">How to set parameters to the new Navigation (Application) Profile</a></li>
+<li><a href="#import_prof_ios">How to import Navigation (Application) Profile</a></li>
+</ul>
+
+
+<p>To reach your destination easily with or without using voice guidance, OsmAnd offers you the Navigation feature. Learn how to use Navigation <a href="https://osmand.net/features/navigation">here</a>.</p>
+<p>In OsmAnd, to build a route, various basic profiles are available that take into account the specifics of the vehicle and traffic conditions. Routes are calculated differently for different navigation profiles following the rules of the road, given conditions, weights, various restrictions and will help you get to your destination, taking into account your method of movement. We also believe that it is not very convenient to use basic profiles for some special cases. Therefore, OsmAnd 3.5 (Android) and OsmAnd 3.80 (iOS) added the ability to make your own profile with all the settings, icons, etc.</p>
+
+<div class="subtitle" id="navprof_android"><h2>Navigation (Application) profile for Android version</h2></div>
+
+<div class="subtitle" id="create"><h3>How to create a New Navigation (Application) Profile</h3></div>
+
+<p>In the general app menu, you can choose and set any parameters for the default navigation profile. Go to <i>the general menu-> choose any profile-> Configure Profile</i>. At this screen, you can modify any profile, switch on/off plugins for this profile. You can do next actions at this screen: <i>"Export profile", "Copy from another profile", "Reset to default", "Delete profile"</i>.</p>
+
+<div class="centeredimageblog">
+<img src="/images/features/prof6.jpg" alt="(Image not available offline)"/>
+<div style="clear:both;"></div>
+</div>
+
+<p>You can create your own navigation profiles based on default profiles but with your parameters or modify the default profiles. To do this you should choose in <i>the general menu-> Profile-> Manage</i>. In the new window, please click <i>"+ New profile"</i>. In this menu, you can import profiles and edit  the profile list.</p>
+
+<div class="centeredimageblog">
+<img src="/images/features/prof1a.jpg" alt="(Image not available offline)"/>
+<img src="/images/features/prof2a.jpg" alt="(Image not available offline)"/>
+<img src="/images/features/prof3.jpg" alt="(Image not available offline)"/>
+<img src="/images/features/prof4.jpg" alt="(Image not available offline)"/>
+<div style="clear:both;"></div>
+</div>
+
+<p>Here you can see an example of how to make your own profile. We choose <i>Offroad type</i> for driving a car when we use passes in forests, mountains, etc.</p>
+
+<p><a id="create_1">At first</a>, it is necessary to choose the default app profile. The most common is <i>"Driving"</i>, but in this case, you can choose <i>"Cycling"</i>, too. Next, we name our profile - <i>"Offroad"</i>. Next, we choose color, icon, position icon at rest and position icon while moving. After that, we click <i>"Save"</i>. We've created the new navigation profile named <i>"Offroad"</i>.</p>
+
+<div class="centeredimageblog">
+<img src="/images/features/prof8.jpg" alt="(Image not available offline)"/>
+<img src="/images/features/prof9.jpg" alt="(Image not available offline)"/>
+<img src="/images/features/prof10.jpg" alt="(Image not available offline)"/>
+<img src="/images/features/prof11.jpg" alt="(Image not available offline)"/>
+<div style="clear:both;"></div>
+</div>
+
+<p>If you change base profile settings you can reset to default its. For this, go to <i>general menu-> Configure profile (choose needed Base profile)-> Actions (Reset to default)</i>.</p>
+
+
+<div class="subtitle" id="parameters"><h3>How to set parameters to the New Navigation Profile</h3></div>
+
+<p>After that, we go to the general menu, choose <i>"Offroad"</i> navigation profile and click to <i>"Configure profile"</i> as we do with default profiles.</p>
+<p>We can switch off or switch on this profile. Next, we set all parameters for our <i>"Offroad"</i> navigation profile on this screen. We can also select other plugins for our profile.</p>
+<p>In this screen, we can export, delete our profile or copy from another profile.</p>
+
+<div class="centeredimageblog">
+<img src="/images/features/prof12.jpg" alt="(Image not available offline)"/>
+<img src="/images/features/prof13.jpg" alt="(Image not available offline)"/>
+<div style="clear:both;"></div>
+</div>
+
+<p>In <b>General settings</b> you can modify the app theme, units, region. Choose your needed parameters in <i>Appearance</i>, <i>Units & formats</i> and <i>Other</i>.</p>
+
+<div class="centeredimageblog">
+<img src="/images/features/prof14.jpg" alt="(Image not available offline)"/>
+<div style="clear:both;"></div>
+</div>
+
+<p>In <a id="create_2"><b>Navigation settings</b></a>, you can configure navigation parameters for your profile. More information about services for navigation can be read <a href="https://osmand.net/features/navigation#Navigation_services_And">here</a>.</p>
+
+<p><i>Attention</i>: these parameters can be different for different Navigation types.</p>
+
+<div class="centeredimageblog">
+<img src="/images/features/prof15.jpg" alt="(Image not available offline)"/>
+<div style="clear:both;"></div>
+</div>
+
+<p>In <a id="create_4"><u><i>Navigation type</i></u></a>, there are many types of navigation that govern how routes are calculated. You can choose default types or import a modified routing file (<a href="https://github.com/osmandapp/OsmAnd-resources/blob/master/routing/routing.xml">routing.xml</a>).</p>
+
+<div class="centeredimageblog">
+<img src="/images/features/prof15a.jpg" alt="(Image not available offline)"/>
+<div style="clear:both;"></div>
+</div>
+
+<p>In <u><i>Route parameters</i></u>, you can choose all needed settings for routing in your profile. <i>Attention</i>: these parameters can be different for the different Navigation types.</p>
+
+<div class="centeredimageblog">
+<img src="/images/features/prof15b.jpg" alt="(Image not available offline)"/>
+<div style="clear:both;"></div>
+</div>
+
+<p>In <u><i>Screen alerts</i></u>, you can switch on alerts during navigation. <i>Attention</i>: there are restrictions for some countries of using Speed cameras alert during navigation.</p>
+
+<div class="centeredimageblog">
+<img src="/images/features/prof15c.jpg" alt="(Image not available offline)"/>
+<div style="clear:both;"></div>
+</div>
+
+<p>In <u><i>Voice prompts</i></u>, to set your navigation instructions and announcements. More information can be found <a href="https://osmand.net/features/navigation#Voice_guidance">here</a>.</p>
+
+<p>In <u><i>Vehicle parameters</i></u>, you set size and speed parameters of your vehicle, or only speed parameter for walking or bicycle.</p>
+
+<p>In <u><i>Map during navigation</i></u>, you can choose special settings for map behavior during navigation.</p>
+
+<div class="centeredimageblog">
+<img src="/images/features/prof15d.jpg" alt="(Image not available offline)"/>
+<div style="clear:both;"></div>
+</div>
+
+<p>The option <u><i>Turn screen on</i></u> helps you to reduce battery usage during navigation. It only switches your screen on during a maneuver. Of course, you can use proximity sensor for unblocking your screen.</p>
+
+
+<p><u><i>Animate own position</i></u> turns on animated map panning of "My position" during navigation.</p>
+
+<p>In <a id="create_5"><u><i>Configure map</i></u></a>, you can set all the needed parameters for your map. At this screen, there are two parts: <u><i>Show</i></u> and <u><i>Map rendering</i></u>. Here you can choose an overlay or underlay for your profile; switch on/off POI overlay and Favourites, Contour lines and Hillshades; choose <a href="https://test.osmand.net/features/start#Types_maps">Map style</a>; hide any details on the map; choose road style, etc.</p>
+
+<div class="centeredimageblog">
+<img src="/images/features/prof16.jpg" alt="(Image not available offline)"/>
+<img src="/images/features/prof16a.jpg" alt="(Image not available offline)"/>
+<div style="clear:both;"></div>
+</div>
+
+<p>In <a id="create_6"><u><i>Configure screen</i></u></a>, you can customize your general screen. You can choose all needed widgets for <u><i>Right</i></u> and <u><i>Left panel</i></u>, and switch on/off <u><i>Remaining elements</i></u>. You can read more information about this setting for screen <a href="https://osmand.net/features/map-viewing#Viewing_widgets_Android">here</a>.</p>
+
+<div class="centeredimageblog">
+<img src="/images/features/prof17.jpg" alt="(Image not available offline)"/>
+<img src="/images/features/prof17a.jpg" alt="(Image not available offline)"/>
+<div style="clear:both;"></div>
+</div>
+
+<p>In <b>Profile appearance</b>, you can modify the name and appearance of your profile. We <a href="#create_1"><u>did it</u></a> when created our new profile.</p>
+
+<p>In <b>UI Customization</b>, you can customize quantity and order of items in Drawer, configure map and context menu for each or for all navigation profiles.</p>
+
+<div class="centeredimageblog">
+<img src="/images/blog/3.7/4.jpg" alt="(Image not available offline)"/>
+<div style="clear:both;"></div>
+</div>
+
+<p>You can copy settings of UI Customization from another profile or reset to default. Of course, you can hide items and change the order of items.</p>
+
+<div class="centeredimageblog">
+<img src="/images/blog/3.7/5.jpg" alt="(Image not available offline)"/>
+<div style="clear:both;"></div>
+</div>
+
+<p>In <b>Plugin settings</b>, you can set special parameters for plugins for your navigation profile. Read more about each Plugin in our <a href="https://osmand.net/features/">Feature articles</a>.</p>
+
+<p>In <b>Actions</b>, you can export your created profile to your friends (for example), copy parameters from another profile or delete a profile.</p>
+
+<div class="subtitle" id="videotutorial"><h3>Video tutorial</h3></div>
+
+<iframe width="900" height="506" src="https://www.youtube.com/embed/TpT9S-b495M" frameborder="0" allowfullscreen></iframe>
+
+<div class="subtitle" id="create_brouter"><h3>How to create a Navigation Profile with Third-party routing (BRouter)</h3></div>
+
+<p>OsmAnd uses its own algorithm and resources for routing. There are many parameters for routing in our <a href="https://github.com/osmandapp/OsmAnd-resources/blob/master/routing/routing.xml">routing.xml</a> file. You can modify the <a href="https://github.com/osmandapp/OsmAnd-resources/blob/master/routing/routing.xml">routing.xml</a> and add/modify specific details for a/your <a href="#create_4">Navigation type</a>.</p>
+<p>But there is also a Third-party routing "engine" which you can use for OsmAnd. It's <a href="http://brouter.de/"><b>BRouter</b></a>. BRouter uses precalculation routes. It means that you can build your route very quickly offline.</p>
+<p>How to install and use BRouter can be read in <a href="http://brouter.de/brouter/readme.txt"><b>BRouter readme.txt</b></a>.</p>
+
+<p><b>Below you can read the tutorial on how BRouter is installed and included into OsmAnd routing.</b></p>
+
+<p>1. You should <a href="https://play.google.com/store/apps/details?id=btools.routingapp&hl=en"><b>install BRouter.apk</b></a> in your device.</p>
+
+<p>2. You should open BRouter and select a routing profile. You can choose a routing profile for your method of travelling (bicycle, moped,car, etc.). To give you more info about choosing the best routing profile for you, you can find more info about each profile  <a href="http://brouter.de/brouter/profiles2/"><b>here</b></a>. Or you can try to use a routing profile in <a href="http://brouter.de/brouter-web/"><b>BRouter-online</b></a>.</p>
+
+<div class="centeredimageblog">
+<img src="/images/features/prof18.jpg" alt="(Image not available offline)"/>
+<img src="/images/features/prof18a.jpg" alt="(Image not available offline)"/>
+<div style="clear:both;"></div>
+</div>
+
+<p>3. When you choose and tap the wanted routing profile (in our example, it is <i>fastbike</i>), we can download the data necessary for routing.</p>
+<p>Open BRouter application and click <i>Download Manager</i>.</p>
+
+<div class="centeredimageblog">
+<img src="/images/features/prof19.jpg" alt="(Image not available offline)"/>
+<div style="clear:both;"></div>
+</div>
+<p>Choose your area and start downloading.</p>
+
+<div class="centeredimageblog">
+<img src="/images/features/prof19a.jpg" alt="(Image not available offline)"/>
+<img src="/images/features/prof19b.jpg" alt="(Image not available offline)"/>
+<img src="/images/features/prof19c.jpg" alt="(Image not available offline)"/>
+<img src="/images/features/prof19d.jpg" alt="(Image not available offline)"/>
+<div style="clear:both;"></div>
+</div>
+
+<p>Now we have installed and downloaded all needed data for Third-party routing. All of our next steps will be in the OsmAnd application.</p>
+
+<p>4. You can choose or create a navigation profile in OsmAnd application. In <a href="#create_4">Navigation type</a>, you choose <b><i>BRouter (offline)</i></b>: <i>General menu-> Choose (create) Navigation profile-> Configure profile-> Navigation settings-> Navigation type</i>.</p>
+
+<div class="centeredimageblog">
+<img src="/images/features/prof20.jpg" alt="(Image not available offline)"/>
+<img src="/images/features/prof20a.jpg" alt="(Image not available offline)"/>
+<div style="clear:both;"></div>
+</div>
+
+<p>5. Everything is now ready for using the special Brouter routing. Now we compare the speed of the routing precalculation data of BRouter with OsmAnd's internal routing.</p>
+<p>We choose two random points in the Netherlands and start calculation of the trip. We choose Balanced Driving style without using elevation data for Base profile. The time of calculation for this trip is 14.5 sec for our internal OsmAnd routing. The time for Brouter routing Navigation profile is less than 1 sec.</p>
+<p>Note: You must understand that Brouter routing is very fast, but it is not modifyable and/or configurable. For OsmAnd offline routing you can choose any parameters and restrictions offline with fresh map data from Openstreetmap.</p>
+<p>Note 2: For some background info on the Brouter routing you can read <a href="http://www.brouter.de/brouter/algorithm.html" target="blank">this page</a> on the BRouter website.</p>
+
+<div class="centeredimageblog">
+<img src="/images/features/prof21.jpg" alt="(Image not available offline)"/>
+<img src="/images/features/prof21a.jpg" alt="(Image not available offline)"/>
+<div style="clear:both;"></div>
+</div>
+
+<div class="subtitle" id="navprof_ios"><h2>Navigation (Application) profile for iOS version</h2></div>
+
+<div class="subtitle" id="create_ios"><h3>How to create a New Navigation (Application) Profile</h3></div>
+<p>Starting from version 3.80, you can create you own Navigation (Applicaton) profile or modify it. Go to <i>menu -> Settings -> App profiles -> New profile</i>, here you can create your own application profile, edit profile list, make your profile active/unactive.</p>
+<div class="centeredimageblog">
+<img src="/images/features/prof22.jpg" alt="(Image not available offline)"/>
+<img src="/images/features/prof23.jpg" alt="(Image not available offline)"/>
+<div style="clear:both;"></div>
+</div>
+
+<p>When you click <i>New profile</i> you choose the default app profiles for your custom profile, this defines the basic setup like default visibility of widgets, and units of speed and distance. We will create our MTB profile and choose "Bicycle" for own app profile.</p>
+<div class="centeredimageblog">
+<img src="/images/features/prof24.jpg" alt="(Image not available offline)"/>
+<div style="clear:both;"></div>
+</div>
+
+<p>When we click the default app profiles (Bicycle) we can give the name, color, appearance of our custom MTB profile. When we choose all parameters we click the "Save" button.</p>
+
+<div class="centeredimageblog">
+<img src="/images/features/prof25.jpg" alt="(Image not available offline)"/>
+<img src="/images/features/prof26.jpg" alt="(Image not available offline)"/>
+<div style="clear:both;"></div>
+</div>
+
+<p>Our custom app profile is in our profile list now. We can edit the profile list and move our app profile to the top of the list.</p>
+<div class="centeredimageblog">
+<img src="/images/features/prof27.jpg" alt="(Image not available offline)"/>
+<img src="/images/features/prof28.jpg" alt="(Image not available offline)"/>
+<img src="/images/features/prof29.jpg" alt="(Image not available offline)"/>
+<div style="clear:both;"></div>
+</div>
+
+<div class="subtitle" id="parameters_ios"><h3>How to set parameters to the New Navigation Profile</h3></div>
+
+<p>Go to the general menu, choose <i>Settings -> "MTB" app profile</i>. Here we see Enable button, Profile settings menu, Plugins, Actions.</p>
+<p>In <i>Plugins</i>, we can set plugin parameters for our app profile.</p>
+<p>In <i>Actions</i>, we can export our profile, copy from another profile, reset to default, or delete profile.</p>
+<div class="centeredimageblog">
+<img src="/images/features/prof30.jpg" alt="(Image not available offline)"/>
+<img src="/images/features/prof31.jpg" alt="(Image not available offline)"/>
+<div style="clear:both;"></div>
+</div>
+
+<p>In <b><u>Profile settings</u></b> we can set our app profile:</p>
+<p><b><i>General settings</i></b></p>
+
+<p><u>Appearance</u>:</p>
+<p>- Map orientation (Do not rotate (north is up), To direction of movement, To compass)</p>
+<p>- 2.5D view (switch on/off)</p>
+<p>- Display position always in center (switch on/off)</p>
+
+<p><u>Units & Formats</u>:</p>
+<p>- Driving region (Automatic, Right(left)-hand driving, kilometers(miles)/meters(feet))</p>
+<p>- Units of length (kilometers/meters, miles/feet, miles/yards, miles/meters, nautical miles)</p>
+<p>- Units of speed (kilometers per hour, mile per hour... nautical miles per hour (knot))</p>
+<p>- Coordinate format</p>
+<p>- Angular measurment units (degrees 180, degrees 360, milliradians)</p>
+
+<p><u>External input devices</u>:</p>
+<p>- None</p>
+<p>- Generic Keyboard</p>
+<p>- WunderLINQ</p>
+
+<div class="centeredimageblog">
+<img src="/images/features/prof32.jpg" alt="(Image not available offline)"/>
+<div style="clear:both;"></div>
+</div>
+
+<p><b><i>Navigation settings</i></b></p>
+<div class="centeredimageblog">
+<img src="/images/features/prof33.jpg" alt="(Image not available offline)"/>
+<div style="clear:both;"></div>
+</div>
+
+<p><u>Navigation</u>:</p>
+
+<p>- Navigation type. Here you can choose Navigation type, how routes are calculated. You can import routing file from any cloud storage app or by putting it into the OsmAnd folder in iTunes.</p>
+<div class="centeredimageblog">
+<img src="/images/features/prof34.jpg" alt="(Image not available offline)"/>
+<div style="clear:both;"></div>
+</div>
+
+<p>- Route parameters. Here you can set parameters for routing: choose needed road types, elevation data, etc.</p>
+<div class="centeredimageblog">
+<img src="/images/features/prof35.jpg" alt="(Image not available offline)"/>
+<div style="clear:both;"></div>
+</div>
+
+<p>- Voice prompts. You can read more about settings of the voice guidance <a href="https://osmand.net/features/navigation#Voice_guidance_iOS">here</a>.</p>
+<div class="centeredimageblog">
+<img src="/images/features/prof36.jpg" alt="(Image not available offline)"/>
+<div style="clear:both;"></div>
+</div>
+
+<p>- Screen alerts. Show alerts during navigation: Traffic warnings, Pedestrian crosswalks, Speed cameras, Tunnels.</p>
+<div class="centeredimageblog">
+<img src="/images/features/prof37.jpg" alt="(Image not available offline)"/>
+<img src="/images/features/prof38.jpg" alt="(Image not available offline)"/>
+<div style="clear:both;"></div>
+</div>
+
+<p>- Vehicle parameters. Size and weight, default speed.</p>
+<div class="centeredimageblog">
+<img src="/images/features/prof39.jpg" alt="(Image not available offline)"/>
+<div style="clear:both;"></div>
+</div>
+
+<p><u>Other</u>:</p>
+<p>- Map behavior. Auto-center map view, auto zoom map, map orientation threshold, snap to road (on/off).</p>
+<div class="centeredimageblog">
+<img src="/images/features/prof40.jpg" alt="(Image not available offline)"/>
+<div style="clear:both;"></div>
+</div>
+
+<p><b><i>Configure map</i></b></p>
+<p>Read more about these settings <a href="https://osmand.net/features/map-viewing#Customize_map_iOS">here</a>.</p>
+
+<p><b><i>Configure screen</i></b></p>
+<p>Read more about these settings <a href="https://osmand.net/features/map-viewing#Viewing_widgets_iOS">here</a>.</p>
+
+<p><b><i>Profile appearance</i></b></p>
+<p>You can change appearance of your profile. A step by step guide can be read <a href="https://osmand.net/features/navigation-profiles#create_ios">here</a>.</p>
+
+<div class="subtitle" id="import_prof_ios"><h3>How to import Navigation (Application) Profile</h3></div>
+<p>You can export your profile or import other profiles.</p>
+<p>To import a profile, tap on the needed file (*.osf) in any application and select "Copy to OsmAnd Maps".</p>
+
+<div class="centeredimageblog">
+<img src="/images/blog/ios-3-80/5.jpg" alt="(Image not available offline)"/>
+<img src="/images/blog/ios-3-80/6.jpg" alt="(Image not available offline)"/>
+<img src="/images/blog/ios-3-80/7.jpg" alt="(Image not available offline)"/>
+<img src="/images/blog/ios-3-80/9.jpg" alt="(Image not available offline)"/>
+<div style="clear:both;"></div>
+</div>
+
+<p>___________________________</p>
+
+
+<p>You can also read and discuss OsmAnd features at <a href="https://www.facebook.com/osmandapp/">Facebook</a>, <a href="https://www.twitter.com/osmandapp/">Twitter</a>, and <a href="https://www.reddit.com/r/OsmAnd/">Reddit</a>!</p>
+ <p>Join us at our groups of Telegram <a href="https://t.me/OsmAndMaps">(EN)</a>, <a href="https://t.me/itosmand">(IT)</a>,  <a href="https://t.me/frosmand">(FR)</a>, <a href="https://t.me/deosmand">(DE)</a>, <a href="https://t.me/ruosmand">(RU)</a>, <a href="https://t.me/uaosmand">(UA)</a>.</p>
+
+<p><a href="https://play.google.com/store/apps/details?id=net.osmand" target="_blank">
+<img src="https://raw.githubusercontent.com/osmandapp/osmandapp.github.io/9fc59e5136b6a07045eb96d052b3ce6ddde805c3/website/images/help/badge_store_google_play.png" alt="Get it on Google Play" height="60"/></a>
+<a href="https://www.amazon.com/OsmAnd-Maps-Navigation/dp/B00D0SA8I8" target="_blank">
+<img src="https://raw.githubusercontent.com/osmandapp/osmandapp.github.io/9fc59e5136b6a07045eb96d052b3ce6ddde805c3/website/images/help/badge_store_amazon.png" alt="Get it on Amazon" height="60"/></a>
+<a href="https://itunes.apple.com/app/apple-store/id934850257?pt=2123532&amp;ct=WebSite&amp;mt=8" target="_blank">
+<img src="https://raw.githubusercontent.com/osmandapp/osmandapp.github.io/9fc59e5136b6a07045eb96d052b3ce6ddde805c3/website/images/app-store-badge.png" alt="Get it on App Store" height="60"/></a></p>

@@ -1,0 +1,739 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Info</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/admin.css?v=8">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<ul class="nav nav-tabs" id="tabspanel">
+  		<li class="active"><a data-toggle="tab" href="#home">Status</a></li>
+  		<li><a data-toggle="tab" href="#motd">Push</a></li>
+  		<li><a data-toggle="tab" href="#subs">Subscriptions</a></li>
+  		<li><a data-toggle="tab" href="#giveaway">Giveaway</a></li>
+  		<li><a data-toggle="tab" href="#audience">Audience</a></li>
+  		<li><a data-toggle="tab" href="#reports">Reports</a></li>
+  		<li><a data-toggle="tab" href="#bitcoin">Bitcoin</a></li>
+	</ul>
+	
+	<div class="tab-content">
+  		<div id="home" class="tab-pane fade in active">
+			<h3>Status</h3>
+				<p>Server version (java): <span th:text="${server_commit}"></span></p>
+				<p>Web version (html + configs): <span th:text="${web_commit}"></span></p>
+				<p>Server started: <span th:text="${server_startup}"><span></p>
+				<p>Web updated: <b><span th:text="${update_status}+'.'"></span></b> <span th:text="${update_message} "></span> <span th:text="${update_errors}"></span></p>
+				<div class="reload">
+					<form action="/admin/publish" method="post">
+						<input type="submit" value="Pull web configuration from Github"  />
+						<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+					</form>
+				</div>
+
+			<h3>Download servers:</h3>
+			<span>You can change it by modifying json file at <a href="https://github.com/osmandapp/osmandapp.github.io/blob/master/website/api/settings.json">Github</a> and don't forget to click button reload configuration.</span>
+			<table border="1">
+				<tr>
+					<th>Name</th>
+					<th>Maps 90G</th>
+					<th>Live 90G</th>
+					<th>SRTM 100G</th>
+					<th>Hillshade 40G</th>
+					<th>Slope 50G</th>
+					<th>Roads 40G</th>
+					<th>Wiki 30G</th>
+				</tr>
+				<tr th:each="di : ${downloadServers}">
+					<td th:text="${di.name}"></td>
+					<td th:text="${di.main}"></td>
+					<td th:text="${di.osmlive}"></td>
+					<td th:text="${di.srtm}"></td>
+					<td th:text="${di.hillshade}"></td>
+					<td th:text="${di.slope}"></td>
+					<td th:text="${di.roads}"></td>
+					<td th:text="${di.wiki}"></td>
+				</tr>
+			</table>
+  		</div>
+  		
+  		<div id="motd" class="tab-pane fade">
+			<h3>Push / promo (message of the day)</h3>
+
+			<span>You can change it by modifying json file at <a href="https://github.com/osmandapp/osmandapp.github.io/blob/master/website/api/messages/motd_config.json">Github</a> and don't forget to click button reload configuration. The documentation of configuration is present at <a href="https://github.com/osmandapp/osmandapp.github.io/blob/master/website/api/messages/Readme.md">Readme</a></span>
+			<table border="1">
+				<tr>
+					<th>Active</th>
+					<th>File</th>
+					<th>Filter</th>
+					<th>Messages</th>
+				</tr>
+				<tr th:each="di : ${motdSettings.getDiscountSettings()}">
+					<td th:text="${di.discountCondition.checkActiveDate(new java.util.Date()) ? 'yes' : 'no'}"></td>
+					<td><a  th:text="${di.file}" th:href="'https://github.com/osmandapp/osmandapp.github.io/blob/master/website/api/messages/' + ${di.file}"></a></td>
+					<td th:text="${di.discountCondition.getFilterCondition()}"></td>
+					<td th:text="${di.fields}"></td>
+				</tr>
+			</table>
+  		</div>
+
+		<div id="subs" class="tab-pane fade">
+			<h3>Current subscriptions config</h3>
+			<span>You can change it by modifying json file at <a href="https://github.com/osmandapp/osmandapp.github.io/blob/master/website/api/subscriptions/config.json">Github</a> and don't forget to click button reload 	configuration.</span>
+			<table border="1">
+				<tr>
+					<th>Active</th>
+					<th>File</th>
+					<th>Filter</th>
+				</tr>
+				<tr th:each="di : ${subSettings.getDiscountSettings()}">
+					<td th:text="${di.discountCondition.checkActiveDate(new java.util.Date()) ? 'yes' : 'no'}"></td>
+					<td><a  th:text="${di.file}" th:href="'https://github.com/osmandapp/osmandapp.github.	io/blob/master/website/api/subscriptions/' + ${di.file}"></a></td>
+					<td th:text="${di.discountCondition.getFilterCondition()}"></td>
+				</tr>
+			</table>
+
+			<h3>Subscriptions Revenue by Year (7 years)</h3>
+			<p>Data: Active (by first date) //// <b>+ New</b> -Churned /// • Renew -Churn Rate % (renew includes churned) ///
+				Revenue (New + Renew) this year /// Expected revenue from new subs </p>
+			<table border="1">
+				<tr>
+					<th>Date</th>
+					<th th:each="c : ${subRevenueReportYear.columns}" th:utext="${c.name}"></th>
+				</tr>
+			
+				<tr th:each="i : ${subRevenueReportYear.getValues(7)}">
+					<td th:utext="${i.key}">2019-03</td>
+					<td th:each="v : ${i.value}" th:utext="${v.toString(4+8+16)}">
+					</th>
+				</tr>
+			
+			</table>
+
+			<h3>Subscriptions Revenue by Month (40 months)</h3>
+			<p>Data: Active (by first date) //// <b>+ New</b> -Churned /// • Renew -Churn Rate %  (renew includes churned) /// Revenue (New + Renew) this month /// Expected revenue from new subs </p>
+			<table border="1">
+				<tr >
+					<th>Date</th>
+					<th th:each="c : ${subRevenueReportMonth.columns}" th:utext="${c.name}"></th>
+				</tr>
+				
+				<tr th:each="i : ${subRevenueReportMonth.getValues(40)}">
+					<td th:utext="${i.key}">2019-03</td>
+					<td th:each="v : ${i.value}" th:utext="${v.toString(1+2+4+8)}"></th>
+				</tr>
+				
+			</table>
+
+			<h3>Year Subscription Retention</h3>
+			<table border="1">
+				<tr>
+					<th>Date</th>
+					<th>Total</th>
+					<th>iOS All</th>
+					<th>Android</th>
+					<th>iOS Full</th>
+					<th>iOS %</th>
+					<th>And v1 Full</th>
+					<th>And v1 %</th>
+					<th>And v2</th>
+					
+			
+				</tr>
+				<tr th:each="di : ${yearSubscriptionsReport}">
+					<td th:utext="${di.month}">01.01.2018 00:00</td>
+					<td th:utext="${di.total.html()}">1000</td>
+					<td th:utext="${di.ios.html()}">1000</td>
+					<td th:utext="${di.android.html()}">1000</td>
+					<td th:utext="${di.iosFull.html()}">1000</td>
+					<td th:utext="${di.iosIntro.html()}">1000</td>
+					<td th:utext="${di.androidFull.html()}">1000</td>
+					<td th:utext="${di.androidIntro.html()}">1000</td>
+					<td th:utext="${di.androidV2.html()}">1000</td>
+					
+				</tr>
+			</table>
+
+			<h3>Subscriptions Revenue by Day (400 days)</h3>
+			<p>Data: <b>+ New</b> -Churned /// • Renew -Churn Rate % (renew includes churned) /// Revenue (New + Renew) today /// Expected life time revenue from New </p>
+			<table border="1">
+				<tr>
+					<th>Date</th>
+					<th th:each="c : ${subRevenueReportDay.columns}" th:utext="${c.name}"></th>
+				</tr>
+			
+				<tr th:each="i : ${subRevenueReportDay.getValues(400)}">
+					<td th:utext="${i.key}">2019-03</td>
+					<td th:each="v : ${i.value}" th:utext="${v.toString(1+2+8)}">
+						</th>
+				</tr>
+			</table>
+
+
+		</div>
+
+		<div id="giveaway" class="tab-pane fade">
+
+			<h3>Giveaway campaigns:</h3>
+			<span>Create giveaway campaign public or nonpublic and change status to run. You need to send out email with participation links with <a href="https://builder.osmand.net:8080/view/WebSite/job/Website_SendMail/">Send mail</a> utility.</span>
+			<table border="1">
+				<tr>
+					<th>Name</th>
+					<th>Type</th>
+					<th>Rounds</th>
+					<th>Used / Promos</th>
+					<th>Status</th>
+					<th>Email template</th>
+					<th>Update date</th>
+				</tr>
+				<tr th:each="di : ${giveaways}">
+					<td th:text="${di.name}">name</td>
+					<td th:text="${di.type}">type</td>
+					<td th:text="${di.rounds}">0</td>
+					<td th:text="${di.usedPromocodes() + ' / ' + di.promocodesSize()}">dss</td>
+					<td>
+						<form action="update-giveaway-status" method="post">
+							<input type="hidden" name="name" th:value="${di.name}"/>
+							<select name="status">
+								<option th:text="${di.status}" value=""></option>
+								<option value="NOTPUBLIC">* NOTPUBLIC</option>
+								<option value="DRAFT">* DRAFT</option>
+								<option value="PREPARE">* PREPARE</option>
+								<option value="RUNNING">* RUNNING</option>
+								<option value="FINISHED">* FINISHED</option>
+							</select>
+							<input type="submit" name="upvote" value="update"/>
+						</form>
+					</td>
+					<td th:text="${di.emailTemplate}"></td>
+					<td th:text="${#dates.format(di.updateTime, 'dd-MM-yyyy HH:mm')}"></td>
+				
+				</tr>
+			</table>
+			<div class="register-giveaway"> 
+				<form action="register-giveaway" method="post">
+				<ul class="wrapper">
+    				<li class="form-row">
+						<label for="name">Name (suffix):</label>
+						<input type="text" name="name">
+					</li>
+					<li class="form-row">
+						<label for="type">Type ('osmand+', 'ios-world'):</label>
+						<input type="text" name="type">
+					</li>
+					<li class="form-row">
+						<label for="promocodes">Promocodes (split by ','):</label> 
+						<input type="textarea" name="promocodes">
+					</li>
+					<li class="form-row">
+						<label for="public">Email template (sendgrid):</label> 
+						<input type="text" name="emailTemplate">
+					</li>
+					<li class="form-row">
+						<label for="public">Public (visible on web):</label> 
+						<input type="checkbox" name="public">
+					</li>
+					<li class="form-row">
+						<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+						<button type="submit"> Create new giveaway</button>
+					</li>
+				
+				</form>
+			</div>
+
+			<div class="send-private-giveaway"> 
+				<form action="send-private-giveaway" method="post">
+				<ul class="wrapper">
+					<li class="form-row">
+						<label for="name">Private giveaway name:</label>
+						<select name="name" >
+							<option th:each="di,iter : ${giveaways}" th:value="${di.name}" th:text="${di.name}"
+							th:selected="${iter.index == 0}"> </option>
+						</select>
+					</li>
+					<li class="form-row">
+						<label for="email">Email/emails:</label>
+						<input type="text" name="email" />
+					</li>
+					<li class="form-row">
+						<label for="promocodes">Amount promocodes:</label> 
+						<input type="number" name="promocodes" value="1"></input>
+					</li>
+					<li class="form-row">
+						<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+						<button type="submit">Send promocodes</button>
+					</li>
+				
+				</form>
+			</div>
+		</div>
+
+		<div id="audience" class="tab-pane fade">
+			<h3>Audience surveys (polls)</h3>
+			<span>You can change it by modifying json file at <a href="https://github.com/osmandapp/osmandapp.github.io/blob/master/website/api/poll.json">Github</a> and don't forget to click button reload configuration. </span>
+			<table border="1">
+				<tr>
+					<th>Channel</th>
+					<th>Publish date</th>
+					<th>Id</th>
+					<th>Title</th>
+				</tr>
+				<tr th:each="di : ${polls}">
+					<td th:text="${di.key}">website</td>
+					<td th:text="${di.value.pubdate}">01.01.2018</td>
+					<td th:text="${di.value.polldaddyid}"></td>
+					<td >
+				<a th:text="${di.value.title}" th:href="'https://app.crowdsignal.com/polls/'+${di.value.	polldaddyid}+'/results'"></a></td>
+				</tr>
+			</table>
+
+			<h3>Email database</h3>
+			<span>You can use automated tool to send emails to the database <a href="https://builder.osmand.net:8080/view/WebSite/job/Website_SendMail/">Send Emails</a>.</span>
+			<table border="1">
+				<tr>
+					<th>Category name</th>
+					<th>Category id</th>
+					<th>Total population</th>
+					<th>Available for Marketing</th>
+					<th>Available for OsmAnd Live</th>
+					<th>Available for News</th>
+				</tr>
+				<tr th:each="di : ${emailsReport}">
+					<td th:text="${di.category}">1000</td>
+					<td th:text="${di.categoryId}">1000</td>
+					<td th:text="${di.totalCount}">1000</td>
+					<td th:text="${di.activeMarketing}">1000</td>
+					<td th:text="${di.activeOsmAndLive}">1000</td>
+					<td th:text="${di.activeNews}">1000</td>
+				</tr>
+			</table>
+			
+			<div class="form-table-input">
+				<form action="/admin/search-emails" method="post">
+					<ul class="wrapper">
+						<li class="form-row">
+							<label for="name">Search Email by Part:</label>
+							<input type="text" name="emailPart">
+						</li>
+						<li class="form-row">
+							<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+							<button type="submit">Search</button>
+						</li>
+					</uL>
+				</form>
+			</div>
+			
+			<table border="1" th:if="${emailSearch != null}">
+				<tr>
+					<th>Email</th>
+					<th>Channel</th>
+					<th>Date</th>
+					<th>Table</th>
+					<th>Source</th>
+				</tr>
+				<tr th:each="di : ${emailSearch}">
+					<td th:text="${di.email}">1000</td>
+					<td th:text="${di.channel}">1000</td>
+					<td th:text="${di.date}">1000</td>
+					<td th:text="${di.table}">1000</td>
+					<td th:text="${di.source}">1000</td>
+				</tr>
+			</table>
+			
+			<h3>Subscriptions & promo</h3>
+			<div class="form-table-input">
+				<form action="/admin/register-promo" method="post">
+					<ul class="wrapper">
+						<li class="form-row">
+							<label for="name">Register promo subscription <br>(enter email or description):</label>
+							<input type="text" name="comment">
+						</li>
+						<li class="form-row">
+							<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+							<button type="submit">Register</button>
+						</li>
+					</uL>
+				</form>
+				<form action="/admin/search-subscription" method="post">
+					<ul class="wrapper">
+						<li class="form-row">
+							<label for="name">Search subscription (email or orderid):</label>
+							<input type="text" name="orderId">
+						</li>
+						<li class="form-row">
+							<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+							<button type="submit">Search</button>
+						</li>
+					</uL>
+				</form>
+			</div>
+
+			<table border="1" th:if="${subscriptions != null}">
+				<tr>
+					<th>Sku</th>
+					<th>Orderid (promocode)</th>
+					<th>Kind</th>
+					<th>Start</th>
+					<th>Expire</th>
+					<th>Purchasetoken</th>
+					<th>Payload</th>
+				</tr>
+				<tr th:each="di : ${subscriptions}">
+					<td th:text="${di.sku}">1000</td>
+					<td th:text="${di.orderId}">1000</td>
+					<td th:text="${di.kind}">1000</td>
+					<td th:text="${di.starttime}">1000</td>
+					<td th:text="${di.expiretime}">1000</td>
+					<td th:text="${di.purchaseToken}">1000</td>
+					<td th:text="${di.payload}">1000</td>
+				</tr>
+			</table>
+			
+			<h3>Support survey</h3>
+			<table border="1">
+				<tr>
+					<th>Week</th>
+					<th>Good</th>
+					<th>Average</th>
+					<th>Bad</th>
+					<th>Count</th>
+				</tr>
+				<tr th:each="di : ${surveyReport}">
+					<td th:text="${di.date}">01.01.2018</td>
+					<td th:text="${di.goodCount}"></td>
+					<td th:text="${di.averageCount}"></td>
+					<td th:text="${di.badCount}"></td>
+					<td th:text="${di.badCount + di.goodCount + di.averageCount}">/td>
+				</tr>
+			</table>
+		</div>
+		
+		<div id="reports" class="tab-pane fade">
+			<h3>Reports</h3>
+			<table border="1">
+				<tr>
+					<th>Name</th>
+					<th>Update date</th>
+				</tr>
+				<tr th:each="di : ${reports}">
+				<td><a th:text="${di.name}" th:href="'/admin/report?file='+${di.fullname}" href="">
+					Report name </td>
+					<td th:text="${di.date}">01.01.2018 00:00</td>
+				</tr>
+			</table>
+			
+			<h3>Access server logs</h3>
+			<div class="access-server-logs"> 
+				<ul class="wrapper">
+					<form target="_blank" action="access-logs" id="logs-form">
+						<li class="form-row">
+							<label for="name">Start time:</label>
+					 		<input type="datetime-local" name="starttime"/>
+					 	</li>
+					 	<li class="form-row">
+							<label for="name">End time:</label>
+							<input type="datetime-local" name="endtime"/>
+						</li>
+						<li class="form-row">
+							<label for="name">Log line filter (analyze only lines with filter i.e. userAgent):</label>
+							<input type="text" name="logFilter" />
+						</li>
+						<li class="form-row">
+							<label for="name">URL requests filter (analyze all lines but filters and groups results):</label>
+							<input type="text" name="uriFilter" />
+						</li>
+						<li class="form-row">
+							<label for="name">Load region info (takes time): </label>
+							<input type="checkbox" name="region" />
+						</li>
+						<li class="form-row">
+							<label for="name">Download as file:</label>
+							<input type="checkbox" name="gzip" />
+						</li>
+						<li class="form-row">
+							<label for="name">Limit records: </label>
+							<input type="number" value="10000" name="limit" />
+						</li>
+						<li class="form-row">
+							<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+							<input type="submit" value="Load"></input>
+						</li>
+					</form>
+					<li class="form-row">
+						<input type="submit" value="Display users" id="display-report"></input>
+					</li>
+					<li class="form-row">
+						<input type="submit" value="Display stats" id="display-stats"></input>
+					</li>
+					<li class="form-row">
+						<div id="loading-progress" class="loader" style="display:none"></div>
+					</li>
+					<li class="form-row">
+						<span id="loaded-info" style="display:none"></span>
+					</li>
+				</ul>
+				
+			</div>
+
+			<div style="display:none;margin-bottom:500px" id="display-users-report-div">
+				<h3><input type="submit" value="<" id="prev-user" ></input>
+					<span id="user-report-header" ></span>
+					<input type="submit" value=">" id="next-user" ></input>
+				</h3>
+				<p>User <span id="user-report-id"></span> performed <span id="user-report-actions"></span> actions at <span id="user-report-start-time"></span> for <span id="user-report-duration"></span>.</p>
+				<table border="1" id ="user-report-table">
+					<tr>
+						<th>Time</th>
+						<th>Ip</th>
+						<th>Region</th>
+						<th>Action</th>
+						<th>Params</th>
+					</tr>
+				</table>
+			</div>
+
+			<div style="display:none;margin-bottom:500px" id="display-stats-report-div">
+				<h3 id="stats-header">Stats</h3>
+				
+				<table border="1" id ="stats-report-table">
+					<tr>
+						<th>Action</th>
+						<th>Count</th>
+						<th>Unique count</th>
+						<th>Session after</th>
+						<th>Follow ups</th>
+					</tr>
+				</table>
+			</div>
+		</div>
+
+		<div id="bitcoin" class="tab-pane fade">
+			<h3>Wallet</h3>
+			<div>
+				<p>Wallet balance: <b th:text="${btc.walletBalance / 100000.0f}"></b> mBTC</p>
+				<p>Wallet max waiting blocks (manually set): <b th:text="${btc.walletWaitingBlocks}"></b> blocks</p>
+				<p>Wallet addresses: <span th:text="${btc.walletAddresses}"></b></p>
+				<p>Wallet last transaction: <b><a th:href="'https://www.blockchain.com/btc/tx/'+${btc.walletLasttx}" th:text="${btc.walletLasttx}"></a></b></p>
+				<p>Wallet fee (manually set): <b th:text="${btc.walletTxFee}"></b> satoshi per byte</p>
+				<p>Wallet estimated payouts fee: <b th:text="${btc.walletEstFee}"></b> satoshi per byte, waiting <b th:text="${btc.walletEstBlocks}"></b> blocks.</p>
+			</div>
+			<h3>Total payout</h3>
+			<div>
+				<p>Generated date: <b th:text="${btc.balance.generatedDate}"></b></p>
+				<p>Minimum payout: <b th:text="${btc.balance.minToPayoutSat / 100000.0f}"></b> mBTC</p>
+				<p>Current fee to pay: <b th:text="${btc.balance.defaultFee}"></b> satoshi per byte</p>
+				<p>Total to pay (with fee <span th:text="${btc.balance.defaultFee}"></span>): 
+					<span th:text="${btc.balance.payWithFeeCnt}"></span> accounts <b th:text="${btc.balance.payWithFeeSat / 100000.0f}"></b> mBTC.</p>
+				<p>Total to pay (with fee 0): 
+					<span th:text="${btc.balance.payNoFeeCnt}"></span> accounts <b th:text="${btc.balance.payNoFeeSat / 100000.0f}"></b> mBTC</p>
+				<p>Total overpaid: <span th:text="${btc.balance.overpaidCnt}"></span> accounts <b th:text="${btc.balance.overpaidSat / 100000.0f}"></b> mBTC</p>
+				<p>Total overpaid (more than minimum payout): <span th:text="${btc.balance.overpaidFeeCnt}"></span> accounts <b th:text="${btc.balance.overpaidFeeSat / 100000.0f}"></b> mBTC</p>
+				<p>Total paid: <b th:text="${btc.total / 100000000.0f} + ' BTC'"></b></p>
+			</div>
+			<div class="update-btc-report"> 
+				<form action="/admin/update-btc-report" method="post">
+					<ul class="wrapper">
+    					<li class="form-row">
+							<label for="name">Current fee (in satoshi per byte):</label>
+							<input type="text" name="defaultFee">
+						</li>
+						<li class="form-row">
+							<label for="name">Max wallet waiting blocks:</label>
+							<input type="text" name="waitingBlocks">
+						</li>
+						<li class="form-row">
+							<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+							<button type="submit">Regenerate payout report</button>
+						</li>
+					</uL>
+				</form>
+			</div>
+			<div class="update-btc-report"> 
+				<b>Double check all parameters and enter batch size (200-250) to initiate payout!</b>
+				<form action="/admin/make-btc-payout" method="post">
+					<ul class="wrapper">
+    					<li class="form-row">
+							<label for="name">Batch size:</label>
+							<input type="text" name="batchSize">
+						</li>
+						<li class="form-row">
+							<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+							<button type="submit">Payout bitcoins!</button>
+						</li>
+					</uL>
+				</form>
+			</div>
+
+		
+			<h3>Bitcoin payouts</h3>
+			<!-- <span>You can use automated tool to send emails to the database <a href="https://builder.osmand.net:8080/view/WebSite/job/Website_SendMail/">Send Emails</a>.</span> -->
+			<table border="1">
+				<tr>
+					<th>Month</th>
+					<th>Total</th>
+					<th>Fee</th>
+					<th>Transactions</th>
+				</tr>
+				<tr th:each="di : ${btc.txs}">
+					<td th:text="${di.month}">1000</td>
+					<td th:text="${di.total / 100000.0f} + ' mBTC'">1000</td>
+					<td>
+						<p th:text="${di.fee / 100000.0f} + ' mBTC'">1000</p>
+						<p th:text="${(di.fee * 1000 / di.total)/10.0f} + ' %'">1000</p>
+						<p th:text="${di.fee / di.size} + ' sat/byte'">1000</p>
+					</td>
+					<td>
+						<p th:each="tx : ${di.txValues}">
+							<a th:text="${tx.id}" th:href="${tx.url}"></a> - 
+								<span th:text="${tx.total / 100000.0f}" /> mBTC, 
+								fee <span th:text="${tx.fee / 100000.0f}" /> mBTC
+						</p>
+					</td>
+				</tr>
+			</table>
+
+			<h3>Individual payouts</h3>
+			<!-- <span>You can use automated tool to send emails to the database <a href="https://builder.osmand.net:8080/view/WebSite/job/Website_SendMail/">Send Emails</a>.</span> -->
+			<table border="1">
+				<tr>
+					<th>Addr</th>
+					<th>OsmId</th>
+					<th>To pay</th>
+					<th>Total paid</th>
+				</tr>
+				<tr th:each="di : ${btc.balance.toPay}">
+					<td th:text="${di.btcAddress}">1000</td>
+					<td th:text="${di.osmId}"></td>
+					<td th:text="${di.toPay / 100000.0f} + ' mBTC'">1000</td>
+					<td th:text="${di.totalPaid / 100000.0f} + ' mBTC'">1000</td>
+				</tr>
+			</table>
+		</div>
+
+  	</div>
+	<script type="text/javascript">
+
+	var people = [];
+	var index = 0;
+	var begin = '';
+	var end = '';
+	var stats = {};
+
+
+	function updatePerson() {
+		$("#user-report-header").text( 'User ' + (index + 1) + ' of ' + people.length );
+		$("#user-report-table").find("tr:gt(0)").remove();
+		if(index < people.length) {
+			var p = people[index];
+			$("#user-report-actions").text(p.actions.length);
+			$("#user-report-id").text(p.aid);
+			$("#user-report-start-time").text(p.actions[0].timeFormat);
+			$("#user-report-duration").text(p.duration);
+			for(var i = 0; i < p.actions.length; i++) {
+				var action = p.actions[i];
+				var markup = "<tr>"+
+						"<td>"+action.timeFormat + "</td>"+
+						"<td>"+action.ip+"</td>"+
+						"<td>"+action.region + "</td>"+
+						"<td>"+action.uri + "</td>"+
+						"<td>" + JSON.stringify(action.params) + "</td>"+
+						"</tr>";
+				$("#user-report-table").append(markup);
+			}
+		}
+	}
+
+	function updateLoadedInfo(r) {
+		$('#loaded-info').show();
+		$('#loaded-info').html("Scanned <b>" + r.rows + "</b> (" + r.errors + " errors) from <b>" 
+			+ r.begin + "</b> to <b>" +r.end + "</b>");
+	}
+
+	function updateStats() {
+		$("#stats-report-table").find("tr:gt(0)").remove();
+		$("#stats-header").text( 'Statistics ' + Object.keys(stats).length);
+		for (var k in stats) {
+			var v = stats[k];
+			var fw = '';
+			for (var ks in v.followUps) {
+				fw = fw + ' ' + ks + ' (' + (v.followUps[ks]/10.0) + '%, ';
+				fw = fw + (v.followUpTimes[ks]) + ' sec)';
+				fw = fw + ';&nbsp;&nbsp;';
+			}
+			var markup = "<tr>"+
+				"<td>"+v.uri + "</td>"+
+				"<td>"+v.count+"</td>"+
+				"<td>"+v.uniqueCount + "</td>"+
+				"<td>"+v.session + " sec</td>"+
+				"<td>" + fw + "</td>"+
+				"</tr>";
+			$("#stats-report-table").append(markup);
+		}
+
+	}
+
+	$(document).ready(function() {
+    	if (location.hash) {
+        	$("a[href='" + location.hash + "']").tab("show");
+    	}
+    	$(document.body).on("click", "a[data-toggle]", function(event) {
+        	location.hash = this.getAttribute("href");
+    	});
+
+    	$("#next-user").on("click", function() {
+    		if(index + 1 < people.length) {
+    			index = index + 1;
+    			updatePerson();
+    		}
+    	});
+
+    	$("#prev-user").on("click", function() {
+    		if(index > 0) {
+    			index = index - 1;
+    			updatePerson();
+    		}
+    	});
+    	$("#display-stats").on("click", function() {
+    		$('#loading-progress').show();
+    		$('#loaded-info').hide();
+			$.ajax({
+  				url: "access-logs?" + $("#logs-form").serialize() + "&stats=on"
+			}).done(function(res) {				
+				$('#loading-progress').hide();
+				var r = jQuery.parseJSON(res);
+				updateLoadedInfo(r);
+				stats = r.stats;
+				begin = r.begin;
+				end = r.end;
+				$("#display-stats-report-div").show();
+				updateStats();
+			});
+    	});
+    	$("#display-report").on("click", function() {
+    		$('#loading-progress').show();
+    		$('#loaded-info').hide();
+			$.ajax({
+  				url: "access-logs?" + $("#logs-form").serialize() + "&behavior=on"
+			}).done(function(res) {
+				$('#loading-progress').hide();
+				var r = jQuery.parseJSON(res);
+				updateLoadedInfo(r);
+				$("#display-users-report-div").show();
+				people = r.accounts;
+				begin = r.begin;
+				end = r.end;
+				index = 0;
+				updatePerson();
+			});
+    	});
+	});
+	$(window).on("popstate", function() {
+    	var anchor = location.hash || $("a[data-toggle='tab']").first().attr("href");
+    	$("a[href='" + anchor + "']").tab("show");
+	});
+	</script>
+</body>
+</html>
