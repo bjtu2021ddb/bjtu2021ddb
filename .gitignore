@@ -1,3 +1,5 @@
+node_modules
+.idea
 .DS_Store
 # 帮助文件和资源打包文件
 /help
