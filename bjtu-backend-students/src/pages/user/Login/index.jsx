@@ -86,8 +86,13 @@ const Login = () => {
         <div className={styles.top}>
           <div className={styles.header}>
             <Link to="/">
-              <img alt="logo" className={styles.logo} src="/logo.svg" />
-              <span className={styles.title}>Ant Design</span>
+              <img alt="logo" className={styles.logo} src="/icon.jpeg" />
+              <span className={styles.title}>{
+                intl.formatMessage({
+                  id: 'pages.login.appname',
+                  defaultMessage: '交大校友录',
+                })
+              }</span>
             </Link>
           </div>
           <div className={styles.desc}>

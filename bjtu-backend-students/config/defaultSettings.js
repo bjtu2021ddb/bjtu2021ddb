@@ -7,9 +7,9 @@ const Settings = {
   fixedHeader: false,
   fixSiderbar: true,
   colorWeak: false,
-  title: 'Ant Design Pro',
+  title: '交大校友录管理后台',
   pwa: false,
-  logo: 'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
+  logo: 'https://xiaoyouoss.kuaiguotech.com/QGHmCSeSc6UAoRjAo1TfvsKoK3BGjnC8/icon.jpeg',
   iconfontUrl: '',
 };
 export default Settings;
