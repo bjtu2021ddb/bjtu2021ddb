@@ -1,0 +1,96 @@
+.listconur {
+    width: 100%;
+    background-color: #fff;
+}
+
+.liitenm {
+    width: 92%;
+    margin-left: 4%;
+    height: 80rpx;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 28rpx;
+    color: #757575;
+}
+
+.kfkkf {
+    height: 40rpx;
+}
+
+.price {
+    color: #e32c1a;
+}
+
+.kekkr {
+    height: 88rpx;
+    font-size: 28rpx;
+    width: 92%;
+    margin-left: 4%;
+    display: flex;
+    align-items: center;
+}
+
+.jkekkbnnr {
+    width: 100%;
+    height: 100rpx;
+    background-color: #fff;
+    border-bottom: 1rpx solid #f8f8f8;
+}
+
+.lithenn {
+    width: 92%;
+    margin-left: 4%;
+    justify-content: space-between;
+}
+
+.jmekkr,.lithenn {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.jmekkr {
+    font-size: 28rpx;
+}
+
+.jmekkr text {
+    margin-left: 40rpx;
+}
+
+.quenr {
+    width: 600rpx;
+    height: 80rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 100rpx auto 0;
+    color: #fff;
+    background-color: #e32c1a;
+    border-radius: 80rpx;
+}
+
+.border {
+    border: none;
+}
+
+.kekkr4r4r {
+    display: flex;
+    align-items: center;
+}
+
+.kekkr4r4r text {
+    margin-right: 20rpx;
+}
+
+.chonzhi {
+    width: 120rpx;
+}
+
+.jejkrjjr {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    font-size: 26rpx;
+    color: #757575;
+}

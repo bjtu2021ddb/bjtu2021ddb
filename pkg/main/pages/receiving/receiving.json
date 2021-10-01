@@ -1,0 +1,7 @@
+{
+    "usingComponents": {
+        "van-icon": "../../dist/icon/index",
+        "van-notify": "../../dist/notify/index",
+        "van-action-sheet": "../../dist/action-sheet/index"
+    }
+}

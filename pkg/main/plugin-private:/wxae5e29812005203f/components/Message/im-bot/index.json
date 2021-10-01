@@ -1,0 +1,25 @@
+{
+    "component": true,
+    "usingComponents": {
+        "tpl-active-page": "./TplActivePage/index",
+        "tpl-detail-view": "./TplDetailView/index",
+        "tpl-card-layout": "./TplCardLayout/index",
+        "tpl-refund-detail": "./TplRefundDetail/index",
+        "tpl-action-list": "./TplActionList/index",
+        "tpl-static-union": "./TplStaticUnion/index",
+        "tpl-order-logistic": "./TplOrderLogistic/index",
+        "tpl-text": "./TplText/index",
+        "tpl-order-status": "./TplOrderStatus/index",
+        "tpl-order-detail": "./TplOrderDetail/index",
+        "tpl-goods": "./TplGoods/index",
+        "tpl-order-list": "./TplOrderList/index",
+        "tpl-bot-form": "./TplBotForm/index",
+        "tpl-bot-form-item": "./TplBotFormItem/index",
+        "tpl-drawer-list": "./TplDrawerList/index",
+        "tpl-bubble-list": "./TplBubbleList/index",
+        "tpl-bubble-node-list": "./TplBubbleNodeList/index",
+        "tpl-item": "./TplItem/index",
+        "tpl-error-msg": "./TplErrorMsg/index",
+        "avatar": "../u-avatar/index"
+    }
+}

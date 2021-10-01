@@ -1,0 +1,51 @@
+.van-tabs {
+    margin-top: 90rpx;
+}
+
+.van-tabs__nav {
+    background-color: #f0f0f2;
+}
+
+.van-tab--active {
+    color: #e64340!important;
+}
+
+.van-tabs__wrap {
+    margin-top: -90rpx;
+    background-color: red;
+}
+
+.coannen {
+    width: 100%;
+    height: 160rpx;
+    margin-bottom: 2rpx;
+    background-color: #fff;
+}
+
+.iehnnr {
+    height: 100%;
+    width: 94%;
+    margin-left: 3%;
+    align-items: center;
+}
+
+.ekkrmmr,.iehnnr {
+    display: flex;
+    justify-content: space-between;
+}
+
+.ekkrmmr {
+    height: 70%;
+    flex-direction: column;
+}
+
+.kekllr {
+    margin-left: 10rpx;
+    color: #999;
+    font-size: 26rpx;
+}
+
+.time {
+    color: #999;
+    font-size: 24rpx;
+}

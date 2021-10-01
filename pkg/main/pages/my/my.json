@@ -1,0 +1,7 @@
+{
+    "disableScroll": true,
+    "usingComponents": {
+        "van-icon": "../../dist/icon/index",
+        "van-action-sheet": "../../dist/action-sheet/index"
+    }
+}

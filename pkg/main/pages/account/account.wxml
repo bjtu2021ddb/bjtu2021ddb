@@ -1,0 +1,16 @@
+<view bindtap="hejjr" class="tiowpmr">
+    <text>{{zhmx}}</text>
+</view>
+<view class="czconwjne">
+    <view class="cjkek spaceBetween">
+        <view class="mdkf">
+            <text>{{yuehr}}</text>
+            <text class="yuhr">{{numberUtil.moneySwitch(money/100)}}</text>
+            <text class="ekkrm">{{keynbr}}</text>
+        </view>
+        <view bindtap="hejjrsss" class="kekkkek allCenter">
+            <text>{{licz}}</text>
+        </view>
+    </view>
+</view>
+<wxs module="numberUtil" src="../template/template.wxs" />

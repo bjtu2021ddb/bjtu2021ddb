@@ -1,0 +1,6 @@
+{
+    "component": true,
+    "usingComponents": {
+        "g-list": "../../GList/index"
+    }
+}

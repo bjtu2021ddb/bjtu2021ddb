@@ -1,0 +1,282 @@
+<view class="homeContainer page">
+    <view class="topmenu spaceBetween">
+        <view bindtap="getysher" class="dorinsme allJustCenter">
+            <text style="margin-right:10rpx;font-size:30rpx">{{valuebname}}</text>
+            <van-icon color="white" name="arrow-down"></van-icon>
+        </view>
+        <van-icon bindtap="toMessage" class="ioc" color="white" info="{{info}}" name="bell" style="margin-right:25rpx"></van-icon>
+    </view>
+    <view class="tiopcomoe"></view>
+    <view class="posicoantiner">
+        <view class="bacjikfri"></view>
+        <view class="marginLeft">
+            <view class="homeSwiper">
+                <swiper autoplay="true" circular="true" duration="1000" indicatorDots="true" interval="4000" style="height:350rpx">
+                    <swiper-item wx:for="{{swiperContainer}}" wx:key="index">
+                        <image bindtap="goUrl" data-index="{{index}}" lazyLoad="true" src="{{item.img}}"></image>
+                    </swiper-item>
+                </swiper>
+            </view>
+        </view>
+    </view>
+    <view bindtap="claienr" class="njenwjk spaceBetween" wx:if="{{showadver}}">
+        <view class="aliNocenter">
+            <van-icon color="rgba(255, 153, 89, 100)" name="volume-o" size="40rpx" style="margin:0 20rpx"></van-icon>
+            <view class="mewkklklr">
+                <text>{{noticecontione.title}}</text>
+            </view>
+        </view>
+        <van-icon catchtap="closviuejr" name="cross" style="margin-right:20rpx"></van-icon>
+    </view>
+    <view class="menutop flexwarp marginLeft">
+        <block wx:for="{{homePage.menu.menuList}}" wx:key="*this">
+            <view bindtap="navgetNextPage" class="{{index<2?'menyItemtop':'menyItemtop menyItemtopsde'}}" data-index="{{index}}" data-title="{{item.title}}" wx:if="{{index!=2&&index!=3}}">
+                <image mode="widthFix" src="{{item.imgUrl}}"></image>
+                <view class="rightmenu">
+                    <text>{{item.title}}</text>
+                </view>
+            </view>
+            <view bindtap="navgetNextPage" class="menyItemtop" data-index="{{index}}" data-title="{{item.title}}" wx:if="{{index==2}}">
+                <image mode="widthFix" src="{{item.imgUrl}}"></image>
+                <view class="rightmenu">
+                    <text>{{item.title}}</text>
+                </view>
+                <view class="copunrj">
+                    <text>{{copua}}</text>
+                </view>
+            </view>
+            <view bindtap="navgetNextPage" class="{{index==3?'menyItemtop':'menyItemtop menyItemtopsde'}}" data-index="{{index}}" data-title="{{item.title}}" wx:if="{{index==3&&customerSwitch==1}}">
+                <image mode="widthFix" src="{{item.imgUrl}}"></image>
+                <view class="rightmenu">
+                    <text>{{coustspace}}</text>
+                </view>
+            </view>
+            <button class="menyItemtop none-btn" disabled="{{!nickName}}" openType="contact" sessionFrom="nickName={{nickName}}|avatarUrl={{avatarUrl}}|staffid={{coustid}}" wx:if="{{index==3&&customerSwitch==0}}">
+                <image mode="widthFix" src="{{item.imgUrl}}"></image>
+                <view class="rightmenu">
+                    <text>{{item.title}}</text>
+                </view>
+            </button>
+        </block>
+    </view>
+    <view class="process marginLeft">
+        <view class="processContainer">
+            <view style="width:100%;height:10rpx"></view>
+            <view class="spaceBetween marginLeft jfijkoj">
+                <text class="processStep">{{homePage.process.step}}</text>
+                <view class="spaceBetween">
+                    <text bindtap="gowevview" class="incnwk">{{homePage.process.views}}</text>
+                    <van-icon name="arrow"></van-icon>
+                </view>
+            </view>
+            <view class="step">
+                <view class="stepItem alicenter" wx:for="{{homePage.process.stpList}}" wx:key="index">
+                    <image class="arrowline" mode="widthFix" src="https://app.huyuntong.com/app/static/images/mini/arrowline.png" wx:if="{{index!=2}}"></image>
+                    <image mode="widthFix" src="{{item.imgUrl}}"></image>
+                    <text class="stepName">{{item.title}}</text>
+                    <view class="stepDetaile {{sholine?'sholinr':''}}">
+                        <text>{{item.detaile}}</text>
+                    </view>
+                    <view bindtap="navgetNext" class="allCenter allbtn btnback" data-index="{{index}}" data-title="{{item.title}}" wx:if="{{sholine}}">
+                        <text>{{item.btn}}</text>
+                    </view>
+                </view>
+            </view>
+            <view bindtap="chengrgb" class="viewDetailes">
+                <van-icon name="arrow-up" size="40rpx" wx:if="{{sholine}}"></van-icon>
+                <van-icon name="arrow-down" size="40rpx" wx:else></van-icon>
+            </view>
+        </view>
+    </view>
+    <view class="nuewcoanne marginLeft">
+        <view class="marginLeft">
+            <view class="newsTitle spaceBetween">
+                <view class="spaceBetween">
+                    <view bindtap="chepacje" class="{{shoactbe==2?'ncioenio jkek':'jkek'}}" data-id="2">
+                        <text style="font-size:30rpx;font-weight:600">
+                            {{homebotom[0]}}{{ordernumber}}
+                        </text>
+                    </view>
+                    <view bindtap="chepacje" class="{{shoactbe==1?'ncioenio jkek':'jkek'}}" data-id="1">
+                        <text style="font-size:30rpx;font-weight:600">
+                            {{homebotom[1]}}{{packnumber}}
+                        </text>
+                    </view>
+                </view>
+                <view bindtap="navgetNextPage" class="maneunjej" data-index="1">
+                    <text style="margin-top:-5rpx;margin-right:10rpx">+</text>
+                    <text>{{order.addns}}</text>
+                </view>
+            </view>
+            <view wx:if="{{packcontainer.length>0&&shoactbe==1}}" wx:for="{{packcontainer}}" wx:key="index">
+                <view class="itemnje" wx:if="{{item.status==1&&item.list.length>0}}">
+                    <text>{{package.status[0]}}{{item.list.length}}</text>
+                </view>
+                <view class="itemnje" wx:if="{{item.status==11&&item.list.length>0}}">
+                    <text>{{package.menu[1]}}{{item.list.length}}</text>
+                </view>
+                <view class="newsSwiperContainer" wx:for="{{item.list}}" wx:for-item="ondta" wx:key="id">
+                    <view class="spaceBetween" style="width:100%">
+                        <van-swipe-cell disabled="{{ondta.status>=11}}" rightWidth="{{100}}" style="width:100%">
+                            <view class="jnmklpfekl" wx:if="{{ondta.status<11}}">
+                                <text>...</text>
+                            </view>
+                            <van-cell-group style="width:100%">
+                                <view class="spaceBetween" style="width:100%">
+                                    <view bindtap="toDetail" class="licone" data-expcer="{{ondta.expressCompany}}" data-exprecom="{{ondta.expressNumber}}" data-id="{{ondta.id}}" data-index="{{index}}" data-status="{{ondta.status}}">
+                                        <text>{{ondta.warehouse}}</text>
+                                        <image class="imgiden" mode="widthFix" src="https://app.huyuntong.com/app/static/images/mini/w_icon_02.png"></image>
+                                    </view>
+                                    <view bindtap="toDetail" class="newsList" data-expre="{{ondta.expressNumber}}" data-exprecom="{{ondta.expressCompany}}" data-id="{{ondta.id}}" data-index="{{index}}" data-status="{{ondta.status}}">
+                                        <view class="newsIcon">
+                                            <view class="njenw" wx:if="{{ondta.status<11}}">
+                                                <image mode="widthFix" src="https://app.huyuntong.com/app/static/images/mini/dairuku.png"></image>
+                                                <text>{{package.status[0]}}</text>
+                                            </view>
+                                            <view class="njenw" wx:if="{{ondta.status>=11}}">
+                                                <image mode="widthFix" src="https://app.huyuntong.com/app/static/images/mini/yiruku.png"></image>
+                                                <text>{{package.menu[1]}}</text>
+                                            </view>
+                                        </view>
+                                        <view class="leftcontaine">
+                                            <text wx:if="{{ondta.expressCompany}}">
+                                                {{ondta.expressCompany}}-{{ondta.expressNumber}}
+                                            </text>
+                                            <text wx:if="{{!ondta.expressCompany}}">
+                                                {{ondta.expressNumber}}
+                                            </text>
+                                        </view>
+                                        <view class="leftcontaine">
+                                            <view>
+                                                <text style="color:#888888;margin-right:10rpx" wx:for="{{ondta.list}}" wx:for-item="twodata" wx:key="id">
+                                                    {{twodata.name}}*{{twodata.num}}
+                                                </text>
+                                            </view>
+                                            <text style="color:#101010;" wx:if="{{ondta.status>=11}}">
+                                                {{ondta.weight}}KG
+                                            </text>
+                                        </view>
+                                    </view>
+                                </view>
+                            </van-cell-group>
+                            <view class="rigsjuej" slot="right">
+                                <view bindtap="goPrediction" class="nfcjn" data-cid="{{ondta.countryId}}" data-id="{{ondta.id}}">
+                                    <text>{{homebotom[6]}}</text>
+                                </view>
+                                <view bindtap="deletpackage" class="nfcjn der" data-id="{{ondta.id}}">
+                                    <text>{{homebotom[7]}}</text>
+                                </view>
+                            </view>
+                        </van-swipe-cell>
+                    </view>
+                </view>
+            </view>
+            <view bindtap="goopacker" class="zanwuer" style="color:#409eff" wx:if="{{packcontainer.length>0&&shoactbe==1}}">
+                {{package.chskjd}}
+                <van-icon color="#409eff" name="arrow" style="margin-left:10rpx"></van-icon>
+            </view>
+            <view class="zanwuer" wx:if="{{packcontainer.length<1&&shoactbe==1}}">
+                {{package.zanwuns}}
+            </view>
+            <view wx:if="{{ordercontainer.length>0&&shoactbe==2}}" wx:for="{{ordercontainer}}" wx:key="index">
+                <view class="itemnje" wx:if="{{item.status==2&&item.list.length>0}}">
+                    <text>{{order.status[2]}}{{item.list.length}}</text>
+                </view>
+                <view class="itemnje" wx:if="{{item.status==3&&item.list.length>0}}">
+                    <text>{{order.status[3]}}{{item.list.length}}</text>
+                </view>
+                <view bindtap="toorderDetail" class="newsSwiperContainer" data-id="{{ondta.id}}" wx:for="{{item.list}}" wx:for-item="ondta" wx:key="id">
+                    <view class="licone">
+                        <text>{{ondta.countryName}}</text>
+                        <image class="imgiden" mode="widthFix" src="https://app.huyuntong.com/app/static/images/mini/w_icon_01.png"></image>
+                    </view>
+                    <view class="newsList">
+                        <view class="newsIcon">
+                            <view class="njenw" wx:if="{{ondta.status==1}}">
+                                <text>{{order.status[1]}}</text>
+                            </view>
+                            <view class="njenw" wx:if="{{ondta.status==2}}">
+                                <image mode="widthFix" src="https://app.huyuntong.com/app/static/images/mini/zhuanyun.png"></image>
+                                <text>{{order.status[2]}}</text>
+                            </view>
+                            <view class="njenw" wx:if="{{ondta.status==3}}">
+                                <image mode="widthFix" src="https://app.huyuntong.com/app/static/images/mini/yiqianshou.png"></image>
+                                <text>{{order.status[3]}}</text>
+                            </view>
+                            <view class="njenw" wx:if="{{ondta.status==4}}">
+                                <text>{{order.status[4]}}</text>
+                            </view>
+                            <view class="njenw" wx:if="{{ondta.status==5}}">
+                                <text>{{order.status[7]}}</text>
+                            </view>
+                        </view>
+                        <view class="leftcontaine">
+                            <text>寄给{{ondta.name}}的包裹</text>
+                            <text>{{ondta.weight}}KG</text>
+                        </view>
+                        <view class="leftcontaine" wx:if="{{ondta.trackDetail}}">
+                            <text class="usjejr" wx:if="{{ondta.trackDetail}}">
+                                {{ondta.trackDetail.eventscan}}
+                            </text>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view bindtap="goorder" class="zanwuer" style="color:#409eff" wx:if="{{ordercontainer.length>0&&shoactbe==2}}">
+                {{order.chskjd}}
+                <van-icon color="#409eff" name="arrow" style="margin-left:10rpx"></van-icon>
+            </view>
+            <view class="zanwuer" wx:if="{{ordercontainer.length<1&&shoactbe==2}}">
+                {{package.zanwuns}}
+            </view>
+        </view>
+    </view>
+</view>
+<van-overlay show="{{show&&copuid}}">
+    <view class="wrapper allCenter">
+        <image mode="widthFix" src="https://app.huyuntong.com/app/static/images/mini/red_packet_5.png"></image>
+        <view class="newPerson alicenter">
+            <view class="nersPersonPriceView">
+                <text class="newsPersonPrice">{{price}}</text>
+                <text>{{homePage.newperson[3]}}</text>
+            </view>
+            <text class="newsPersonTipsName" style="margin:0" wx:if="{{nnum>1}}">
+                ({{nnum}}{{homePage.newperson[4]}}{{nprice}})
+            </text>
+            <text class="newsPersonTipsName">{{homePage.newperson[2]}}</text>
+            <text class="newsPersonTip">{{coumname}}</text>
+            <view bindtap="getcoup" class="receveButton">
+                <text>{{homePage.newperson[1]}}</text>
+            </view>
+        </view>
+        <view bindtap="onClickHide" class="closebtn">
+            <van-icon color="#ffffff" name="close" size="40px"></van-icon>
+        </view>
+    </view>
+</van-overlay>
+<van-popup round show="{{showcontainer&&option.length>0}}">
+    <view class="checkradio">
+        <image mode="widthFix" src="https://app.huyuntong.com/app/static/images/mini/success.png"></image>
+        <view class="group">
+            <view class="alicenter" style="margin-bottom:40rpx">
+                <text>{{tips[4]}}</text>
+            </view>
+            <view bindtap="radioChange" class="label-2 spaceBetween" data-id="{{item.value}}" data-name="{{item.text}}" wx:for="{{option}}" wx:key="index">
+                <text>{{item.text}}</text>
+                <view class="shurbtn">
+                    <text>{{confirmText}}</text>
+                </view>
+            </view>
+        </view>
+    </view>
+</van-popup>
+<van-overlay show="{{showactive}}">
+    <view class="wrappers">
+        <view class="blockactive"></view>
+        <view class="actibveiew">
+            <van-icon bindtap="closeactive" class="acicon" color="#ffffff" name="cross"></van-icon>
+        </view>
+        <image bindtap="goactive" class="iconimg" mode="widthFix" src="{{activdata.picUrl}}"></image>
+    </view>
+</van-overlay>
+<wxs module="numberUtil" src="../template/template.wxs" />

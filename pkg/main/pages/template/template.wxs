@@ -1,0 +1,132 @@
+function keepTwoDecimalFull(num) {
+    var result = parseFloat(num);
+    if (isNaN(result)) {
+        return (result)
+    };
+    result = Math.round(num * 100) / 100;
+    var s_x = result.toString();
+    var pos_decimal = s_x.indexOf('.');
+    if (pos_decimal < 0) {
+        pos_decimal = s_x.length;
+        s_x += '.'
+    };
+    while (s_x.length <= pos_decimal + 2) {
+        s_x += '0'
+    };
+    return (s_x)
+};
+var formatNumber = (function(n) {
+    n = n.toString();
+    return (n[(1)] ? n : '0' + n)
+});
+var regYear = getRegExp("(y+)", "i");
+var dateFormat = (function(timestamp, format) {
+    if (!format) {
+        format = "yyyy-MM-dd hh:mm:ss"
+    };
+    timestamp = parseInt(timestamp);
+    var realDate = getDate(timestamp);
+
+    function timeFormat(num) {
+        return (num < 10 ? '0' + num : num)
+    };
+    var date = [
+        ["M+", timeFormat(realDate.getMonth() + 1)],
+        ["d+", timeFormat(realDate.getDate())],
+        ["h+", timeFormat(realDate.getHours())],
+        ["m+", timeFormat(realDate.getMinutes())],
+        ["s+", timeFormat(realDate.getSeconds())],
+        ["q+", Math.floor((realDate.getMonth() + 3) / 3)],
+        ["S+", realDate.getMilliseconds()]
+    ];
+    var reg1 = regYear.exec(format);
+    if (reg1) {
+        format = format.replace(reg1[(1)], (realDate.getFullYear() + '').substring(4 - reg1[(1)].length))
+    };
+    for (var i = 0; i < date.length; i++) {
+        var k = date[((nt_3 = (i), null == nt_3 ? undefined : 'number' === typeof nt_3 ? nt_3 : "" + nt_3))][(0)];
+        var v = date[((nt_4 = (i), null == nt_4 ? undefined : 'number' === typeof nt_4 ? nt_4 : "" + nt_4))][(1)];
+        var reg2 = getRegExp("(" + k + ")").exec(format);
+        if (reg2) {
+            format = format.replace(reg2[(1)], reg2[(1)].length == 1 ? v : ("00" + v).substring(("" + v).length))
+        }
+    };
+    return (format)
+});
+var filter = function filter(ts, tm, num) {
+    var minute = 1000 * 60;
+    var hour = minute * 60;
+    var day = hour * 24;
+    var halfamonth = day * 15;
+    var month = day * 30;
+    var now = tm;
+    var diffValue = now - ts;
+    if (diffValue < 0) {
+        return
+    };
+    var monthC = diffValue / month;
+    var weekC = diffValue / (7 * day);
+    var dayC = diffValue / day;
+    var hourC = diffValue / hour;
+    var minC = diffValue / minute;
+    var list = [({
+        'month': '月前',
+        'week': '周前',
+        'day': '天前',
+        'hours': '小时前',
+        'min': '分钟前',
+        'at': '刚刚',
+    }), ({
+        'month': '月前',
+        'week': '周前',
+        'day': '天前',
+        'hours': '小時前',
+        'min': '分鐘前',
+        'at': '剛剛',
+    }), ({
+        'month': 'Months ago',
+        'week': 'Weeks ago',
+        'day': 'Days ago',
+        'hours': 'Hours ago',
+        'min': 'Minutes ago',
+        'at': 'just',
+    })];
+    if (monthC > 12) {
+        var d = getDate(ts);
+        result = [d.getFullYear(), d.getMonth() + 1 > 9 ? d.getMonth() + 1 : '0' + (d.getMonth() + 1), d.getDate()].join('-')
+    } else if (monthC > 1) {
+        result = "" + parseInt(monthC) + list[((nt_7 = (num), null == nt_7 ? undefined : 'number' === typeof nt_7 ? nt_7 : "" + nt_7))].month
+    } else if (weekC >= 1) {
+        console.log(123);
+        console.log(num);
+        result = "" + parseInt(weekC) + list[((nt_8 = (num), null == nt_8 ? undefined : 'number' === typeof nt_8 ? nt_8 : "" + nt_8))].week
+    } else if (dayC >= 1) {
+        console.log(33333);
+        result = "" + parseInt(dayC) + list[((nt_9 = (num), null == nt_9 ? undefined : 'number' === typeof nt_9 ? nt_9 : "" + nt_9))].day
+    } else if (hourC >= 1) {
+        console.log(4444);
+        result = "" + parseInt(hourC) + list[((nt_10 = (num), null == nt_10 ? undefined : 'number' === typeof nt_10 ? nt_10 : "" + nt_10))].hours
+    } else if (minC >= 1) {
+        console.log(5555);
+        result = "" + parseInt(minC) + list[((nt_11 = (num), null == nt_11 ? undefined : 'number' === typeof nt_11 ? nt_11 : "" + nt_11))].min
+    } else result = list[((nt_12 = (num), null == nt_12 ? undefined : 'number' === typeof nt_12 ? nt_12 : "" + nt_12))].at;
+    return (result)
+};
+
+function moneySwitch(money, precision) {
+    precision = undefined === precision ? 2 : precision;
+    if (money == undefined || isNaN(money)) return ("");;
+    var symbol = 1;
+    if (money < 0) {
+        symbol = -1;
+        money *= -1
+    };
+    var num2 = (Math.round(money * Math.pow(10, precision)) / Math.pow(10, precision) + Math.pow(10, -(precision + 1))).toString().slice(0, -1);
+    return (parseFloat(num2 * symbol).toFixed(precision))
+};
+module.exports = ({
+    numberFormat: keepTwoDecimalFull,
+    dateFormat: dateFormat,
+    filter: filter,
+    moneySwitch: moneySwitch,
+});

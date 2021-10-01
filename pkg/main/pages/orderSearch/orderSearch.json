@@ -1,0 +1,8 @@
+{
+    "usingComponents": {
+        "van-icon": "../../dist/icon/index"
+    },
+    "enablePullDownRefresh": true,
+    "backgroundTextStyle": "light",
+    "backgroundColorTop": "#f2f2f2"
+}

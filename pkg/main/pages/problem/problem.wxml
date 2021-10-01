@@ -1,0 +1,17 @@
+<import src="../template/template.wxml"></import>
+<view class="problemContainer">
+    <view bindtap="goNext" class="problemList" data-index="{{item.id}}" data-name="{{item.title}}" wx:if="{{problem.length>0}}" wx:for="{{problem}}" wx:key="index">
+        <view class="problemMenu spaceBetween">
+            <view class="spaceBetween namecontaoner">
+                <van-icon name="warning" size="23px"></van-icon>
+                <text>{{item.title}}</text>
+            </view>
+            <van-icon name="arrow"></van-icon>
+        </view>
+        <view class="line" wx:if="{{index!=problem.length-1}}"></view>
+    </view>
+</view>
+<view wx:if="{{problem.length<1}}">
+    <template is="notging" data></template>
+</view>
+<wxs module="numberUtil" src="../template/template.wxs" />

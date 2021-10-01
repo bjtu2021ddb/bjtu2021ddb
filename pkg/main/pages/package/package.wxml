@@ -1,0 +1,318 @@
+<import src="../template/template.wxml"></import>
+<van-notify id="van-notify"></van-notify>
+<view wx:if="{{token}}">
+    <view class="packageContainer" style="margin-bottom:140rpx" wx:if="{{none}}">
+        <view class="seracrContainer aliNocenter">
+            <view bindtap="getSearch" class="input">
+                <input disabled placeholder="{{package.placeholder}}" placeholderStyle="color:rgb(255,255,255);"></input>
+            </view>
+        </view>
+        <view style="height:180rpx"></view>
+        <van-tabs animated swipeable active="{{code}}" bind:change="onChange">
+            <van-tab disabled="{{disabled}}" title="{{package.menu[0]}} {{orderone}}">
+                <view class="packageList" wx:if="{{packageList.length>0}}" wx:for="{{packageList}}" wx:key="index">
+                    <view>
+                        <view class="packageListTitle marginLeft spaceBetween">
+                            <view class="spaceBetween">
+                                <van-icon name="shop-collect-o" size="1.3rem" wx:if="{{item.type==0}}"></van-icon>
+                                <view class="{{item.isRead==0?'packageType aliNocenter jejje':'packageType aliNocenter'}}" wx:if="{{item.type==1}}">
+                                    <text>{{package.status[13]}}</text>
+                                </view>
+                                <text style="margin-left:15rpx;">{{item.warehouse}}</text>
+                            </view>
+                            <text wx:if="{{item.status==1}}">{{package.status[0]}}</text>
+                            <text style="color:#e94e3a" wx:if="{{item.status==2}}">{{package.status[16]}}</text>
+                            <text style="color:#e94e3a" wx:if="{{item.status==3}}">{{package.status[17]}}</text>
+                        </view>
+                    </view>
+                    <view class="marginLeft">
+                        <view style="margin-top:20rpx;"></view>
+                        <view class="menuView aliNocenter">
+                            <view class="aliNocenter minwith">
+                                <text>{{package.listTitle[0]}}:</text>
+                            </view>
+                            <text wx:if="{{item.expressCompany}}">{{item.expressCompany}}-{{item.expressNumber}}</text>
+                            <text wx:if="{{!item.expressCompany}}">{{item.expressNumber}}</text>
+                        </view>
+                        <view class="menuView aliNocenter">
+                            <view class="aliNocenter minwith">
+                                <text>{{package.listTitle[1]}}:</text>
+                            </view>
+                            <text class="pricebig">{{numberUtil.moneySwitch(item.totalPrice)}} CNY</text>
+                        </view>
+                        <view class="menuView aliNocenter">
+                            <view class="aliNocenter minwith">
+                                <text>{{package.listTitle[2]}}:</text>
+                            </view>
+                            <text>{{numberUtil.dateFormat(item.createTime,'yyyy-MM-dd hh:mm')}}</text>
+                        </view>
+                        <view class="operation">
+                            <view bindtap="goPrediction" class="opearbutton" data-cid="{{item.countryId}}" data-id="{{item.id}}" wx:if="{{item.status==1}}">
+                                <text>{{package.opearation[0]}}</text>
+                            </view>
+                            <view bindtap="deletpackage" class="opearbutton delet" data-id="{{item.id}}" wx:if="{{item.status==1}}">
+                                <text>{{package.opearation[4]}}</text>
+                            </view>
+                            <view bindtap="rebrjkt" class="opearbutton" data-id="{{item.id}}" data-index="{{index}}" wx:if="{{item.status==1||item.status==3}}">
+                                <text>{{package.opearation[6]}}</text>
+                            </view>
+                            <view bindtap="mkemkw" class="opearbutton" data-id="{{item.id}}" wx:if="{{item.status==2}}">
+                                <text>{{package.opearation[8]}}</text>
+                            </view>
+                            <view bindtap="getwhouse" class="opearbutton" data-id="{{item.expressNumber}}" data-name="{{item.expressCompany}}">
+                                <text>{{package.opearation[1]}}</text>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+                <view wx:if="{{packageList.length<1}}">
+                    <template is="notging" data></template>
+                </view>
+                <view style="width:100%;height80rpx;"></view>
+            </van-tab>
+            <van-tab disabled="{{disabled}}" title="{{package.menu[1]}} {{ordertwo}}">
+                <view bindtap="goDetails" class="{{item.status==11||item.status==14?'packageList':'packageList'}}" data-id="{{item.id}}" data-index="{{index}}" data-red="{{item.isRead}}" data-status="{{item.status}}" wx:if="{{packageList.length>0}}" wx:for="{{packageList}}" wx:key="index">
+                    <view style="position:relative">
+                        <view class="newcomntainer" wx:if="{{item.isRead==0}}">
+                            <text>NEW</text>
+                        </view>
+                        <view class="packageListTitle marginLeft spaceBetween">
+                            <view class="spaceBetween">
+                                <view style="width:25rpx" wx:if="{{item.isRead==0}}"></view>
+                                <van-icon name="shop-collect-o" size="1.3rem"></van-icon>
+                                <text style="margin-left:15rpx;">{{item.warehouse}}</text>
+                            </view>
+                            <text style="color:#e32c1a" wx:if="{{item.status==11||item.status==14}}">{{package.status[1]}}</text>
+                            <text style="color:#999999" wx:if="{{item.status==12}}">{{package.status[2]}}</text>
+                            <text style="color:rgba(229, 28, 35, 1)" wx:if="{{item.status==13}}">{{package.status[3]}}</text>
+                        </view>
+                    </view>
+                    <view class="marginLeft spaceBetween">
+                        <view catchtap="getid" class="bhfehjwj" data-index="{{index}}" wx:if="{{showcircle&&item.status!=14&&item.status!=11&&item.auditStatus!=0}}">
+                            <van-icon name="circle" size="20px" wx:if="{{!item.checked}}"></van-icon>
+                            <van-icon color="#e32c1a" name="checked" size="20px" wx:else></van-icon>
+                        </view>
+                        <view style="width:100%">
+                            <view style="margin-top:20rpx;"></view>
+                            <view class="menuView aliNocenter">
+                                <text wx:if="{{item.expressCompany}}">{{item.expressCompany}}-{{item.expressNumber}}</text>
+                                <text wx:if="{{!item.expressCompany}}">{{item.expressNumber}}</text>
+                            </view>
+                            <view class="mianfnrcontaine">
+                                <view class="circlor">
+                                    <view class="buhuo redcorlt" wx:if="{{item.type==1}}">
+                                        <text>{{package.status[19]}}</text>
+                                    </view>
+                                    <view class="buhuo" wx:else>
+                                        <text>{{package.status[18]}}</text>
+                                    </view>
+                                    <view class="buhuo" wx:if="{{item.goodsType}}">
+                                        <text>{{item.goodsType}}</text>
+                                    </view>
+                                </view>
+                                <text>{{item.weight}}KG</text>
+                            </view>
+                            <view class="mianfnrcontaine">
+                                <view class="rukfjnt">
+                                    <text wx:if="{{item.status<21||item.status>25}}">{{package.listTitle[5]}}：</text>
+                                    <text wx:if="{{item.status>=21&&item.status<=25}}">{{package.listTitle[8]}}：</text>
+                                    <text>{{numberUtil.dateFormat(item.deliveryTime,'yyyy-MM-dd hh:mm')}}</text>
+                                </view>
+                                <view class="mismnmf" wx:if="{{item.storageDays}}">
+                                    <view class="aliNocenter">
+                                        <text wx:if="{{item.status!=13}}">{{package.listTitle[4]}}:</text>
+                                        <text class="redjrk" wx:if="{{item.status==13}}">{{package.listTitle[7]}}:</text>
+                                    </view>
+                                    <text class="{{item.status==13?'redjrk':''}}" wx:if="{{item.storageDays>=0}}">{{item.storageDays}}{{package.menu[4]}}</text>
+                                    <text class="{{item.status==13?'redjrk':''}}" wx:if="{{item.storageDays<0}}">{{-item.storageDays}}{{package.menu[4]}}</text>
+                                </view>
+                            </view>
+                        </view>
+                        <view class="menuView aliNocenter">
+                            <view class="menuView aliNocenter" style="color:rgba(0, 0, 0,0.65)" wx:if="{{item.auditStatus==0}}">
+                                <view class="aliNocenter minwith">
+                                    <text>{{package.listTitle[11]}}:</text>
+                                </view>
+                                <text style="color:red">{{package.listTitle[10]}}</text>
+                            </view>
+                        </view>
+                    </view>
+                    <van-transition name="{{trahs}}" show="{{item.look}}">
+                        <view class="shocnnnt">
+                            <view class="topheaer">
+                                <text>{{package.details[1]}}</text>
+                            </view>
+                            <view class="enjkrt">
+                                <view class="itennrt" wx:for="{{item.list}}" wx:for-item="twodata" wx:key="id">
+								  {{twodata.name}}x{{twodata.num}}
+								</view>
+                            </view>
+                        </view>
+                    </van-transition>
+                    <view class="operation nowidtg">
+                        <view catchtap="getpackdetr" class="look" data-index="{{index}}" wx:if="{{item.status!=14}}">
+                            <text wx:if="{{item.look}}">{{package.menu[15]}}</text>
+                            <text wx:else>{{package.menu[14]}}</text>
+                            <van-icon class="closeBox {{item.look?'ckrk':''}}" name="arrow-down"></van-icon>
+                        </view>
+                        <view catchtap="goDetails" class="opearbutton redcorlt" data-id="{{item.id}}" data-red="{{item.isRead}}" wx:if="{{item.status==11||item.status==14}}">
+                            <text>{{package.menu[13]}}</text>
+                        </view>
+                        <view catchtap="return" class="opearbutton" data-express="{{item.expressNumber}}" data-id="{{item.id}}" data-timeprice="{{item.timeOutPrice}}" data-weight="{{item.weight}}">
+                            <text>{{package.menu[12]}}</text>
+                        </view>
+                    </view>
+                </view>
+                <view wx:if="{{packageList.length<1}}">
+                    <template is="notging" data></template>
+                </view>
+                <view style="width:100%;height80rpx;"></view>
+            </van-tab>
+            <van-tab disabled="{{disabled}}" title="{{package.menu[2]}} {{orderthree}}">
+                <view bindtap="goDetails" class="packageList" data-id="{{item.id}}" data-index="{{index}}" data-red="{{item.isRead}}" wx:if="{{packageList.length>0}}" wx:for="{{packageList}}" wx:key="index">
+                    <view style="position:relative">
+                        <view class="newcomntainer" wx:if="{{item.isRead==0}}">
+                            <text>NEW</text>
+                        </view>
+                        <view class="packageListTitle marginLeft spaceBetween">
+                            <view class="spaceBetween">
+                                <view style="width:60rpx" wx:if="{{item.isRead==0}}"></view>
+                                <van-icon name="shop-collect-o" size="1.3rem" wx:if="{{item.type==0}}"></van-icon>
+                                <view class="{{item.isRead==0?'packageType aliNocenter jejje':'packageType aliNocenter'}}" wx:if="{{item.type==1}}">
+                                    <text>{{package.status[13]}}</text>
+                                </view>
+                                <text style="margin-left:15rpx;">{{item.warehouse}}</text>
+                            </view>
+                            <text style="color:rgba(229, 28, 35, 1)" wx:if="{{item.status==21}}">{{package.listTitle[9]}} [{{package.status[5]}}]</text>
+                            <text style="color:rgba(229, 28, 35, 1)" wx:if="{{item.status==22}}">{{package.listTitle[9]}} [{{package.status[11]}}]</text>
+                            <text style="color:rgba(229, 28, 35, 1)" wx:if="{{item.status==23}}">{{package.listTitle[9]}} [{{package.status[12]}}]</text>
+                            <text style="color:rgba(229, 28, 35, 1)" wx:if="{{item.status==24}}">{{package.listTitle[9]}} [{{package.status[4]}}]</text>
+                            <text style="color:rgba(229, 28, 35, 1)" wx:if="{{item.status==25}}">{{package.listTitle[9]}} [{{package.listTitle[12]}}]</text>
+                        </view>
+                    </view>
+                    <view class="marginLeft">
+                        <view style="margin-top:20rpx;"></view>
+                        <view class="menuView aliNocenter">
+                            <view class="aliNocenter minwith">
+                                <text>{{package.listTitle[0]}}:</text>
+                            </view>
+                            <text wx:if="{{item.expressCompany}}">{{item.expressCompany}}-{{item.expressNumber}}</text>
+                            <text wx:if="{{!item.expressCompany}}">{{item.expressNumber}}</text>
+                        </view>
+                        <view class="menuView aliNocenter">
+                            <view class="aliNocenter minwith">
+                                <text>{{package.ms}}:</text>
+                            </view>
+                            <text>{{item.statusDoc}}</text>
+                        </view>
+                        <view class="menuView aliNocenter" style="padding-bottom:30rpx">
+                            <view class="aliNocenter minwith">
+                                <text wx:if="{{item.status<21||item.status>25}}">{{package.listTitle[5]}}:</text>
+                                <text wx:if="{{item.status>=21&&item.status<=25}}">{{package.listTitle[8]}}:</text>
+                            </view>
+                            <text>{{numberUtil.dateFormat(item.deliveryTime,'yyyy-MM-dd hh:mm')}}</text>
+                        </view>
+                    </view>
+                </view>
+                <view wx:if="{{packageList.length<1}}">
+                    <template is="notging" data></template>
+                </view>
+                <view style="width:100%;height80rpx;"></view>
+            </van-tab>
+            <van-tab disabled="{{disabled}}" title="{{package.menu[3]}} {{orderfour}}">
+                <view bindtap="goDetails" class="packageList" data-id="{{item.id}}" data-index="{{index}}" data-red="{{item.isRead}}" wx:if="{{packageList.length>0}}" wx:for="{{packageList}}" wx:key="index">
+                    <view>
+                        <view class="packageListTitle marginLeft spaceBetween">
+                            <view class="spaceBetween">
+                                <van-icon name="shop-collect-o" size="1.3rem" wx:if="{{item.type==0}}"></van-icon>
+                                <view class="{{item.isRead==0?'packageType aliNocenter jejje':'packageType aliNocenter'}}" wx:if="{{item.type==1}}">
+                                    <text>{{package.status[13]}}</text>
+                                </view>
+                                <text style="margin-left:20rpx;">{{item.warehouse}}</text>
+                            </view>
+                            <text wx:if="{{item.status==31}}">{{package.status[6]}}</text>
+                            <text wx:if="{{item.status==32}}">{{package.status[7]}}</text>
+                            <text wx:if="{{item.status==33}}">{{package.status[14]}}</text>
+                            <text wx:if="{{item.status==34}}">{{package.status[15]}}</text>
+                        </view>
+                    </view>
+                    <view class="marginLeft">
+                        <view style="margin-top:20rpx;"></view>
+                        <view class="menuView aliNocenter">
+                            <view class="aliNocenter minwith">
+                                <text>{{package.listTitle[0]}}:</text>
+                            </view>
+                            <text wx:if="{{item.expressCompany}}">{{item.expressCompany}}-{{item.expressNumber}}</text>
+                            <text wx:if="{{!item.expressCompany}}">{{item.expressNumber}}</text>
+                        </view>
+                        <view class="menuView aliNocenter">
+                            <view class="aliNocenter minwith">
+                                <text>{{package.listTitle[3]}}:</text>
+                            </view>
+                            <text>{{item.weight}}KG</text>
+                        </view>
+                        <view class="menuView aliNocenter">
+                            <view class="aliNocenter minwith">
+                                <text wx:if="{{item.status<21||item.status>25}}">{{package.listTitle[5]}}:</text>
+                                <text wx:if="{{item.status>=21&&item.status<=25}}">{{package.listTitle[8]}}:</text>
+                            </view>
+                            <text>{{numberUtil.dateFormat(item.deliveryTime,'yyyy-MM-dd hh:mm')}}</text>
+                        </view>
+                        <view class="menuView aliNocenter" style="padding-bottom:30rpx">
+                            <view class="aliNocenter minwith">
+                                <text>{{package.listTitle[6]}}:</text>
+                            </view>
+                            <text>{{numberUtil.dateFormat(item.updateTime,'yyyy-MM-dd hh:mm')}}</text>
+                        </view>
+                    </view>
+                </view>
+                <view wx:if="{{packageList.length<1}}">
+                    <template is="notging" data></template>
+                </view>
+                <view style="width:100%;height80rpx;"></view>
+            </van-tab>
+        </van-tabs>
+        <van-divider contentPosition="center" wx:if="{{packageList.length>3}}">{{text}}</van-divider>
+    </view>
+    <view class="bootomviewcontainer" wx:if="{{code==1&&addshow}}">
+        <view bindtap="receve" class="packageSave allCenter">
+            <text>{{package.menu[6]}}</text>
+        </view>
+    </view>
+    <view class="bootomviewcontainer" wx:if="{{code==0}}">
+        <view bindtap="getpackage" class="packageSave allCenter btnback">
+            <text>{{package.name}}</text>
+        </view>
+    </view>
+    <view class="allsave spaceBetween" wx:if="{{code==1&&!addshow}}">
+        <view class="circontainer">
+            <view class="cicele aliNocenter">
+                <van-icon bind:click="allcancle" name="circle" size="20px" wx:if="{{!allcheck}}"></van-icon>
+                <van-icon bindtap="allsubmit" color="#e32c1a" name="checked" size="20px" wx:else></van-icon>
+                <text>{{package.menu[7]}}</text>
+            </view>
+            <view class="cicele aliNocenter kekllr">
+                <text>{{package.menu[8]}}:</text>
+                <text class="allwight">{{wight}}kg</text>
+            </view>
+        </view>
+        <view class="submitcontainer">
+            <text bindtap="returnall" class="{{isred?'sumnrn':'dejnrnnr'}}">{{gnth}}</text>
+            <view bindtap="submit" class="{{isred?'sumbitred allCenter':' sumbit allCenter'}}">
+                <text>{{package.menu[10]}}</text>
+            </view>
+        </view>
+    </view>
+</view>
+<view wx:if="{{!none}}">
+    <template is="none" data></template>
+</view>
+<view bindtap="gologin" class="alicenter" wx:if="{{!token}}">
+    <view class="nothingBannewr">
+        <template is="notging" data></template>
+    </view>
+    <view class="notokenbutton alicenter">
+        <text>login</text>
+    </view>
+</view>
+<wxs module="numberUtil" src="../template/template.wxs" />

@@ -1,0 +1,48 @@
+.tiowpmr {
+    height: 100rpx;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.czconwjne,.tiowpmr {
+    width: 92%;
+    margin-left: 4%;
+}
+
+.czconwjne {
+    height: 240rpx;
+    background-color: #e32c1a;
+    border-radius: 15rpx;
+}
+
+.cjkek {
+    height: 100%;
+    color: #fff;
+    width: 90%;
+    margin-left: 5%;
+}
+
+.mdkf {
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.yuhr {
+    font-size: 43rpx;
+}
+
+.ekkrm {
+    font-size: 24rpx;
+    color: hsla(0,0%,100%,.5);
+}
+
+.kekkkek {
+    width: 166rpx;
+    height: 64rpx;
+    border: 1rpx solid #fff;
+    border-radius: 10rpx;
+    font-size: 26rpx;
+}

@@ -1,0 +1,15 @@
+{
+    "component": true,
+    "usingComponents": {
+        "sys-tip-view": "./im-systip/systip",
+        "text-view": "./im-text/text",
+        "action-view": "./im-action/action",
+        "img-view": "./im-img/index",
+        "audio-view": "./im-audio/index",
+        "video-view": "./im-video/index",
+        "robot-view": "./im-robot/index",
+        "bot-view": "./im-bot/index",
+        "file-view": "./im-file/index",
+        "card-view": "./im-card/index"
+    }
+}

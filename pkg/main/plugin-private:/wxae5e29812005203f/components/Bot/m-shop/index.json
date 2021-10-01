@@ -1,0 +1,7 @@
+{
+    "component": true,
+    "usingComponents": {
+        "iconfont": "../../Iconfont/index",
+        "m-good": "../m-good/index"
+    }
+}

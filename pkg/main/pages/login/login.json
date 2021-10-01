@@ -1,0 +1,8 @@
+{
+    "usingComponents": {
+        "van-icon": "../../dist/icon/index",
+        "van-action-sheet": "../../dist/action-sheet/index",
+        "van-overlay": "../../dist/overlay/index",
+        "van-popup": "../../dist/popup/index"
+    }
+}

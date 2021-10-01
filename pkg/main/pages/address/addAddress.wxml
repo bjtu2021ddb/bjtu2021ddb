@@ -1,0 +1,180 @@
+<van-notify id="van-notify"></van-notify>
+<view class="addAdressContainer">
+    <view class="addView marginLeft aliNocenter">
+        <view class="minwidth aliNocenter">
+            <text>
+                <text class="tig">*</text>{{address[8]}}</text>
+        </view>
+        <view class="inputView aliNocenter ">
+            <input disabled value="{{par.countryName}}"></input>
+        </view>
+    </view>
+    <view class="allLine"></view>
+    <view class="addView marginLeft aliNocenter">
+        <view class="minwidth aliNocenter">
+            <text>
+                <text class="tig">*</text>{{address[4]}}</text>
+        </view>
+        <view class="inputView aliNocenter">
+            <input bindblur="getname" placeholder="{{coutyrcode!='NZ'?address[5]:adresad[2]}}" value="{{par.name}}"></input>
+        </view>
+    </view>
+    <view class="jekkrm" wx:if="{{coutyrcode=='JP'}}">
+        <view class="jejke"></view>
+        <text>{{j2jjr}}</text>
+    </view>
+    <view class="allLine"></view>
+    <view class="addView marginLeft aliNocenter">
+        <view class="minwidth aliNocenter">
+            <text>
+                <text class="tig">*</text>{{address[6]}}</text>
+        </view>
+        <view class="inputView aliNocenter">
+            <text wx:if="{{coutyrcode=='JP'}}">+81</text>
+            <input bindblur="getmobile" placeholder="{{coutyrcode!='NZ'?address[7]:adresad[3]}}" value="{{par.mobile}}" wx:if="{{coutyrcode!='JP'}}"></input>
+            <input bindblur="getmobile" class="pakke" maxlength="11" placeholder="{{coutyrcode!='NZ'?address[7]:adresad[3]}}" type="number" value="{{par.mobile}}" wx:if="{{coutyrcode=='JP'}}"></input>
+        </view>
+    </view>
+    <view class="allLine"></view>
+    <view class="addView marginLeft aliNocenter">
+        <view class="minwidth aliNocenter">
+            <text>
+                <text class="tig">*</text>{{address[14]}}</text>
+        </view>
+        <view class="inputView aliNocenter">
+            <input bindblur="getpostalCode" bindconfirm="getpostalCode" confirmType="search" placeholder="{{coutyrcode!='NZ'?address[14]:adresad[8]}}" type="number" value="{{par.postalCode}}"></input>
+        </view>
+    </view>
+    <view class="allLine"></view>
+    <view bindtap="showadechose" class="addView marginLeft aliNocenter">
+        <view class="minwidth aliNocenter">
+            <text wx:if="{{coutyrcode!='NZ'}}">
+                <text class="tig">*</text>{{address[18]}}</text>
+            <text wx:if="{{coutyrcode=='NZ'}}">
+                <text class="tig">*</text>{{adresad[0]}}</text>
+        </view>
+        <view class="'inputView spaceBetween weiinput">
+            <view class="picker">
+                <input disabled placeholder="{{coutyrcode!='NZ'?address[18]:adresad[4]}}" value="{{adakdkename}}"></input>
+            </view>
+            <image mode="widthFix" src="https://app.huyuntong.com/app/static/images/mini/icon_dropdown.png"></image>
+        </view>
+    </view>
+    <view class="allLine" wx:if="{{coutyrcode=='NZ'}}"></view>
+    <view class="addView marginLeft aliNocenter" wx:if="{{coutyrcode=='NZ'}}">
+        <view class="minwidth aliNocenter">
+            <text wx:if="{{coutyrcode!='NZ'}}">
+                <text class="tig">*</text>{{address[10]}}</text>
+            <text wx:if="{{coutyrcode=='NZ'}}">
+                <text class="tig">*</text>{{adresad[1]}}</text>
+        </view>
+        <view class="inputView aliNocenter ">
+            <input bindblur="bindPickerare" placeholder="{{coutyrcode!='NZ'?address[10]:adresad[5]}}" value="{{par.areaName}}"></input>
+        </view>
+    </view>
+    <view class="allLine"></view>
+    <view class="addView marginLeft aliNocenter">
+        <view class="minwidth aliNocenter">
+            <text>
+                <text class="tig">*</text>{{address[20]}}</text>
+        </view>
+        <view class="inputView aliNocenter">
+            <input bindblur="getaddress" placeholder="{{coutyrcode!='NZ'?address[13]:adresad[6]}}" value="{{par.address}}"></input>
+        </view>
+    </view>
+    <view class="allLine"></view>
+    <view class="addView marginLeft aliNocenter">
+        <view class="minwidth aliNocenter">
+            <text style="margin-left:22rpx">
+                <text class="tig"></text>{{address[21]}}</text>
+        </view>
+        <view class="inputView aliNocenter">
+            <input bindblur="getaddressStandby" placeholder="{{coutyrcode!='NZ'?address[21]:adresad[7]}}" value="{{par.addressStandby}}"></input>
+        </view>
+    </view>
+    <view class="allLine" wx:if="{{coutyrcode!='JP'}}"></view>
+    <view class="addView marginLeft aliNocenter" wx:if="{{coutyrcode=='TW'}}">
+        <view class="minwidth aliNocenter">
+            <van-dropdown-menu class="drop">
+                <van-dropdown-item bind:change="onSwitch1Change" options="{{option1}}" value="{{par.idType}}"></van-dropdown-item>
+            </van-dropdown-menu>
+        </view>
+        <view class="inputView aliNocenter" wx:if="{{coutyrcode=='TW'}}">
+            <input bindblur="getcard" maxlength="20" placeholder="{{address[26]}}{{idt}}" value="{{par.identity}}"></input>
+        </view>
+    </view>
+    <view class="addView marginLeft spaceBetween" wx:if="{{coutyrcode=='TW'}}">
+        <text class="tips">{{address[30]}}</text>
+    </view>
+    <view class="allLine"></view>
+    <view class="addView marginLeft spaceBetween">
+        <view class="maxwidth aliNocenter">
+            <text>{{address[15]}}</text>
+        </view>
+        <view class="aliNocenter bordenone">
+            <switch bindchange="switch" checked="{{par.isDefault>0}}" color="#e64340"></switch>
+        </view>
+    </view>
+</view>
+<van-popup show="{{show}}">
+    <view class="pupcontainer">
+        <view class="spaceBetween addlist piuptitle">
+            <text>{{status[2]}}</text>
+            <van-icon bindtap="onClose" name="cross" style="margin-right:10rpx"></van-icon>
+        </view>
+        <view class="addlist">
+            <text class="tipspup">{{mesg}}</text>
+        </view>
+        <view class="spaceBetween addlist piuptitle minwidt">
+            <text bindtap="goarticle">{{status[3]}}</text>
+            <text bindtap="onClose">{{status[4]}}</text>
+        </view>
+    </view>
+</van-popup>
+<van-popup show="{{showjp}}">
+    <view class="pupcontainer">
+        <view class="poshheww">
+            <van-icon bindtap="onClose" name="cross" style="margin-right:10rpx"></van-icon>
+        </view>
+        <view class="spaceBetween addlist piuptitle imgcone">
+            <image mode="widthFix" src="https://app.huyuntong.com/app/static/images/mini/show.jpg"></image>
+        </view>
+    </view>
+</van-popup>
+<van-action-sheet bind:close="showadechose" show="{{showijuwoi}}" title="{{address[27]}}{{address[18]}}">
+    <view class="contaicview">
+        <view class="checkieik marginLeft">
+            <view class="searchinput">
+                <view class="cheitehnjmdf">
+                    <text bindtap="cheserche" class="{{onitem?'showade':''}}" data-index="0" wx:if="{{actived>=0}}">{{cheone}}</text>
+                    <text bindtap="cheserche" class="{{twoitem?'showade':''}}" data-index="1" wx:if="{{actived>=1||twoitem.id}}">{{checktwo}}</text>
+                    <text bindtap="cheserche" class="{{threeitem?'showade':''}}" data-index="2" wx:if="{{actived>=2||threeitem.id}}">{{checkthree}}</text>
+                </view>
+                <view class="invaioe">
+                    <input bindinput="getsearvalue" class="weui-input" placeholder="{{japnaads[5]}}" value="{{serchvalue}}"></input>
+                </view>
+            </view>
+            <view class="serchcontiner marginLeft">
+                <view class="serchcon" wx:if="{{actived==0}}">
+                    <view bindtap="checkvalue" class="lietitem spaceBetween" data-item="{{item}}" wx:for="{{onlist}}" wx:key="index">
+                        <text>{{item.name}}</text>
+                        <van-icon color="#e64340" name="success" wx:if="{{item.id==onitem.id}}"></van-icon>
+                    </view>
+                </view>
+                <view class="serchcon" wx:if="{{actived==1}}">
+                    <view bindtap="checkvaluetwo" class="lietitem spaceBetween" data-item="{{item}}" wx:for="{{twlist}}" wx:key="index">
+                        <text>{{item.name}}</text>
+                        <van-icon color="#e64340" name="success" wx:if="{{item.id==twoitem.id}}"></van-icon>
+                    </view>
+                </view>
+                <view class="serchcon" wx:if="{{actived==2}}">
+                    <view bindtap="checkvaluethree" class="lietitem spaceBetween" data-item="{{item}}" wx:for="{{threlist}}" wx:key="index">
+                        <text>{{item.name}}</text>
+                        <van-icon color="#e64340" name="success" wx:if="{{item.id==threeitem.id}}"></van-icon>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</van-action-sheet>
+<button bindtap="submit">{{address[16]}}</button>

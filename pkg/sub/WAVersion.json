@@ -1,0 +1,11 @@
+{
+  "updateTime": "2021.4.13 23:36:00",
+  "version": "2.15.0",
+  "features": {
+    "pruneWxConfigByPage": true,
+    "injectGameContextPlugin": true,
+    "lazyCodeLoading2": true,
+    "injectAppSeparatedPlugin": true,
+    "nativeTrans": true
+  }
+}

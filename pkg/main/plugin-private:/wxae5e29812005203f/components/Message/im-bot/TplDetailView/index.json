@@ -1,0 +1,8 @@
+{
+    "component": true,
+    "usingComponents": {
+        "float-layout": "../../../FloatLayout/index",
+        "m-detail-view-list": "../../../Bot/m-detail-view-list/index",
+        "card-layout-list": "../../../Bot/m-card-layout-list/index"
+    }
+}

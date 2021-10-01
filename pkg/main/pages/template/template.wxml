@@ -1,0 +1,10 @@
+<template name="none">
+    <view style="display:flex; justify-content: center;margin-top:200rpx;">
+        <image mode="widthFix" src="https://app.huyuntong.com/app/static/images/mini/wife.png" style="width: 50%"></image>
+    </view>
+</template>
+<template name="notging">
+    <view style="display:flex; justify-content: center;margin-top:200rpx;">
+        <image mode="widthFix" src="https://app.huyuntong.com/app/static/images/mini/none.png" style="width: 50%"></image>
+    </view>
+</template>

@@ -1,0 +1,53 @@
+page {
+    background-color: #fff;
+}
+
+.tralist {
+    margin-top: 10rpx;
+}
+
+.title {
+    height: 80rpx;
+}
+
+.price {
+    color: #e64340;
+}
+
+.time {
+    color: #bbb;
+}
+
+.kejrej {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    background-color: #a1a1a1;
+    width: 90rpx;
+    height: 34rpx;
+    border-radius: 8rpx;
+    font-size: 24rpx;
+    margin-right: 20rpx;
+}
+
+.ker {
+    background-color: #d8bfd8;
+}
+
+.rkkr {
+    background-color: #307dfd;
+}
+
+.krkk {
+    background-color: #ff3a30;
+}
+
+.kekkrm {
+    display: flex;
+    align-items: center;
+}
+
+.lkellr {
+    align-items: flex-start;
+}

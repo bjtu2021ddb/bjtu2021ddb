@@ -1,0 +1,147 @@
+<import src="../template/template.wxml"></import>
+<view class="searchContainer">
+    <view class="searchView aliNocenter">
+        <van-icon class="icon" name="search" size="20px"></van-icon>
+        <input focus bindblur="getbur" bindconfirm="getValue" confirmType="search" placeholder="{{package.placeholder}}" type="text" value="{{inputvalue}}"></input>
+        <text bindtap="clearinputvalue">{{package.menu[9]}}</text>
+    </view>
+    <view bindtap="goDetails" class="{{item.status==11||item.status==14?'packageList bc':'packageList'}}" data-id="{{item.id}}" data-index="{{index}}" data-red="{{item.isRead}}" data-status="{{item.status}}" wx:if="{{packageList.length>0}}" wx:for="{{packageList}}" wx:key="index">
+        <view style="position:relative">
+            <view class="newcomntainer" wx:if="{{item.isRead==0&&item.status>=11}}">
+                <text>New</text>
+            </view>
+            <view class="packageListTitle marginLeft spaceBetween">
+                <view class="spaceBetween">
+                    <view style="width:60rpx" wx:if="{{item.isRead==0&&item.status>=11}}"></view>
+                    <van-icon name="shop-collect-o" size="1.3rem" wx:if="{{item.type==0||item.status<11}}"></van-icon>
+                    <view class="{{item.isRead==0?'packageType aliNocenter jejje':'packageType aliNocenter'}}" wx:if="{{item.type==1}}">
+                        <text>{{package.status[13]}}</text>
+                    </view>
+                    <text style="margin-left:20rpx;">{{item.warehouse}}</text>
+                </view>
+                <text wx:if="{{item.status==1}}">{{package.status[0]}}</text>
+                <text style="color:#e94e3a" wx:if="{{item.status==2}}">{{package.status[16]}}</text>
+                <text style="color:#e94e3a" wx:if="{{item.status==3}}">{{package.status[17]}}</text>
+                <text style="color:#D44038" wx:if="{{item.status==11||item.status==14}}">{{package.status[1]}}</text>
+                <text wx:if="{{item.status==12}}">{{package.status[2]}}</text>
+                <text style="color:rgba(229, 28, 35, 1)" wx:if="{{item.status==13}}">{{package.status[3]}}</text>
+                <text style="color:rgba(229, 28, 35, 1)" wx:if="{{item.status==21}}">{{package.listTitle[9]}}[{{package.status[5]}}]</text>
+                <text style="color:rgba(229, 28, 35, 1)" wx:if="{{item.status==22}}">{{package.listTitle[9]}}[{{package.status[11]}}]</text>
+                <text style="color:rgba(229, 28, 35, 1)" wx:if="{{item.status==23}}">{{package.listTitle[9]}}[{{package.status[12]}}]</text>
+                <text style="color:rgba(229, 28, 35, 1)" wx:if="{{item.status==24}}">{{package.listTitle[9]}}[{{package.status[4]}}]</text>
+                <text style="color:rgba(229, 28, 35, 1)" wx:if="{{item.status==25}}">{{package.listTitle[9]}}[{{package.listTitle[12]}}]</text>
+                <text wx:if="{{item.status==31}}">{{package.status[6]}}</text>
+                <text wx:if="{{item.status==32}}">{{package.status[7]}}</text>
+                <text wx:if="{{item.status==33}}">{{package.status[14]}}</text>
+                <text wx:if="{{item.status==34}}">{{package.status[15]}}</text>
+            </view>
+        </view>
+        <view wx:if="{{item.status==11||item.status==14}}">
+            <view class="marginLeft allCenter nibtbeh">
+                <view class="allCenter">
+                    <view class="aliNocenter">
+                        <van-icon name="info-o" size="40rpx"></van-icon>
+                        <text>{{tip}}</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="marginLeft">
+            <view style="margin-top:20rpx;"></view>
+            <view class="menuView aliNocenter">
+                <view class="aliNocenter minwith">
+                    <text>{{package.listTitle[0]}}:</text>
+                </view>
+                <text wx:if="{{item.expressCompany}}">{{item.expressCompany}}-{{item.expressNumber}}</text>
+                <text wx:if="{{!item.expressCompany}}">{{item.expressNumber}}</text>
+            </view>
+            <view class="menuView aliNocenter" wx:if="{{item.status>=11}}">
+                <view class="aliNocenter minwith">
+                    <text wx:if="{{item.status<21||item.status>25}}">{{package.listTitle[3]}}:</text>
+                    <text wx:if="{{item.status>=21&&item.status<=25}}">{{package.ms}}:</text>
+                </view>
+                <text wx:if="{{item.status<21||item.status>25}}">{{item.weight}}KG</text>
+                <text wx:if="{{item.status>=21&&item.status<=25}}">{{item.statusDoc}}</text>
+            </view>
+            <view wx:if="{{item.status<21||item.status>24}}">
+                <view class="menuView aliNocenter" wx:if="{{item.storageDays}}">
+                    <view class="aliNocenter minwith">
+                        <text wx:if="{{item.status!=13}}">{{package.listTitle[4]}}:</text>
+                        <text wx:if="{{item.status==13}}">{{package.listTitle[7]}}:</text>
+                    </view>
+                    <text wx:if="{{item.storageDays>=0}}">{{item.storageDays}}{{package.menu[4]}}</text>
+                    <text wx:if="{{item.storageDays<0}}">{{-item.storageDays}}{{package.menu[4]}}</text>
+                </view>
+            </view>
+            <view class="menuView aliNocenter">
+                <view class="aliNocenter minwith">
+                    <text>{{package.listTitle[1]}}:</text>
+                </view>
+                <text class="pricebig">{{item.totalPrice}} CNY</text>
+            </view>
+            <view class="menuView aliNocenter" style="" wx:if="{{item.status<11}}">
+                <view class="aliNocenter minwith">
+                    <text>{{package.listTitle[2]}}:</text>
+                </view>
+                <text>{{numberUtil.dateFormat(item.createTime,'yyyy-MM-dd hh:mm')}}</text>
+            </view>
+            <view class="menuView aliNocenter" style="" wx:if="{{item.status>=11}}">
+                <view class="aliNocenter minwith">
+                    <text wx:if="{{item.status<21||item.status>24}}">{{package.listTitle[5]}}:</text>
+                    <text wx:if="{{item.status>=21&&item.status<=24}}">{{package.listTitle[8]}}:</text>
+                </view>
+                <text>{{numberUtil.dateFormat(item.deliveryTime,'yyyy-MM-dd hh:mm')}}</text>
+            </view>
+            <view class="menuView aliNocenter" style="" wx:if="{{item.status==31}}">
+                <view class="aliNocenter minwith">
+                    <text>{{package.listTitle[6]}}:</text>
+                </view>
+                <text>{{numberUtil.dateFormat(item.updateTime,'yyyy-MM-dd hh:mm')}}</text>
+            </view>
+            <view class="menuView aliNocenter" style="" wx:if="{{item.auditStatus==0&&item.status==12}}">
+                <view class="aliNocenter minwith">
+                    <text>{{package.listTitle[11]}}:</text>
+                </view>
+                <text style="color:red">{{package.listTitle[10]}}</text>
+            </view>
+            <view class="statusCompent" wx:if="{{item.component}}">
+                <view class="deliverTitle spaceBetween">
+                    <view class="delivery aliNocenter">
+                        <text>{{package.opearation[2]}}</text>
+                    </view>
+                    <text style="margin-right:20rpx">{{numberUtil.day(item.component.time*1000)}}</text>
+                </view>
+                <view class="textoverflowline palet">
+                    <text>{{item.component.address}}</text>
+                </view>
+            </view>
+            <view style="wideth:100%;height:30rpx" wx:if="{{item.status>14||11>item.status}}"></view>
+            <view class="operation" wx:if="{{item.status<=14&&11<=item.status}}">
+                <view catchtap="return" class="opearbutton" data-express="{{item.expressNumber}}" data-id="{{item.id}}" data-weight="{{item.weight}}">
+                    <text>{{package.menu[12]}}</text>
+                </view>
+            </view>
+            <view class="operation" wx:if="{{item.status<11}}">
+                <view catchtap="goPrediction" class="opearbutton" data-cid="{{item.countryId}}" data-id="{{item.id}}" wx:if="{{item.status==1}}">
+                    <text>{{package.opearation[0]}}</text>
+                </view>
+                <view catchtap="deletpackage" class="opearbutton delet" data-id="{{item.id}}" wx:if="{{item.status==1}}">
+                    <text>{{package.opearation[4]}}</text>
+                </view>
+                <view bindtap="rebrjkt" class="opearbutton" data-id="{{item.id}}" wx:if="{{item.status==1||item.status==3}}">
+                    <text>{{package.opearation[6]}}</text>
+                </view>
+                <view bindtap="mkemkw" class="opearbutton" data-id="{{item.id}}" wx:if="{{item.status==2}}">
+                    <text>{{package.opearation[8]}}</text>
+                </view>
+                <view catchtap="getwhouse" class="opearbutton" data-id="{{item.expressNumber}}" data-name="{{item.expressCompany}}">
+                    <text>{{package.opearation[1]}}</text>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view wx:if="{{packageList.length<1}}">
+        <template is="notging" data></template>
+    </view>
+</view>
+<wxs module="numberUtil" src="../template/template.wxs" />

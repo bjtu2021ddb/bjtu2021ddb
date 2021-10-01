@@ -1,0 +1,62 @@
+<view class="tiotkle" wx:if="{{customerSwitch==0}}">
+    <button class="menyItem allCenter none-btn" disabled="{{!nickName}}" openType="contact" sessionFrom="nickName={{nickName}}|avatarUrl={{avatarUrl}}|staffid={{coustid}}" style="color:rgba(48, 125, 253, 1)">
+        <view class="jekkr">
+            <text>{{kefu}}</text>
+            <van-icon name="audio" size="20px"></van-icon>
+        </view>
+    </button>
+</view>
+<view class="tiotkle" wx:if="{{customerSwitch==1}}">
+    <view bindtap="gorhhrtj" class="jekkr">
+        <text>{{kefu}}</text>
+        <van-icon name="audio" size="20px"></van-icon>
+    </view>
+</view>
+<view wx:if="{{adrers}}">
+    <view class="addrecjkerk">
+        <view class="asdrre jrjkk">
+            <view class="erkkr" wx:if="{{adrers.trackingnumber}}">
+      配送单号：<text>{{adrers.trackingnumber}}</text>
+                <van-icon catchtap="copy" data-name="{{adrers.trackingnumber}}" name="description" style="margin-left:20rpx;font-size:30rpx" wx:if="{{adrers.trackingnumber}}"></van-icon>
+            </view>
+            <view class="erkkr njje">
+      收件人：<text>{{adrers.userName}}</text>
+            </view>
+            <view class="erkkr">
+      联系电话：<text>{{adrers.mobile}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="njdefjjke"></view>
+    <view class="adrline">
+        <view class="addretorp">
+            <view class="arejsline">
+                <view class="{{allliet[0].opcode=='DAS'?'adshouw blurnf':'adshouw'}}">
+                    <text>收</text>
+                </view>
+                <view class="{{allliet[0].opcode=='DAS'?'adrli blurnf':'adrli'}}"></view>
+            </view>
+            <view class="arenrnit">[收货地址] {{adrers.address}}</view>
+        </view>
+        <view class="linrghr"></view>
+    </view>
+    <view>
+        <view class="conejr" wx:for="{{allliet}}" wx:key="index">
+            <view class="addretorp">
+                <view class="arejsline">
+                    <view class="{{index==0?'allinfjune jjkek':'allinfjune'}}"></view>
+                    <view class="{{index==0?'jfjkdjk jjkekss':'jfjkdjk'}}"></view>
+                </view>
+                <view class="aren">
+                    <text class="hjdfuhjr">{{item.eventscan}}</text>
+                    <text>{{item.eventtime}}</text>
+                </view>
+            </view>
+        </view>
+        <view bindtap="ishjrer" class="jejwkr" wx:if="{{type&&allliet.length>3}}">
+            <text>点击查看更多物流详情 </text>
+            <van-icon name="arrow-down" style="margin-left:10rpx;margin-bottom:5rpx"></van-icon>
+        </view>
+        <view style="width:100%;height:100rpx"></view>
+    </view>
+</view>

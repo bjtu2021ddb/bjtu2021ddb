@@ -1,0 +1,208 @@
+<view class="orderContainer" wx:if="{{par}}">
+    <view class="detailsView">
+        <view class="viewItem marginLeft aliNocenter">
+            <view class="detailsName aliNocenter">
+                <text>{{orderDetails[1]}}</text>
+            </view>
+            <view catchtap="copy" class="detailsContent aliNocenter" data-name="{{par.code}}">
+                <text>{{par.code}}</text>
+                <van-icon name="description" style="margin-left:20rpx;font-size:30rpx"></van-icon>
+            </view>
+        </view>
+    </view>
+    <view class="detailsView">
+        <view class="viewItem marginLeft aliNocenter">
+            <view class="detailsName aliNocenter">
+                <text>{{orderDetails[2]}}</text>
+            </view>
+            <view class="detailsContent aliNocenter">
+                <text style="color:rgba(229, 28, 35, 1)" wx:if="{{par.status==1}}">{{order.status[1]}}</text>
+                <text style="color:rgba(229, 28, 35, 1)" wx:if="{{par.status==2}}">{{order.status[2]}}</text>
+                <text style="color:rgba(229, 28, 35, 1)" wx:if="{{par.status==3}}">{{order.status[3]}}</text>
+                <text style="color:rgba(229, 28, 35, 1)" wx:if="{{par.status==4}}">{{order.status[4]}}</text>
+                <text style="color:rgba(229, 28, 35, 1)" wx:if="{{par.status==5}}">{{order.status[7]}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="detailsView">
+        <view class="viewItem marginLeft aliNocenter">
+            <view class="detailsName aliNocenter">
+                <text>{{orderDetails[3]}}</text>
+            </view>
+            <view class="detailsContent aliNocenter">
+                <text>{{par.warehouse}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="detailsView" wx:if="{{par.trackingNumber}}">
+        <view class="viewItem marginLeft aliNocenter">
+            <view class="detailsName aliNocenter">
+                <text>{{status[1]}}</text>
+            </view>
+            <view catchtap="copy" class="detailsContent aliNocenter" data-name="{{par.trackingNumber}}">
+                <text>{{par.trackingNumber}}</text>
+                <van-icon name="description" style="margin-left:20rpx;font-size:30rpx"></van-icon>
+            </view>
+        </view>
+    </view>
+    <view class="detailsView" wx:if="{{par.replacePrice>0}}">
+        <view class="viewItem marginLeft aliNocenter">
+            <view class="detailsName aliNocenter">
+                <text>{{createOrder.server[1]}}</text>
+            </view>
+            <view class="detailsContent aliNocenter">
+                <text>{{numberUtil.moneySwitch(par.replacePrice)}}</text>
+                <text style="margin-left:10rpx;">{{createOrder.server[2]}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="detailsView">
+        <view class="viewItem marginLeft aliNocenter">
+            <view class="detailsName aliNocenter">
+                <text>{{orderDetails[4]}}</text>
+            </view>
+            <view class="detailsContent aliNocenter">
+                <text>{{par.servicePrice.transCode}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="detailsView">
+        <view class="viewItem marginLeft aliNocenter">
+            <view class="detailsName aliNocenter">
+                <text>{{orderDetails[5]}}</text>
+            </view>
+            <view class="detailsContent aliNocenter">
+                <text>{{numberUtil.dateFormat(par.updateTime,'yyyy-MM-dd hh:mm')}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="detailsView" wx:if="{{par.orderPay}}">
+        <view class="viewItem marginLeft aliNocenter">
+            <view class="detailsName aliNocenter">
+                <text>{{orderDetails[6]}}</text>
+            </view>
+            <view class="detailsContent aliNocenter">
+                <text wx:if="{{par.orderPay.payType==1}}">{{order.patTYpe[0]}}</text>
+                <text wx:if="{{par.orderPay.payType==2}}">{{order.patTYpe[1]}}</text>
+                <text wx:if="{{par.orderPay.payType==3}}">{{order.patTYpe[2]}}</text>
+                <text wx:if="{{par.orderPay.payType==4}}">{{order.patTYpe[3]}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="detailsView" wx:if="{{par.orderPay}}">
+        <view class="viewItem marginLeft aliNocenter">
+            <view class="detailsName aliNocenter">
+                <text>{{orderDetails[7]}}</text>
+            </view>
+            <view class="detailsContent aliNocenter">
+                <text>{{numberUtil.dateFormat(par.orderPay.updateTime,'yyyy-MM-dd hh:mm')}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="address aliNocenter" wx:if="{{par.userAddress}}">
+        <view class="usewrcircle" wx:if="{{par.userAddress}}">
+            <text wx:if="{{par.userAddress.isSuperMall==0}}">宅配</text>
+            <text wx:if="{{par.userAddress.isSuperMall==1}}">店配</text>
+        </view>
+        <view class="details">
+            <view class="addressName spaceBetween">
+                <text>{{par.userAddress.name}}，{{par.userAddress.mobile}}</text>
+            </view>
+            <view class="ads" wx:if="{{par.userAddress.concatAddress}}">
+       {{par.userAddress.concatAddress}}
+      </view>
+        </view>
+    </view>
+    <view class="marginLeft itemand spaceBetween" wx:if="{{par.parcelList.length>0}}">
+        <text>{{prediction[22]}}</text>
+        <text bindtap="actvieshow" class="lookall" wx:if="{{goods.length>0}}">{{prediction[31]}}</text>
+    </view>
+    <view class="goodscontainer" wx:if="{{par.parcelList.length>0}}">
+        <view class="goodsView">
+            <view class="goodindex">
+                <view class="goodindexleft"></view>
+                <view class="goodindexexp">
+                    <text>{{spacel}}</text>
+                </view>
+                <view class="goodindextype">
+                    <text>{{createOrder.goods[26]}}</text>
+                </view>
+                <view class="goodindexkg">
+          {{createOrder.goods[3]}}
+        </view>
+                <view class="goodindexvalue">
+                    <text>{{createOrder.goods[25]}}</text>
+                </view>
+            </view>
+            <view class="goodindexitem" wx:for="{{par.parcelList}}" wx:key="index">
+                <view class="goodindexleft">{{index+1}}</view>
+                <view class="goodindexexp">
+                    <text>{{item.expressNumber}}</text>
+                </view>
+                <view class="goodindextype">
+                    <text wx:if="{{item.type==1}}">{{package.details[8]}}</text>
+                    <text wx:else>{{package.details[10]}}</text>
+                </view>
+                <view class="goodindexkg">
+          {{item.weight}} KG
+        </view>
+                <view class="goodindexvalue">
+          ￥{{numberUtil.moneySwitch(item.totalPrice)}}
+        </view>
+            </view>
+        </view>
+        <view class="goodsBottom aliNocenter marginLeft">
+            <text>{{orderDetails[12]}}：{{par.weight}}KG</text>
+            <text style="margin-left:40rpx">{{prediction[19]}} ￥{{numberUtil.moneySwitch(par.productPrice)}}</text>
+        </view>
+    </view>
+    <van-cell-group>
+        <van-cell title="{{orderDetails[14]}}" value="¥{{par.timeOutPrice}}" wx:if="{{par.timeOutPrice>0}}"></van-cell>
+        <van-cell title="{{par.taxName}}" value="¥{{par.rat}}" wx:if="{{par.isGoodsTax==1}}"></van-cell>
+        <van-cell title="{{orderDetails[16]}}" value="¥{{par.reinforcePrice}}" wx:if="{{par.reinforcePrice>0}}"></van-cell>
+        <van-cell title="{{orderDetails[17]}}" value="¥{{par.protectionPrice}}" wx:if="{{par.protectionPrice>0}}"></van-cell>
+        <van-cell border="{{false}}" title="{{orderDetails[18]}}" value="¥{{par.couponPrice}}" wx:if="{{par.couponPrice>0}}"></van-cell>
+    </van-cell-group>
+    <view class="magbottom"></view>
+    <view class="bottomButon" wx:if="{{par.status<2}}">
+        <text wx:if="{{par.status==1}}">{{order.status[1]}}  ￥{{numberUtil.moneySwitch(par.totalPrice)}}</text>
+        <view class="payItem spaceAround" wx:if="{{par.status==1}}">
+            <text bindtap="pay">{{order.opearation[1]}}</text>
+        </view>
+        <text style="margin-left:30rpx" wx:if="{{par.status==3}}">{{orderDetails[19]}}<text style="color:rgba(229, 28, 35, 1)">￥{{numberUtil.moneySwitch(par.totalPrice)}}</text>
+        </text>
+    </view>
+    <view class="bottomButon" wx:if="{{par.status==2||par.status==3}}">
+        <text style="margin-left:30rpx">{{orderDetails[19]}}<text style="color:rgba(229, 28, 35, 1)">￥{{numberUtil.moneySwitch(par.totalPrice)}}</text>
+        </text>
+    </view>
+</view>
+<van-action-sheet bind:close="actvieshow" show="{{show}}" title="{{createOrder.goods[27]}}">
+    <view class="goodsView marginLeft godnine">
+        <view class="goodindex">
+            <view class="goodindexleft macleye"></view>
+            <view class="goodindexexp minnde">
+                <text>商品</text>
+            </view>
+            <view class="goodindextype">
+                <text>{{createOrder.goods[2]}}</text>
+            </view>
+            <view class="goodindexvalue marigh">
+                <text>{{prediction[12]}}</text>
+            </view>
+        </view>
+        <view class="goodindexitem" wx:for="{{goods}}" wx:key="index">
+            <view class="goodindexleft macleye">{{index+1}}</view>
+            <view class="goodindexexp minnde">
+                <text>{{item.name}}</text>
+            </view>
+            <view class="goodindextype">
+                <text>{{item.num}}</text>
+            </view>
+            <view class="goodindexvalue marigh">
+          {{numberUtil.moneySwitch(item.price)}}CNY
+        </view>
+        </view>
+    </view>
+</van-action-sheet>
+<wxs module="numberUtil" src="../template/template.wxs" />

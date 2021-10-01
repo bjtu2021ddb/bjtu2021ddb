@@ -1,0 +1,251 @@
+.addAdressContainer {
+    width: 100%;
+    background-color: #fff;
+    border-top: 1rpx solid #f0f0f2;
+    font-size: 28rpx;
+}
+
+.addView {
+    height: 90rpx;
+}
+
+.pakke {
+    padding-left: 4%;
+}
+
+.jekkrm {
+    width: 100%;
+    height: 30rpx;
+    display: flex;
+    align-items: center;
+    font-size: 24rpx;
+    color: #e64340;
+    margin-top: -15rpx;
+}
+
+.jejke {
+    width: 25%;
+}
+
+.pupcontainer {
+    width: 680rpx;
+}
+
+.van-popup--center {
+    border-radius: 20rpx;
+    top: 35%!important;
+}
+
+.piuptitle {
+    height: 100rpx;
+    color: #101010;
+    font-size: 32rpx;
+}
+
+.tipspup {
+    font-size: 28rpx;
+    color: #555;
+}
+
+.addlist {
+    width: 84%;
+    margin-left: 8%;
+}
+
+.minwidt {
+    width: 60%;
+    height: 120rpx;
+    color: #307dfd;
+    margin-left: 20%;
+}
+
+input {
+    width: 100%;
+}
+
+.inputView {
+    width: 70%;
+    height: 100%;
+}
+
+.minwidth {
+    width: 30%;
+    height: 100%;
+    font-weight: 500;
+}
+
+inputView input {
+    width: 100%;
+    height: 100%;
+}
+
+.weiinput,.weiinputmin {
+    height: 65%;
+    border-radius: 10rpx;
+    padding-left: 10rpx;
+}
+
+.picker {
+    width: 92%;
+}
+
+.picker input {
+    width: 100%;
+}
+
+.weiinput image {
+    width: 8%;
+}
+
+.bordenone picker {
+    width: 90%;
+}
+
+.maxwidth {
+    width: 50%;
+    height: 100%;
+    font-weight: 500;
+}
+
+.min {
+    width: 40%;
+}
+
+button {
+    margin-top: 50rpx;
+    width: 600rpx!important;
+    color: #fff;
+    background-image: linear-gradient(90deg,#e94e3a,#f85d1b);
+    font-size: 28rpx;
+}
+
+.tig {
+    color: #e64340;
+    margin-right: 8rpx;
+}
+
+.drop {
+    width: 100%;
+    display: flex;
+    justify-content: start!important;
+}
+
+.drop .van-dropdown-menu {
+    background-color: #fff!important;
+    height: 95%;
+}
+
+.van-ellipsis {
+    color: #101010;
+}
+
+.van-ellipsis:before {
+    content: "*";
+    color: #e64340;
+}
+
+.drop .van-dropdown-menu__title {
+    color: #888!important;
+    padding-left: 0!important;
+}
+
+.tips {
+    font-size: 26rpx;
+    color: #e64340;
+}
+
+.addViews {
+    height: 120rpx;
+}
+
+.minwidths {
+    width: 22%;
+    margin-right: 8%;
+    text-align: center;
+}
+
+.minshow {
+    width: 100%;
+    height: 60rpx;
+    color: #307dfd;
+    display: flex;
+    align-items: center;
+}
+
+.imgcone {
+    width: 90%;
+    height: 440rpx;
+}
+
+.poshheww {
+    width: 90%;
+    display: flex;
+    height: 60rpx;
+    align-items: center;
+    margin-left: 8%;
+    justify-content: flex-end;
+}
+
+.contaicview {
+    width: 100%;
+    height: 1000rpx;
+}
+
+.checkieik {
+    height: 160rpx;
+}
+
+.searchinput {
+    height: 100%;
+}
+
+.cheitehnjmdf {
+    height: 50%;
+    display: flex;
+    align-items: center;
+    width: 90%;
+    margin-left: 5%;
+}
+
+.cheitehnjmdf text {
+    margin-right: 20rpx;
+}
+
+.weui-input {
+    height: 80%;
+    padding-left: 35rpx;
+    font-size: 28rpx;
+    width: 90%;
+    margin-left: 5%;
+    border-radius: 40rpx;
+    border: 2rpx solid #e64340;
+    margin-top: 2%;
+}
+
+.invaioe {
+    height: 54%;
+}
+
+.serchcontiner {
+    height: 800rpx;
+    margin-top: 20rpx;
+    overflow-y: scroll;
+}
+
+.serchcon {
+    width: 100%;
+    height: 100%;
+}
+
+.showade {
+    color: #e64340;
+}
+
+.serchcontiner::-webkit-scrollbar {
+    width: 0!important;
+}
+
+.lietitem {
+    width: 100%;
+    height: 80rpx;
+}

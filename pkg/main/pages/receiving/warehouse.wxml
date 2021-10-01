@@ -1,0 +1,50 @@
+<view wx:if="{{par}}">
+    <view class="addrestip">
+        <text>{{warehouse[10]}}</text>
+    </view>
+    <view class="warehouseContainer backgrounColor">
+        <view class="marginLeft">
+            <view class="marginLeft spaceBetween marginbottom">
+                <text class="bigweig">{{par.name}} 【{{counthy}}】</text>
+            </view>
+            <view class="marginLeft spaceBetween marginbottom">
+                <text class="fontweight">{{warehouse[2]}}</text>
+                <view class="spaceBetween copycontainer">
+                    <text>{{par.receiver}}</text>
+                    <text bindtap="copy" class="colorFont" data-name="{{par.receiver}}">{{warehouse[1]}}</text>
+                </view>
+            </view>
+            <view class="marginLeft spaceBetween marginbottom">
+                <text class="fontweight">{{warehouse[3]}}</text>
+                <view class="spaceBetween copycontainer">
+                    <text>{{par.mobile}}</text>
+                    <text bindtap="copy" class="colorFont" data-name="{{par.mobile}}">{{warehouse[1]}}</text>
+                </view>
+            </view>
+            <view class="marginLeft spaceBetween marginbottom">
+                <text class="fontweight">{{warehouse[4]}}</text>
+                <view class="spaceBetween copycontainer">
+                    <text>{{par.address}}</text>
+                    <text bindtap="copy" class="colorFont margin" data-name="{{par.address}}">{{warehouse[1]}}</text>
+                </view>
+            </view>
+            <view class="marginLeft spaceBetween marginbottom">
+                <text class="fontweight">{{warehouse[5]}}</text>
+                <view class="spaceBetween copycontainer">
+                    <text>{{par.postalCode}}</text>
+                    <text bindtap="copy" class="colorFont" data-name="{{par.postalCode}}">{{warehouse[1]}}</text>
+                </view>
+            </view>
+            <view class="marginLeft spaceBetween marginbottom tip">
+                <text>{{warehouse[6]}}</text>
+            </view>
+            <view class="marginLeft spaceBetween marginbottom">
+                <text class="fontweight">{{warehouse[7]}}</text>
+                <view class="spaceBetween copycontainer">
+                    <text>{{par.detail}}</text>
+                    <text bindtap="copytwo" class="colorFont margin">{{warehouse[1]}}</text>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

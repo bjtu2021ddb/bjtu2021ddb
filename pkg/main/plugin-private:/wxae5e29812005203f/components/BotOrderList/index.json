@@ -1,0 +1,7 @@
+{
+    "component": true,
+    "usingComponents": {
+        "float-layout": "../FloatLayout/index",
+        "m-list": "./m-list/index"
+    }
+}

@@ -1,0 +1,33 @@
+<view class="userContainer marginLeft">
+    <view class="title aliNocenter">
+        <text>{{feedback.title}}</text>
+    </view>
+    <view class="menu aliNocenter">
+        <view bindtap="checkout" class="{{code==index?'menuItem spaceAround boder':'menuItem allJustCenter'}}" data-index="{{index}}" data-name="{{item}}" wx:for="{{feedback.menu}}" wx:key="index">
+            <van-icon color="#F44444" name="success" wx:if="{{code==index}}"></van-icon> {{item}}
+    </view>
+    </view>
+    <view class="section">
+        <textarea bindblur="getvalue" maxlength="-1" placeholder="{{feedback.placeholde}}" wx:if="{{!show}}"></textarea>
+    </view>
+    <view class="file">
+        <van-uploader bind:after-read="afterRead" bind:delete="delet" fileList="{{fileList}}" imageFit="widthFix" maxCount="3" maxSize="100000"></van-uploader>
+    </view>
+    <view class="phonView aliNocenter">
+        <text>{{feedback.opeartion[0]}}</text>
+        <input bindblur="getnumber" maxlength="11" placeholder="{{feedback.opeartion[1]}}" type="number"></input>
+    </view>
+    <view bindtap="showPopup" class="button allCenter btnback">
+        <text>{{feedback.opeartion[2]}}</text>
+    </view>
+</view>
+<van-popup customStyle="height: 100%" position="bottom" show="{{show}}">
+    <view class="successContainer allCenter">
+        <icon size="100" type="success"></icon>
+        <text>{{feedback.opeartion[3]}}</text>
+        <view bindtap="navgeback" class="allCenter">
+            <text>{{feedback.opeartion[4]}}</text>
+        </view>
+    </view>
+</van-popup>
+<van-notify id="van-notify"></van-notify>

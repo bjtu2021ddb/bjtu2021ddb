@@ -1,0 +1,24 @@
+<view class="friendContaine" wx:if="{{imgurl}}">
+    <view class="firedTitle"></view>
+    <image mode="widthFix" src="{{imgurl}}"></image>
+    <view bindtap="share" class="button allCenter">
+        <text>{{inviafriend[1]}}</text>
+    </view>
+    <view bindtap="recode" class="allCenter">
+        <text class="my">{{inviafriend[2]}}</text>
+    </view>
+    <van-action-sheet bind:cancel="onClose" cancelText="取消" overlay="{{noshow}}" show="{{show}}">
+        <view class="shareView aliNocenter">
+            <view class="shareItem allCenter">
+                <button class="none-btn allCenter" openType="share">
+                    <van-icon color="rgba(50, 169, 77, 1)" name="chat-o" size="45px"></van-icon>
+                    <text>{{inviafriend[3]}}</text>
+                </button>
+            </view>
+            <view bindtap="save" class="shareItem allCenter">
+                <van-icon color="rgba(50, 169, 77, 1)" name="photo-o" size="45px"></van-icon>
+                <text>{{inviafriend[4]}}</text>
+            </view>
+        </view>
+    </van-action-sheet>
+</view>

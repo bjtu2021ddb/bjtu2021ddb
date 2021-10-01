@@ -1,0 +1,7 @@
+{
+    "component": true,
+    "usingComponents": {
+        "g-list": "../../GList/index",
+        "card-layout-list": "../m-card-layout-list/index"
+    }
+}

@@ -1,0 +1,23 @@
+<view class="allCenter titeklconenr">
+    <text>您好</text>
+</view>
+<view class="allCenter njfew">
+    <text>{{tsbhhr}}</text>
+    <text class="hjdjkwjk">{{kewke}}</text>
+</view>
+<view class="allCenter">
+    <image class="jefjwimg" mode="widthFix" src="{{customerQrcodeImg}}"></image>
+    <text class="hjehjwje">{{hjdejh}}</text>
+    <view bindtap="svaeimng" class="baocune">
+        <view class="allCenter jewe">
+            <van-icon color="white" name="down"></van-icon>
+        </view>
+        <text>{{inviafriend[4]}}</text>
+    </view>
+</view>
+<button class="menyItemtop none-btn" openType="contact" sessionFrom="nickName={{nickName}}|avatarUrl={{avatarUrl}}|staffid={{coustid}}" wx:if="{{ishowhe}}">
+    <van-icon color="rgba(50, 145, 248, 100)" name="manager" size="40rpx"></van-icon>
+    <view class="rightmenu">
+        <text class="jkejkej">{{jewj}}</text>
+    </view>
+</button>

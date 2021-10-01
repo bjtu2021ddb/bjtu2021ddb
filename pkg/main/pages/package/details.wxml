@@ -1,0 +1,321 @@
+<import src="../template/template.wxml"></import>
+<view class="packageDetails" wx:if="{{par}}">
+    <view class="detailsContainer">
+        <view class="orderItem marginLeft aliNocenter">
+            <view class="orderItemTitle aliNocenter ">
+                <text>{{package.details[2]}}</text>
+            </view>
+            <view class="orderItemContent aliNocenter">
+                <text>{{par.expressCompany}}</text>
+            </view>
+        </view>
+        <view class="anotheline"></view>
+        <view class="orderItem marginLeft aliNocenter" wx:if="{{par.status!=12}}">
+            <view class="orderItemTitle aliNocenter">
+                <text>{{package.listTitle[0]}}</text>
+            </view>
+            <view class="orderItemContent aliNocenter">
+                <text>{{par.expressNumber}}</text>
+            </view>
+        </view>
+        <view class="orderItem marginLeft aliNocenter" wx:if="{{par.status==12}}">
+            <view class="orderItemTitle aliNocenter">
+                <text>{{package.status[9]}}</text>
+            </view>
+            <view class="orderItemContent aliNocenter">
+                <text>{{par.expressNumber}}</text>
+            </view>
+        </view>
+        <view class="anotheline"></view>
+        <view class="orderItem marginLeft aliNocenter" wx:if="{{par.status!=12}}">
+            <view class="orderItemTitle aliNocenter ">
+                <text>{{package.details[3]}}</text>
+            </view>
+            <view class="orderItemContent aliNocenter">
+                <text>{{par.warehouse}}</text>
+            </view>
+        </view>
+        <view class="orderItem marginLeft aliNocenter" wx:if="{{par.status==12}}">
+            <view class="orderItemTitle aliNocenter">
+                <text>{{package.status[10]}}</text>
+            </view>
+            <view class="orderItemContent aliNocenter">
+                <text>{{par.warehouse}}</text>
+            </view>
+        </view>
+        <view class="anotheline"></view>
+        <view class="orderItem marginLeft aliNocenter" wx:if="{{par.type==1}}">
+            <view class="orderItemTitle aliNocenter ">
+                <text>{{package.details[7]}}</text>
+            </view>
+            <view class="orderItemContent aliNocenter">
+                <text style="color:rgba(229, 28, 35, 1)">{{package.details[8]}}</text>
+            </view>
+        </view>
+        <view class="anotheline" wx:if="{{par.type==1}}"></view>
+        <view class="orderItem marginLeft aliNocenter">
+            <view class="orderItemTitle aliNocenter ">
+                <text>{{package.details[4]}}</text>
+            </view>
+            <view class="orderItemContent aliNocenter">
+                <text wx:if="{{par.status==1}}">{{package.status[0]}}</text>
+                <text wx:if="{{par.status==2}}">{{package.status[16]}}</text>
+                <text wx:if="{{par.status==3}}">{{package.status[17]}}</text>
+                <text style="color:#D44038" wx:if="{{par.status==11||par.status==14}}">{{package.status[1]}}</text>
+                <text style="color:#D44038" wx:if="{{par.status==12}}">{{package.status[2]}}</text>
+                <text style="color:#D44038" wx:if="{{par.status==13}}">{{package.status[3]}}</text>
+                <text style="color:#D44038" wx:if="{{par.status==21}}">{{package.listTitle[9]}} [{{package.status[5]}}]</text>
+                <text style="color:#D44038" wx:if="{{par.status==22}}">{{package.listTitle[9]}} [{{package.status[11]}}]</text>
+                <text style="color:#D44038" wx:if="{{par.status==23}}">{{package.listTitle[9]}} [{{package.status[12]}}]</text>
+                <text style="color:#D44038" wx:if="{{par.status==24}}">{{package.listTitle[9]}} [{{package.status[4]}}]</text>
+                <text style="color:#D44038" wx:if="{{par.status==25}}">{{package.listTitle[9]}} [{{package.listTitle[12]}}]</text>
+                <text style="color:#D44038" wx:if="{{par.status==31}}">{{package.status[6]}}</text>
+                <text style="color:#D44038" wx:if="{{par.status==32}}">{{package.status[7]}}</text>
+                <text wx:if="{{par.status==33}}">{{package.status[14]}}</text>
+                <text wx:if="{{par.status==34}}">{{package.status[15]}}</text>
+            </view>
+        </view>
+        <view class="anotheline" wx:if="{{par.isSpecialGoodsStr}}"></view>
+        <view class="orderItem marginLeft aliNocenter" wx:if="{{par.isSpecialGoodsStr}}">
+            <view class="orderItemTitle aliNocenter ">
+                <text>{{package.details[9]}}</text>
+            </view>
+            <view class="orderItemContent aliNocenter">
+                <text style="color:rgba(229, 28, 35, 1)">{{par.isSpecialGoodsStr}}</text>
+            </view>
+        </view>
+        <view wx:if="{{par.status>=21&&par.status<=25}}">
+            <view class="anotheline" wx:if="{{par.statusDoc}}"></view>
+            <view class="marginLeft aliNocenter minnjrne" wx:if="{{par.statusDoc}}">
+                <view class="orderItemTitle aliNocenter ">
+                    <text>{{package.ms}}</text>
+                </view>
+                <view class="orderItemContent aliNocenter">
+                    <text>{{par.statusDoc}}</text>
+                </view>
+            </view>
+        </view>
+        <view class="anotheline"></view>
+        <view wx:if="{{par.status<21||par.status>25}}">
+            <view class="orderItem marginLeft aliNocenter" wx:if="{{par.storageDays}}">
+                <view class="orderItemTitle aliNocenter">
+                    <text wx:if="{{par.status!=13}}">{{package.listTitle[4]}}:</text>
+                    <text wx:if="{{par.status==13}}">{{package.listTitle[7]}}:</text>
+                </view>
+                <view class="orderItemContent aliNocenter">
+                    <text wx:if="{{par.storageDays>=0}}">{{par.storageDays}}{{package.menu[4]}}</text>
+                    <text wx:if="{{par.storageDays<0}}">{{-par.storageDays}}{{package.menu[4]}}</text>
+                </view>
+            </view>
+            <view class="anotheline"></view>
+        </view>
+        <view class="orderItem marginLeft aliNocenter">
+            <view class="orderItemTitle aliNocenter ">
+                <text wx:if="{{par.status<21||par.status>25}}">{{package.listTitle[5]}}</text>
+                <text wx:if="{{par.status>=21&&par.status<=25}}">{{package.listTitle[8]}}</text>
+            </view>
+            <view class="orderItemContent aliNocenter">
+                <text>{{numberUtil.dateFormat(par.deliveryTime,'yyyy-MM-dd hh:mm')}}</text>
+            </view>
+        </view>
+        <view class="anotheline" wx:if="{{par.showImg==1}}"></view>
+        <view class="orderItem marginLeft aliNocenter" wx:if="{{par.showImg==1}}">
+            <view class="orderItemTitle aliNocenter ">
+                <text>{{prediction[21]}}</text>
+            </view>
+            <view class="orderItemContent aliNocenter"></view>
+        </view>
+        <view class="banner allCenter" wx:if="{{par.showImg==1}}">
+            <image bindtap="previewImg" mode="widthFix" src="{{par.image}}"></image>
+        </view>
+    </view>
+    <view class="detailsContainer" style="margin-top:20rpx" wx:if="{{par.status<21||par.status>25}}">
+        <view class="orderItem marginLeft aliNocenter">
+            <view class="orderItemTitle aliNocenter ">
+                <text>{{package.sz}}</text>
+            </view>
+            <view class="orderItemContent aliNocenter">
+                <text>{{par.weight}}KG</text>
+            </view>
+        </view>
+        <view class="anotheline"></view>
+        <view class="orderItem marginLeft aliNocenter" wx:if="{{par.length>0&&par.width>0}}">
+            <view class="orderItemTitle aliNocenter ">
+                <text>{{package.title}}{{package.goods[9]}}</text>
+            </view>
+            <view class="orderItemContent aliNocenter">
+                <text>{{par.length}} * {{par.width}} * {{par.height}} (cm) </text>
+            </view>
+        </view>
+        <view class="anotheline" wx:if="{{par.width>0}}"></view>
+        <view class="orderItem marginLeft aliNocenter" wx:if="{{par.bulk>0}}">
+            <view class="orderItemTitle aliNocenter ">
+                <text>{{package.tjz}}</text>
+            </view>
+            <view class="orderItemContent aliNocenter">
+                <text>{{par.bulk}}KG</text>
+            </view>
+        </view>
+        <view class="anotheline" wx:if="{{par.bulk>0}}"></view>
+        <view class="orderItem marginLeft aliNocenter post">
+            <view class="orderItemTitle aliNocenter ">
+                <text>{{package.listTitle[3]}}</text>
+            </view>
+            <view class="orderItemContent aliNocenter">
+                <text wx:if="{{par.bulk<par.weight}}">{{par.weight}}KG</text>
+                <text wx:if="{{par.bulk>=par.weight}}">{{par.bulk}}KG</text>
+            </view>
+            <text class="postrealtve">{{package.tipss}}</text>
+        </view>
+        <view class="anotheline"></view>
+        <view class="orderItem marginLeft aliNocenter" wx:if="{{par.type==1}}">
+            <view class="orderItemTitle aliNocenter ">
+                <text>{{package.details[7]}}</text>
+            </view>
+            <view class="orderItemContent aliNocenter">
+                <text style="color:rgba(229, 28, 35, 1)">{{package.details[8]}}</text>
+            </view>
+        </view>
+        <view class="anotheline" wx:if="{{par.type==1}}"></view>
+        <view class="orderItem marginLeft aliNocenter">
+            <view class="orderItemTitle aliNocenter">
+                <text>{{prediction[19]}}</text>
+            </view>
+            <view class="orderItemContent aliNocenter">
+                <text>{{numberUtil.moneySwitch(par.totalPrice)}} CNY</text>
+            </view>
+        </view>
+    </view>
+    <view>
+        <view class="detailsTitle marginLeft aliNocenter" wx:if="{{par.status!=14&&par.isCheck!=0&&par.status<=20}}">
+            <text>{{prediction[4]}}</text>
+        </view>
+        <view wx:if="{{par.status>25||par.status==11}}">
+            <view class="detailsTitle marginLeft aliNocenter">
+                <text>{{prediction[4]}}</text>
+            </view>
+        </view>
+    </view>
+    <view wx:if="{{par.status<21&&par.status>11}}">
+        <view class="preditView otheer" wx:if="{{par.status==14||par.isCheck==0}}">
+            <view class="preditItem  marginLeft spaceBetween">
+                <text>{{prediction[4]}}</text>
+                <view class="preditRightContainer aliNocenter">
+                    <view class="spaceBetween list">
+                        <view bindtap="addshop" class="rule spaceBetween">
+                            <van-icon color="rgba(48, 125, 253, 1)" name="add-o" size="20"></van-icon>
+                            <text style="color:rgba(48, 125, 253, 1)">{{prediction[9]}}</text>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view style="margin-bottom:130rpx;" wx:if="{{(par.status==14||par.isCheck==0)&&par.status<21}}">
+        <view class="listItem marginLeftMInwidth" wx:for="{{list}}" wx:key="index">
+            <view bindtap="godetalie" class="itemViewContainer aliNocenter" data-goodname="{{item.name}}" data-index="{{index}}" data-name="{{prediction[10]}}" data-place="{{prediction[1]}}{{prediction[10]}}">
+                <view class="itemName aliNocenter">
+                    <text>{{prediction[10]}}</text>
+                </view>
+                <input disabled class="place" data-index="{{index}}" placeholder="{{mes}}" placeholderStyle="color:rgba(48, 125, 253, 1);" type="text" value="{{item.name}}"></input>
+                <van-icon class="delet" data-index="{{index}}" name="delete" size="40rpx" wx:if="{{list.length>1}}"></van-icon>
+            </view>
+            <view class="itemViewContainer aliNocenter">
+                <view class="itemName aliNocenter">
+                    <text>{{prediction[12]}}</text>
+                </view>
+                <input bindblur="getvaluePrice" data-index="{{index}}" placeholder="{{prediction[1]}}{{prediction[12]}}" style="width:35%" type="digit" value="{{item.price>0?item.price:null}}"></input>
+                <text style="margin-left:20rpx;">(人民币) CNY</text>
+            </view>
+            <view class="itemViewContainer aliNocenter">
+                <view class="itemName aliNocenter">
+                    <text>{{prediction[11]}}</text>
+                </view>
+                <view class="inpuadd">
+                    <van-stepper integer bind:change="onChange" data-inde="{{index}}" min="1" value="{{item.num}}"></van-stepper>
+                </view>
+            </view>
+            <view bindtap="godeurl" class="itemViewContainer aliNocenter" data-index="{{index}}" data-name="{{item.url}}" data-place="{{prediction[1]}}{{prediction[26]}}" wx:if="{{counCode=='JP'&&counCode.isGoodsLink==1}}">
+                <view class="itemName aliNocenter">
+                    <text>{{prediction[26]}}</text>
+                </view>
+                <input disabled class="place" data-index="{{index}}" placeholder="{{prediction[27]}}" placeholderStyle="color:rgba(48, 125, 253, 1);" type="text" value="{{item.url}}"></input>
+            </view>
+        </view>
+    </view>
+    <view class="goodsContainer marginLeft" wx:if="{{par.status!=14&&par.isCheck!=0||par.status>25}}">
+        <view class="goodsItem" wx:for="{{par.list}}" wx:key="index">
+            <view class="goodesDetils marginLeft aliNocenter">
+                <view class="goodsTitle">
+                    <view class="goodsNme aliNocenter">
+                        <view class="nameItem">
+                            <text>{{prediction[10]}}</text>
+                        </view>
+                        <text>{{item.name}}</text>
+                    </view>
+                    <view class="goodsNme aliNocenter">
+                        <view class="nameItem">
+                            <text>{{prediction[11]}}</text>
+                        </view>
+                        <text>{{item.num}}</text>
+                    </view>
+                    <view class="goodsNme aliNocenter" wx:if="{{item.weight}}">
+                        <view class="nameItem">
+                            <text>{{prediction[20]}}</text>
+                        </view>
+                        <text>{{item.weight}}</text>
+                    </view>
+                    <view class="goodsNme aliNocenter" wx:if="{{item.dimension}}">
+                        <view class="nameItem">
+                            <text>{{package.goods[9]}}</text>
+                        </view>
+                        <text>{{item.dimension}}</text>
+                    </view>
+                    <view class="goodsNme aliNocenter" wx:if="{{par.status!=12}}">
+                        <view class="nameItem">
+                            <text>{{prediction[12]}}</text>
+                        </view>
+                        <input bindblur="getvalue" class="{{par.status!=11?'':'borderinput'}}" data-index="{{index}}" disabled="{{par.status!=11}}" placeholder="{{package.goods[5]}}" type="digit" value="{{item.price}}" wx:if="{{par.status==11}}"></input>
+                        <text wx:if="{{par.status==11}}">CNY</text>
+                        <text wx:if="{{par.status!=11}}">{{numberUtil.moneySwitch(item.price)}} CNY</text>
+                    </view>
+                    <view class="goodsNme aliNocenter" wx:if="{{par.status==12}}">
+                        <view class="nameItem">
+                            <text>{{prediction[12]}}</text>
+                        </view>
+                        <text wx:if="{{item.price>0}}">{{numberUtil.moneySwitch(item.price)}} CNY</text>
+                        <input bindblur="getvaluej" class="borderinput" data-index="{{index}}" placeholder="{{package.goods[5]}}" type="number" value="{{item.price}}" wx:if="{{!item.price||item.price==0}}"></input>
+                        <text wx:if="{{!item.price||item.price==0}}">CNY</text>
+                    </view>
+                    <view bindtap="godeurlto" class="goodsNme aliNocenter" data-index="{{index}}" data-name="{{item.url}}" data-par="1" data-place="{{prediction[1]}}{{prediction[26]}}" wx:if="{{par.status==11&&counCode.code=='JP'&&counCode.isGoodsLink==1}}">
+                        <view class="nameItem">
+                            <text>{{prediction[26]}}</text>
+                        </view>
+                        <text>{{item.url}}</text>
+                    </view>
+                    <view bindtap="lookurl" class="goodsNme aliNocenter" data-url="{{item.url}}" wx:if="{{item.url&&par.status!=11}}">
+                        <view class="nameItem">
+                            <text>{{prediction[26]}}</text>
+                        </view>
+                        <text>查看</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view style="width:100%;height:160rpx"></view>
+    <view wx:if="{{par.status<20&&par.status>=11}}">
+        <view class="bottomButton spaceBetween" wx:if="{{par.status==11||par.status==14||idjjr||par.isCheck==0}}">
+            <view class="priceTotal aliNocenter">
+                <view class="price">
+                    <text>{{prediction[19]}}：</text>
+                </view>
+                <text>{{numberUtil.moneySwitch(totalPrice)}} CNY</text>
+            </view>
+            <view bindtap="save" class="savebutton allCenter">
+                <text>{{package.goods[8]}}</text>
+            </view>
+        </view>
+    </view>
+</view>
+<wxs module="numberUtil" src="../template/template.wxs" />

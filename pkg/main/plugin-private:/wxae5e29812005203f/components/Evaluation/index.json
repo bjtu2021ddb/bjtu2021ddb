@@ -1,0 +1,10 @@
+{
+    "component": true,
+    "usingComponents": {
+        "render-2-level": "./render2Level",
+        "render-345-level": "./render345Level",
+        "render-tag": "./RenderTag",
+        "render-mark": "./renderMark",
+        "render-solve": "./RenderSolve"
+    }
+}

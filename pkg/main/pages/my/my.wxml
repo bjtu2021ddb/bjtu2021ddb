@@ -1,0 +1,48 @@
+<view class="mycontainer">
+    <view class="bacjikfri">
+        <view class="username" style="margin-left:55rpx">
+            <text bindtap="tologin" class="name" wx:if="{{islofin}}">{{username}}</text>
+            <text class="name" wx:if="{{!islofin}}">{{username}}</text>
+            <view bindtap="cop" wx:if="{{userid}}">
+                <text>{{my.user}}:{{userid}}</text>
+                <van-icon name="description" style="margin-left:20rpx;font-size:30rpx"></van-icon>
+            </view>
+        </view>
+        <view bindtap="showLanguage" class="language aliNocenter">
+            <van-icon name="replay"></van-icon>
+            <text>{{my.language}}</text>
+        </view>
+    </view>
+    <view class="user spaceAround">
+        <view bindtap="gopage" class="jinfencone alignAround" data-index="0">
+            <text class="jinfen">{{numberUtil.moneySwitch(money/100)}}</text>
+            <text>{{my.ye}}</text>
+        </view>
+        <view class="jinfencone alignAround">
+            <text class="jinfen">{{credit}}</text>
+            <text>{{my.jifen}}</text>
+        </view>
+        <view bindtap="gopage" class="jinfencone alignAround" data-index="2">
+            <text class="jinfen">{{yhq}}</text>
+            <text>{{my.yhq}}</text>
+        </view>
+    </view>
+    <view bindtap="gouyennr" class="kekklkr">
+        <van-icon name="balance-o"></van-icon>
+        <text>{{my.renwuzhonxin}}</text>
+    </view>
+    <view class="myMenu">
+        <view bindtap="gopage" class="munlist" data-index="{{index}}" data-title="{{item.name}}" wx:for="{{my.userinfo.menu}}" wx:key="index">
+            <view class=" meunDetaie spaceBetween">
+                <view class="aliNocenter">
+                    <image class="img" mode="widthFix" src="{{item.img}}"></image>
+                    <text>{{item.name}}</text>
+                </view>
+                <van-icon color="rgba(112, 125, 144, 1)" name="arrow"></van-icon>
+            </view>
+            <view class="line" wx:if="{{index!=5}}"></view>
+        </view>
+    </view>
+    <van-action-sheet actions="{{my.userinfo.actions}}" bind:cancel="cloes" bind:select="onSelect" cancelText="{{my.userinfo.descript[1]}}" description="{{my.userinfo.descript[0]}}" show="{{show}}"></van-action-sheet>
+</view>
+<wxs module="numberUtil" src="../template/template.wxs" />

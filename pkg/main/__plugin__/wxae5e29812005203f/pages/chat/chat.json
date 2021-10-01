@@ -1,0 +1,17 @@
+{
+    "usingComponents": {
+        "index": "../../app",
+        "message-view": "../../components/Message/index",
+        "chat-box": "../../components/ChatBox/index",
+        "func-box": "../../components/FuncBox/index",
+        "portrait": "../../components/Portrait/index",
+        "float-layout": "../../components/FloatLayout/index",
+        "evaluation": "../../components/Evaluation/index",
+        "bot-order-list": "../../components/BotOrderList/index",
+        "bot-form": "../../components/BotForm/index",
+        "bot-drawer-list": "../../components/BotDrawerList/index",
+        "bot-bubble-list": "../../components/BotBubbleList/index",
+        "bot-card": "../../components/BotCard/index",
+        "float-button": "../../components/FloatButton/index"
+    }
+}

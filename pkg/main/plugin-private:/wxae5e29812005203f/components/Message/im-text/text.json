@@ -1,0 +1,8 @@
+{
+    "component": true,
+    "usingComponents": {
+        "avatar": "../u-avatar/index",
+        "parser-rich-text": "../../ParserRichText/parserRichText",
+        "iconfont": "../../Iconfont/index"
+    }
+}

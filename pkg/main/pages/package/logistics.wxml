@@ -1,0 +1,20 @@
+<import src="../template/template.wxml"></import>
+<view class="stepContainer">
+    <view class="title spaceBetween">
+        <view>
+            <text wx:if="{{name}}">{{name}}：</text>
+            <text wx:if="{{!name}}">配送单号：</text>
+            <text wx:if="{{nu}}">{{nu}}</text>
+        </view>
+        <text bindtap="copy" style=" color: rgba(48, 125, 253, 1);" wx:if="{{type==1&&nu}}">{{buton}}</text>
+        <text wx:if="{{!nu}}"></text>
+        <button class="menyItem allCenter none-btn" disabled="{{!nickName}}" openType="contact" sessionFrom="nickName={{nickName}}|avatarUrl={{avatarUrl}}|staffid={{coustid}}" style="color:rgba(48, 125, 253, 1)" wx:if="{{type==1}}">
+            <van-icon name="audio" size="20px"></van-icon>
+            <text>{{kefu}}</text>
+        </button>
+    </view>
+    <van-steps active="{{active}}" activeColor="#38f" activeIcon="checked" direction="vertical" steps="{{steps}}"></van-steps>
+</view>
+<view wx:if="{{steps.length<1}}">
+    <template is="notging" data></template>
+</view>

@@ -1,0 +1,27 @@
+<view class="newtip" wx:if="{{showbanner}}">
+    <view class="newbanner">
+        <text bindtap="geiomrn">{{baneinfof.context}}<text class="jermjjr">{{rjjt}}</text>
+        </text>
+    </view>
+    <van-icon bindtap="closebanner" class="close" name="cross"></van-icon>
+</view>
+<view class="inputsearcj marginLeft">
+    <input focus bindconfirm="onChangenfirm" bindinput="onChange" class="weui-input" confirmType="done" maxlength="10" placeholder="{{place}}" value="{{value}}"></input>
+    <view bind:tap="onClick" class="shure allCenter">
+        <text>{{shur}}</text>
+    </view>
+</view>
+<view class="marginLeft tips">
+    <text>{{gootips}}</text>
+</view>
+<view class="goodsList marginLeft" wx:if="{{goodList.length>0}}">
+    <view class="toplist spaceBetween">
+        <text>{{history}}</text>
+        <van-icon bindtap="delet" name="delete" size="20px"></van-icon>
+    </view>
+    <view class="goodlisContainer">
+        <view bindtap="getvalue" class="goodname" data-name="{{item}}" wx:for="{{goodList}}" wx:key="index">
+            <text>{{item}}</text>
+        </view>
+    </view>
+</view>

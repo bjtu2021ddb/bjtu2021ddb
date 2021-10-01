@@ -1,0 +1,14 @@
+<view class="commonContainer marginLeft">
+    <view>
+        <view class="title">
+            <text>{{list.title}}</text>
+        </view>
+        <view class="listItem">
+            <text>{{list.messageContext}}</text>
+        </view>
+        <view class="listItem right">
+            <text>{{numberUtil.filter(list.createTime,timestamp,num)}}</text>
+        </view>
+    </view>
+</view>
+<wxs module="numberUtil" src="../template/template.wxs" />

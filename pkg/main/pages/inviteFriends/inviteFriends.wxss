@@ -1,0 +1,58 @@
+page {
+    background-color: #fff;
+}
+
+.friendContaine {
+    width: 700rpx;
+    margin: 0 auto;
+}
+
+.firedTitle {
+    margin: 80rpx;
+}
+
+.friendContaine image {
+    width: 86%;
+    margin-left: 7%;
+}
+
+.friendContaine .button {
+    width: 90%;
+    height: 80rpx;
+    background-color: #ec704a;
+    color: #fff;
+    border-radius: 45rpx;
+    margin: 0 auto 10rpx;
+}
+
+.my {
+    text-align: center;
+    color: #e64340;
+    margin-top: 50rpx;
+}
+
+.shareView {
+    width: 100%;
+    height: 200rpx;
+}
+
+.shareItem {
+    width: 50%;
+    height: 90%;
+}
+
+.none-btn,.shareItem {
+    color: #9e9e9e;
+    font-size: 28rpx;
+    font-weight: 400;
+}
+
+.none-btn {
+    background: none;
+    outline: none;
+    border: none;
+    margin: 0!important;
+    padding: 0!important;
+    width: 50%!important;
+    height: 90%!important;
+}

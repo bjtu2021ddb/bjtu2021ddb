@@ -1,0 +1,109 @@
+.addAdressContainer {
+    width: 100%;
+    background-color: #fff;
+    border-top: 1rpx solid #f0f0f2;
+    font-size: 28rpx;
+}
+
+.addView {
+    height: 90rpx;
+}
+
+input {
+    width: 100%;
+}
+
+.inputView {
+    width: 70%;
+    height: 100%;
+}
+
+.minwidth {
+    width: 30%;
+    height: 100%;
+    font-weight: 500;
+}
+
+inputView input {
+    width: 100%;
+    height: 100%;
+}
+
+.weiinput,.weiinputmin {
+    height: 65%;
+    border-radius: 10rpx;
+    padding-left: 10rpx;
+}
+
+.weiinput picker {
+    width: 92%;
+}
+
+.weiinput image {
+    width: 8%;
+}
+
+.bordenone picker {
+    width: 90%;
+}
+
+.maxwidth {
+    width: 50%;
+}
+
+.allwidth,.maxwidth {
+    height: 100%;
+    font-weight: 500;
+}
+
+.allwidth {
+    width: 65%;
+}
+
+.min {
+    width: 40%;
+}
+
+button {
+    margin-top: 50rpx;
+    width: 600rpx!important;
+    color: #fff;
+    background-image: linear-gradient(90deg,#e94e3a,#f85d1b);
+    font-size: 28rpx;
+}
+
+.tig {
+    color: #e64340;
+    margin-right: 8rpx;
+}
+
+.tip {
+    color: #ec704a;
+    margin: 30rpx;
+    padding-top: 30rpx;
+}
+
+.drop {
+    width: 100%;
+    display: flex;
+    justify-content: start!important;
+}
+
+.drop .van-dropdown-menu {
+    background-color: #fff!important;
+    height: 95%;
+}
+
+.van-ellipsis {
+    color: #101010;
+}
+
+.drop .van-dropdown-menu__title {
+    color: #888!important;
+    padding-left: 0!important;
+}
+
+.tips {
+    font-size: 26rpx;
+    color: #e64340;
+}

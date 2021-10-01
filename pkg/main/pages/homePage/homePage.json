@@ -1,0 +1,14 @@
+{
+    "enablePullDownRefresh": true,
+    "backgroundTextStyle": "light",
+    "usingComponents": {
+        "van-overlay": "../../dist/overlay/index",
+        "van-icon": "../../dist/icon/index",
+        "van-dropdown-menu": "../../dist/dropdown-menu/index",
+        "van-dropdown-item": "../../dist/dropdown-item/index",
+        "van-popup": "../../dist/popup/index",
+        "van-radio": "../../dist/radio/index",
+        "van-radio-group": "../../dist/radio-group/index",
+        "van-swipe-cell": "../../dist/swipe-cell/index"
+    }
+}

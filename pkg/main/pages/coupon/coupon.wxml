@@ -1,0 +1,68 @@
+<import src="../template/template.wxml"></import>
+<view class="couponContainer">
+    <view class="allLine"></view>
+    <view class="inputContainer">
+        <view class="inputView marginLeft spaceBetween">
+            <input bindblur="getname" placeholder="{{coupon[0]}}" value="{{inputvalue}}"></input>
+            <view bindtap="clear" class="allCenter clear" wx:if="{{inputvalue}}">
+                <van-icon name="cross"></van-icon>
+            </view>
+            <view bindtap="getinputCoup" class="button allCenter">
+                <text>{{coupon[1]}}</text>
+            </view>
+        </view>
+    </view>
+    <van-tabs swipeable active="{{active}}" bind:change="onChange">
+        <van-tab title="{{coupon[2]}}({{couplist.length}})">
+            <view style="margin-top: 200rpx;">
+                <view class="couponItem marginLeft aliNocenter" wx:if="{{couplist.length>0}}" wx:for="{{couplist}}" wx:key="index">
+                    <view class="priceContaine">
+                        <text class="price" wx:if="{{item.type!=2}}">￥{{numberUtil.moneySwitch(item.price)}}</text>
+                        <text class="price" wx:if="{{item.type==2}}">{{item.price}}{{coupon[12]}}</text>
+                        <text class="rule" wx:if="{{item.thresholdPrice>0}}">{{coupon[4]}}{{numberUtil.moneySwitch(item.thresholdPrice)}}{{coupon[5]}}</text>
+                        <text class="rule" wx:if="{{item.thresholdPrice==0}}">{{coupon[6]}}</text>
+                    </view>
+                    <view class="priceContaine mfeklwl">
+                        <text class="name">{{item.name}}</text>
+                        <text class="rule">{{coupon[7]}}：{{numberUtil.dateFormat(item.beginTime,'yyyy.MM.dd')}}-{{numberUtil.dateFormat(item.endTime,'yyyy.MM.dd')}}</text>
+                    </view>
+                    <view class="kekkkr">
+                        <text>{{item.countryName}}</text>
+                    </view>
+                </view>
+                <view wx:if="{{couplist.length<1}}">
+                    <template is="notging" data></template>
+                </view>
+            </view>
+        </van-tab>
+        <van-tab title="{{coupon[3]}}({{couplisttwo.length}})">
+            <view style="margin-top: 200rpx;">
+                <view class="couponItem marginLeft " wx:if="{{couplisttwo.length>0}}" wx:for="{{couplisttwo}}" wx:key="index">
+                    <view class="aliNocenter minheight">
+                        <view class="priceContaine vrkrk">
+                            <text class="price" wx:if="{{item.type!=2}}">￥{{numberUtil.moneySwitch(item.price)}}</text>
+                            <text class="price" wx:if="{{item.type==2}}">{{item.price}}{{coupon[12]}}</text>
+                            <text class="rule" wx:if="{{item.thresholdPrice>0}}">{{coupon[4]}}{{numberUtil.moneySwitch(item.thresholdPrice)}}{{coupon[5]}}</text>
+                            <text class="rule" wx:if="{{item.thresholdPrice==0}}">{{coupon[6]}}</text>
+                        </view>
+                        <view class="priceContaine vrkrk mfeklwl">
+                            <text class="noname">{{item.name}}</text>
+                            <text class="rule">{{coupon[7]}}：{{numberUtil.dateFormat(item.beginTime,'yyyy.MM.dd')}}-{{numberUtil.dateFormat(item.endTime,'yyyy.MM.dd')}}</text>
+                        </view>
+                        <view class="kekkkr jrjjr">
+                            <text>{{item.countryName}}</text>
+                        </view>
+                    </view>
+                    <view class="banner aliNocenter">
+                        <text wx:if="{{item.status==3}}">{{coupon[8]}}</text>
+                        <text wx:if="{{item.status==2}}">{{coupon[11]}}</text>
+                    </view>
+                </view>
+                <view wx:if="{{couplisttwo.length<1}}">
+                    <template is="notging" data></template>
+                </view>
+            </view>
+        </van-tab>
+    </van-tabs>
+</view>
+<wxs module="numberUtil" src="../template/template.wxs" />

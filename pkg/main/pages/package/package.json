@@ -1,0 +1,13 @@
+{
+    "enablePullDownRefresh": true,
+    "backgroundTextStyle": "light",
+    "backgroundColorTop": "#f2f2f2",
+    "usingComponents": {
+        "van-tab": "../../dist/tab/index",
+        "van-tabs": "../../dist/tabs/index",
+        "van-icon": "../../dist/icon/index",
+        "van-divider": "../../dist/divider/index",
+        "van-notify": "../../dist/notify/index",
+        "van-transition": "../../dist/transition/index"
+    }
+}
