@@ -127,6 +127,16 @@ export default defineConfig({
       name: 'list',
       routes: [
         {
+          path: '/list',
+          redirect: '/list/student-list',
+        },
+        {
+          name: 'student-list',
+          icon: 'smile',
+          path: '/list/student-list',
+          component: './list/student-list',
+        },
+        {
           path: '/list/search',
           name: 'search-list',
           component: './list/search',
@@ -154,10 +164,6 @@ export default defineConfig({
               component: './list/search/applications',
             },
           ],
-        },
-        {
-          path: '/list',
-          redirect: '/list/table-list',
         },
         {
           name: 'table-list',
