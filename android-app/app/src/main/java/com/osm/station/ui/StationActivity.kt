@@ -16,6 +16,7 @@ import com.luck.picture.lib.PictureSelector
 import com.luck.picture.lib.config.PictureConfig
 import com.osm.station.ext.GlideEngine
 import com.osm.station.ext.addRoom
+import com.osm.station.ext.submitToServer
 import com.osm.station.ext.updateRoom
 import com.osm.station.net.Api
 import com.osm.station.net.RetrofitManager
@@ -203,36 +204,18 @@ class StationActivity : BaseActivity<StationViewModel, ActivityAddBinding>() {
     }
 
     private fun uploadData(mData: StationBean?) {
-        val uploadData = LCObject(SQLConstant.LC_OBJECT_NAME)
-        //为属性赋值
-        uploadData.put(SQLConstant.TABLE_KEY_TYPE,mData?.keyType)
-        uploadData.put(SQLConstant.TABLE_NAME,mData?.name)
-        uploadData.put(SQLConstant.TABLE_TYPE,mData?.type)
-        uploadData.put(SQLConstant.TABLE_TRACK_ID,mData?.trackNum)
-        uploadData.put(SQLConstant.TABLE_POSITION,mData?.position)
-        uploadData.put(SQLConstant.TABLE_MILEAGE,mData?.mileage)
-        uploadData.put(SQLConstant.TABLE_REMARK,mData?.remark)
-        uploadData.put(SQLConstant.TABLE_STATION_NAME,mData?.stationName)
-        uploadData.put(SQLConstant.TABLE_IMG,PicConvert().storePicToString(mData?.picImg?: arrayListOf()))
-        //将对象保存到云端
-        uploadData.saveInBackground().subscribe(object:Observer<LCObject>{
-            override fun onSubscribe(d: Disposable) {
-            }
-            override fun onNext(t: LCObject) {
-                Toast.makeText(this@StationActivity,"添加成功",Toast.LENGTH_LONG).show()
-                finish()
-            }
+        submitToServer(mData,::onSuccess,::onError)
+    }
 
-            override fun onError(e: Throwable) {
-                addRoom(this@StationActivity, mData)
-                Toast.makeText(this@StationActivity,"数据上传服务器失败,已经保存到本地",Toast.LENGTH_LONG).show()
-                finish()
-            }
+    private fun onSuccess(mData: StationBean?){
+        Toast.makeText(this@StationActivity,"数据上传服务器成功", Toast.LENGTH_LONG).show()
+        finish()
+    }
 
-            override fun onComplete() {
-            }
-
-        })
+    private fun onError(){
+        addRoom(this@StationActivity, mData)
+        Toast.makeText(this@StationActivity,"数据上传服务器失败,已经保存到本地", Toast.LENGTH_LONG).show()
+        finish()
     }
 
     /**

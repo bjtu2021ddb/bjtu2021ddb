@@ -11,9 +11,7 @@ import com.osm.station.adapter.StationAdapter
 import com.osm.station.base.BaseActivity
 import com.osm.station.bean.StationBean
 import com.osm.station.databinding.ActivityMainBinding
-import com.osm.station.ext.deleteRoom
-import com.osm.station.ext.isExitAddData
-import com.osm.station.ext.queryRoomBySync
+import com.osm.station.ext.*
 import com.osm.station.room.AppDataBase
 import com.osm.station.room.PicConvert
 import com.osm.station.room.SQLConstant
@@ -66,10 +64,11 @@ class MainActivity : BaseActivity<StationViewModel, ActivityMainBinding>() {
             }
 
             it?.onSyncClick = {
-
+                //获取本地数据库数据
+                queryRoomBySync(this, ::getSyncData)
             }
             it?.onTitleClick = {
-                RoomExplorer.show(this, AppDataBase::class.java, "station_db")
+//                RoomExplorer.show(this, AppDataBase::class.java, "station_db")
             }
         }
     }
@@ -84,6 +83,21 @@ class MainActivity : BaseActivity<StationViewModel, ActivityMainBinding>() {
             mLocalData.add(SQLConstant.convertStationEntity(it))
         }
         mAdapter?.insertLocalData(mLocalData)
+    }
+
+    private fun getSyncData(list: List<StationEntity>) {
+        list.forEach {
+            submitToServer(SQLConstant.convertStationEntity(it),::onSuccess,::onError)
+        }
+    }
+
+    private fun onSuccess(mData: StationBean?){
+        deleteRoom(this,mData)
+        refreshData()
+    }
+
+    private fun onError(){
+        Toast.makeText(this,"同步失败", Toast.LENGTH_LONG).show()
     }
 
     /**
@@ -155,12 +169,8 @@ class MainActivity : BaseActivity<StationViewModel, ActivityMainBinding>() {
             setEnableLoadMore(true)
             setEnableRefresh(true)
             setOnRefreshListener {
-                isRefresh = true
                 finishRefresh()
-                PAGE_INDEX = 1
-                mAdapter?.clearData()
-                queryDataByLeanCloud()
-                queryDataByLocalData()
+                refreshData()
             }
             setOnLoadMoreListener {
                 finishLoadMore()
@@ -174,6 +184,14 @@ class MainActivity : BaseActivity<StationViewModel, ActivityMainBinding>() {
             layoutManager =
                 LinearLayoutManager(this@MainActivity, LinearLayoutManager.VERTICAL, false)
         }
+    }
+
+    private fun refreshData() {
+        isRefresh = true
+        PAGE_INDEX = 1
+        mAdapter?.clearData()
+        queryDataByLeanCloud()
+        queryDataByLocalData()
     }
 
     private fun onDelete(mData: StationBean) {
