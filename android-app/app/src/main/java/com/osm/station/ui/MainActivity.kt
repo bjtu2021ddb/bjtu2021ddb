@@ -14,10 +14,12 @@ import com.osm.station.databinding.ActivityMainBinding
 import com.osm.station.ext.deleteRoom
 import com.osm.station.ext.isExitAddData
 import com.osm.station.ext.queryRoomBySync
+import com.osm.station.room.AppDataBase
 import com.osm.station.room.PicConvert
 import com.osm.station.room.SQLConstant
 import com.osm.station.room.StationEntity
 import com.osm.station.viewmodel.StationViewModel
+import com.wajahatkarim3.roomexplorer.RoomExplorer
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
 
@@ -34,6 +36,7 @@ class MainActivity : BaseActivity<StationViewModel, ActivityMainBinding>() {
     private var mData: ArrayList<StationBean>? = arrayListOf()
     private var mServerData: ArrayList<StationBean> = arrayListOf()
     private var mLocalData: ArrayList<StationBean> = arrayListOf()
+    private var isRefresh:Boolean = false
 
     private var PAGE_INDEX = 1
 
@@ -66,13 +69,9 @@ class MainActivity : BaseActivity<StationViewModel, ActivityMainBinding>() {
 
             }
             it?.onTitleClick = {
-//                RoomExplorer.show(this, AppDataBase::class.java, "station_db")
+                RoomExplorer.show(this, AppDataBase::class.java, "station_db")
             }
         }
-    }
-
-    override fun onResume() {
-        super.onResume()
     }
 
     private fun queryDataByLocalData() {
@@ -80,11 +79,11 @@ class MainActivity : BaseActivity<StationViewModel, ActivityMainBinding>() {
     }
 
     private fun getLocalData(list: List<StationEntity>) {
-        val temp = ArrayList<StationBean>()
+        mLocalData.clear()
         list.forEach {
-            temp.add(SQLConstant.convertStationEntity(it))
+            mLocalData.add(SQLConstant.convertStationEntity(it))
         }
-        mAdapter?.insertData(temp)
+        mAdapter?.insertLocalData(mLocalData)
     }
 
     /**
@@ -110,6 +109,13 @@ class MainActivity : BaseActivity<StationViewModel, ActivityMainBinding>() {
             override fun onNext(t: List<LCObject>) {
                 if (t.isNotEmpty() && t.size == PAGE_SIZE) {
                     PAGE_INDEX++
+                }
+                if(t.isNotEmpty() && t.size<PAGE_SIZE){
+
+                }
+                if(isRefresh){
+                    mServerData.clear()
+                    isRefresh = false
                 }
                 t.forEach {
                     val station = StationBean()
@@ -149,10 +155,12 @@ class MainActivity : BaseActivity<StationViewModel, ActivityMainBinding>() {
             setEnableLoadMore(true)
             setEnableRefresh(true)
             setOnRefreshListener {
+                isRefresh = true
                 finishRefresh()
                 PAGE_INDEX = 1
                 mAdapter?.clearData()
                 queryDataByLeanCloud()
+                queryDataByLocalData()
             }
             setOnLoadMoreListener {
                 finishLoadMore()

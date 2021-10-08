@@ -74,8 +74,14 @@ class StationAdapter(var context:Context,
         notifyDataSetChanged()
     }
 
-    fun insertData(list:ArrayList<StationBean>){
-        this.list.addAll(0,list)
+    fun insertLocalData(list:ArrayList<StationBean>){
+        val temp = ArrayList<StationBean>()
+        list.forEach {
+            if(!this.list.contains(it)){
+                temp.add(it)
+            }
+        }
+        this.list.addAll(0,temp)
         notifyDataSetChanged()
     }
 

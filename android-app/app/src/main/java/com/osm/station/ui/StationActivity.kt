@@ -54,6 +54,14 @@ class StationActivity : BaseActivity<StationViewModel, ActivityAddBinding>() {
         }
         //保存
         mViewBinding?.tvOk?.setOnClickListener {
+            if(mViewBinding?.etTrack?.text?.isEmpty() == true){
+                Toast.makeText(this,"轨道号不能为空",Toast.LENGTH_LONG).show()
+                return@setOnClickListener
+            }
+            if(mViewBinding?.etPosition?.text?.isEmpty() == true){
+                Toast.makeText(this,"位置数据不能为空",Toast.LENGTH_LONG).show()
+                return@setOnClickListener
+            }
             submitToDb()
         }
         //添加图片
@@ -217,7 +225,8 @@ class StationActivity : BaseActivity<StationViewModel, ActivityAddBinding>() {
 
             override fun onError(e: Throwable) {
                 addRoom(this@StationActivity, mData)
-                Toast.makeText(this@StationActivity,"上传服务器失败",Toast.LENGTH_LONG).show()
+                Toast.makeText(this@StationActivity,"数据上传服务器失败,已经保存到本地",Toast.LENGTH_LONG).show()
+                finish()
             }
 
             override fun onComplete() {
