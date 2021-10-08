@@ -1,0 +1,25 @@
+<van-notify id="van-notify"></van-notify>
+<view class="trialContainer" wx:if="{{list.length>0}}">
+    <view class="trialList">
+        <view class="marginLeft aliNocenter trialItem">
+            <view class="itemContainer">
+                <text>{{opeartionname}}</text>
+            </view>
+            <view class="input spaceBetween">
+                <picker bindchange="bindPickerChange" range="{{list}}" rangeKey="name" value="{{index}}">
+                    <view class="picker">
+                        <text>{{country}}</text>
+                    </view>
+                </picker>
+            </view>
+            <image mode="widthFix" src="/images/icon_dropdown.png"></image>
+        </view>
+        <view class="marginLeft aliNocenter trialItemData">
+            <view class="itemContainer"></view>
+            <text>{{opeartion[13]}}</text>
+        </view>
+    </view>
+    <view bindtap="trial" class="marginLeft allCenter button">
+        <text>{{op}}</text>
+    </view>
+</view>

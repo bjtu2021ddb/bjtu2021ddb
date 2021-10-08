@@ -1,0 +1,5 @@
+{
+    "usingComponents": {
+        "card-layout-list-load": "../../components/Bot/m-card-layout-list-load/index"
+    }
+}

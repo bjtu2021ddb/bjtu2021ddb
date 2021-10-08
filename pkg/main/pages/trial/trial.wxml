@@ -1,0 +1,75 @@
+<van-notify id="van-notify"></van-notify>
+<import src="../template/template.wxml"></import>
+<view class="trialContainer" wx:if="{{none}}">
+    <view class="trialList">
+        <view class="marginLeft aliNocenter trialItem">
+            <view class="itemContainer">
+                <text>{{opeartion[0]}}</text>
+            </view>
+            <view class="input spaceBetween">
+                <picker bindchange="bindPickerChangecountry" disabled="{{countrylist.length==0}}" mode="selector" range="{{countrylist}}" rangeKey="name" value="{{index}}">
+                    <view class="picker">
+                        <input disabled value="{{countryName}}"></input>
+                    </view>
+                </picker>
+                <image mode="widthFix" src="https://app.huyuntong.com/app/static/images/mini/icon_dropdown.png"></image>
+            </view>
+        </view>
+        <view class="allLine"></view>
+        <view class="marginLeft aliNocenter trialItem">
+            <view class="itemContainer">
+                <text>{{mudi}}</text>
+            </view>
+            <view class="input spaceBetween">
+                <picker bindchange="bindPickerChange" disabled="{{linelist.length==0}}" mode="selector" range="{{linelist}}" rangeKey="transCode" value="{{index}}">
+                    <view class="picker">
+                        <input disabled value="{{linename}}"></input>
+                    </view>
+                </picker>
+                <image mode="widthFix" src="https://app.huyuntong.com/app/static/images/mini/icon_dropdown.png"></image>
+            </view>
+        </view>
+        <view class="allLine"></view>
+        <view class="marginLeft aliNocenter trialItem">
+            <view class="itemContainer">
+                <text>{{opeartion[2]}}</text>
+            </view>
+            <input bindinput="getValue" placeholder="{{opeartion[4]}}" type="digit"></input>
+            <text>KG</text>
+        </view>
+    </view>
+    <view bindtap="trial" class="marginLeft allCenter button">
+        <text>{{opeartion[5]}}</text>
+    </view>
+    <view class="result marginLeft" wx:if="{{showContainer}}">
+        <text class="resultTitle">{{opeartion[6]}}</text>
+        <view class="resultContainer" wx:if="{{price>0}}">
+            <view class="resultItem marginLeft aliNocenter">
+                <text style="padding-right:30rpx;">{{tocountryName}}</text>
+                <text style="padding-right:30rpx;">{{linename}}</text>
+                <text>{{weight}}KG</text>
+            </view>
+            <view class="resultItem marginLeft aliNocenter">
+                <text style="padding-right:30rpx;">{{opeartion[9]}}</text>
+                <text style="padding-right:30rpx;">{{memo}}</text>
+            </view>
+            <view class="resultItem marginLeft aliNocenter">
+                <text>{{opeartion[10]}}</text>
+                <text class="price">{{price}}{{opeartion[14]}}</text>
+                <text>{{opeartion[15]}}</text>
+            </view>
+            <view class="resultItem marginLeft aliNocenter tips">
+                <text>{{opeartion[11]}}</text>
+            </view>
+        </view>
+        <view class="allCenter" wx:if="{{price==0}}">
+            <text style="color:rgba(236, 112, 74, 1)">{{createOrder.server[6]}}</text>
+        </view>
+        <view class="tip aliNocenter">
+            <text>*{{opeartion[12]}}</text>
+        </view>
+    </view>
+</view>
+<view wx:if="{{!none}}">
+    <template is="none" data></template>
+</view>

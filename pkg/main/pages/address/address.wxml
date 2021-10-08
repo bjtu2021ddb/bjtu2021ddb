@@ -1,0 +1,40 @@
+<van-notify id="van-notify"></van-notify>
+<import src="../template/template.wxml"></import>
+<view class="addressContainer" wx:if="{{none}}">
+    <view class="addressView" wx:if="{{list.length>0}}" wx:for="{{list}}" wx:key="index">
+        <van-swipe-cell id="swipe-cell" rightWidth="{{55}}">
+            <view class="addressitem marginLeft spaceBetween">
+                <view class="addressDetails spaceBetween">
+                    <view bindtap="checkout" class="checke" data-index="{{index}}" wx:if="{{num==0||num}}">
+                        <van-icon name="circle" size="20px" wx:if="{{item.id!=num}}"></van-icon>
+                        <van-icon color="rgba(229, 28, 35, 1)" name="checked" size="20px" wx:else></van-icon>
+                    </view>
+                    <view class="ischeck">
+                        <view class="addressname aliNocenter">
+                            <text>{{item.name}}， {{item.mobile}}</text>
+                            <view class="default allCenter" wx:if="{{item.isDefault==1}}">
+                                <text>{{address[1]}}</text>
+                            </view>
+                        </view>
+                        <view class="addressname context">
+                            <text>{{item.concatAddress}}</text>
+                        </view>
+                    </view>
+                </view>
+                <van-icon bind:click="fixAddress" data-id="{{item.id}}" name="edit" size="20px"></van-icon>
+            </view>
+            <view class="allLine" wx:if="{{index!=list.length-1}}"></view>
+            <view bindtap="delet" class="delet" data-id="{{item.id}}" slot="right">
+       {{address[23]}}
+      </view>
+        </van-swipe-cell>
+    </view>
+    <view wx:if="{{list.length<1}}">
+        <template is="notging" data></template>
+    </view>
+    <button bindtap="gonextpage">{{address[2]}}</button>
+</view>
+<view wx:if="{{!none}}">
+    <template is="none" data></template>
+</view>
+<wxs module="numberUtil" src="../template/template.wxs" />

@@ -1,0 +1,245 @@
+<import src="../template/template.wxml"></import>
+<van-notify id="van-notify"></van-notify>
+<view class="createContainer">
+    <view bindtap="chagenpei" class="peiview">
+        <text style="margin-left:4%">配送类型</text>
+        <view class="iviewcle">
+            <text>宅配</text>
+            <van-icon color="rgba(204, 204, 204, 1)" name="arrow" size="22px"></van-icon>
+        </view>
+    </view>
+    <view bindtap="addAddress" class="address spaceBetween">
+        <van-icon color="rgba(204, 204, 204, 1)" name="location-o" size="25px" wx:if="{{par.address.id}}"></van-icon>
+        <view class="divcriel" wx:if="{{par.address.id}}">
+            <text wx:if="{{par.address.isSuperMall==0}}">宅配</text>
+            <text wx:if="{{par.address.isSuperMall==1}}">店配</text>
+        </view>
+        <view class="details" wx:if="{{par.address.id}}">
+            <view class="addressName spaceBetween">
+                <text>{{par.address.name}}，{{par.address.mobile}}</text>
+                <text class="default" wx:if="{{par.address.isDefault>0}}">默认</text>
+            </view>
+            <view class="ads" wx:if="{{par.address.concatAddress}}">
+				{{par.address.concatAddress}}
+			</view>
+        </view>
+        <view class="addads aliNocenter" wx:else>
+            <van-icon color="rgba(204, 204, 204, 1)" name="location-o" size="25px"></van-icon>
+            <text>{{createOrder.goods[23]}}</text>
+        </view>
+        <van-icon color="rgba(204, 204, 204, 1)" name="arrow" size="22px"></van-icon>
+    </view>
+    <view class="goodsVontainer">
+        <view class="goodsTitleone marginLeft aliNocenter">
+            <text>{{prediction[22]}}</text>
+        </view>
+        <view class="goodeItem">
+            <view class="goodsView">
+                <view class="goodindex">
+                    <view class="goodindexleft"></view>
+                    <view class="goodindexexp">
+                        <text>{{spacel}}</text>
+                    </view>
+                    <view class="goodindextype">
+                        <text>{{createOrder.goods[26]}}</text>
+                    </view>
+                    <view class="goodindexkg">
+          {{createOrder.goods[3]}}
+        </view>
+                    <view class="goodindexvalue">
+                        <text>{{createOrder.goods[25]}}</text>
+                    </view>
+                </view>
+                <view class="goodindexitem" data-id="{{item.id}}" wx:for="{{par.parcelList}}" wx:key="index">
+                    <view class="goodindexleft">{{index+1}}</view>
+                    <view class="goodindexexp">
+                        <text>{{item.expressNumber}}</text>
+                    </view>
+                    <view class="goodindextype">
+                        <text style="color:reds" wx:if="{{item.type==1}}">{{package.details[8]}}</text>
+                        <text wx:else>{{package.details[10]}}</text>
+                    </view>
+                    <view class="goodindexkg">
+          {{item.weight}} KG
+        </view>
+                    <view class="goodindexvalue">
+          ￥{{numberUtil.moneySwitch(item.totalPrice)}}
+        </view>
+                </view>
+            </view>
+            <view class="goodsBottom aliNocenter marginLeft">
+                <text>{{createOrder.goods[5]}}：{{par.weight}}KG</text>
+                <text style="margin-left:40rpx" wx:if="{{par.billing.goodsValueRequired==1}}">{{prediction[19]}}：￥{{numberUtil.moneySwitch(par.totalPrice)}}</text>
+            </view>
+            <view class="goodsBottom aliNocenter marginLeft" wx:if="{{par.billing.goodsValueRequired==0}}">
+                <text>{{prediction[19]}}：￥</text>
+                <input bindblur="getjej" class="keklk" type="text" value="{{numberUtil.moneySwitch(par.totalPrice)}}"></input>
+            </view>
+        </view>
+        <view class="priceContainer" wx:if="{{par.address.id&&countryList.length>0}}">
+            <view class="goodsTitleone marginLeft aliNocenter">
+                <text>{{createOrder.goods[6]}}</text>
+            </view>
+            <view class="goodeItem">
+                <view class="aliNocenter marginLeft pricecontent">
+                    <view class="pricetitle">
+                        <text>{{createOrder.goods[7]}}</text>
+                    </view>
+                    <view class="priceView spaceBetween">
+                        <view class="content spaceBetween">
+                            <picker bindchange="bindPickerChange" mode="selector" range="{{countryList}}" rangeKey="transCode" value="{{index}}">
+                                <view class="picker">
+									{{country}}
+								</view>
+                            </picker>
+                        </view>
+                        <image mode="widthFix" src="https://app.huyuntong.com/app/static/images/mini/icon_dropdown.png"></image>
+                    </view>
+                </view>
+            </view>
+            <view class="autoheigh">
+                <view class="fcolum" style="width:65%;margin-left:32%">
+                    <text wx:if="{{par.billing.memo}}">{{par.billing.memo}},{{createOrder.server[4]}}{{par.billing.fastestDay}}~{{par.billing.latestDay}}{{day}}{{createOrder.server[5]}}</text>
+                    <text style="color:rgba(236, 112, 74, 1)" wx:if="{{!par.billing.memo}}">{{createOrder.server[6]}}</text>
+                </view>
+            </view>
+            <view class="line" wx:if="{{par.timeOutPrice>0}}"></view>
+            <view class="goodeItem" wx:if="{{par.timeOutPrice>0}}">
+                <view class="aliNocenter marginLeft pricecontent">
+                    <view class="pricetitle">
+                        <text>{{createOrder.goods[8]}}</text>
+                    </view>
+                    <view class="priceView aliNocenter">
+                        <text>{{numberUtil.moneySwitch(par.timeOutPrice)}}CNY</text>
+                    </view>
+                </view>
+            </view>
+            <view class="line"></view>
+            <view class="goodeItem">
+                <view class="aliNocenter marginLeft pricecontent">
+                    <view class="pricetitle">
+                        <text>{{createOrder.goods[24]}}</text>
+                    </view>
+                    <view class="priceView aliNocenter">
+                        <text>{{numberUtil.moneySwitch(par.billing.price)}} CNY</text>
+                    </view>
+                </view>
+            </view>
+            <view class="line" wx:if="{{par.billing.isGoodsTax==1}}"></view>
+            <view class="goodeItem" wx:if="{{par.billing.taxRate}}">
+                <view class="aliNocenter marginLeft pricecontent">
+                    <view class="pricetitle">
+                        <text>{{par.billing.taxName}}</text>
+                    </view>
+                    <view class="priceView aliNocenter">
+                        <text>{{numberUtil.moneySwitch(par.billing.rat)}} CNY</text>
+                    </view>
+                </view>
+            </view>
+            <view class="line"></view>
+            <view class="goodeItem" wx:if="{{isRein.isReinforce}}">
+                <view class="aliNocenter marginLeft pricecontent">
+                    <view class="pricetitle">
+                        <text>{{createOrder.goods[14]}}</text>
+                    </view>
+                    <view class="priceView aliNocenter">
+                        <van-switch bind:change="onChangetwo" checked="{{checkedtwo}}" size="22px"></van-switch>
+                        <text style="margin:8rpx 10rpx">{{createOrder.goods[15]}}</text>
+                        <text class="color">{{numberUtil.moneySwitch(par.reinforcePrice)}} CNY</text>
+                    </view>
+                </view>
+            </view>
+            <view class="goodeItem" wx:if="{{par.address.isReplace==1}}">
+                <view class="aliNocenter marginLeft pricecontent">
+                    <view class="pricetitle aliNocenter"></view>
+                    <view class="priceView aliNocenter">
+                        <van-switch bind:change="onChangethree" checked="{{replace}}" size="22px"></van-switch>
+                        <text style="margin:8rpx 10rpx">{{createOrder.server[0]}}</text>
+                    </view>
+                </view>
+            </view>
+            <view class="goodeItem" wx:if="{{replace&&par.address.isReplace==1}}">
+                <view class="aliNocenter marginLeft pricecontent">
+                    <view class="pricetitle aliNocenter"></view>
+                    <view class="priceView aliNocenter">
+                        <input bindinput="getservevalue" placeholder="{{createOrder.server[1]}}" type="number"></input>
+                        <text>{{createOrder.server[2]}}</text>
+                    </view>
+                </view>
+            </view>
+            <view class="goodeItem" wx:if="{{isRein.isProtection}}">
+                <view class="aliNocenter marginLeft pricecontent">
+                    <view class="pricetitle"></view>
+                    <view class="priceView aliNocenter">
+                        <van-switch bind:change="onChangeone" checked="{{checkedone}}" size="22px"></van-switch>
+                        <text style="margin:8rpx 10rpx">{{createOrder.goods[16]}}</text>
+                        <text class="color">{{numberUtil.moneySwitch(par.protectionPrice)}} CNY</text>
+                    </view>
+                </view>
+            </view>
+            <view class="goodeItem minheight">
+                <view class="aliNocenter marginLeft pricecontent">
+                    <view class="pricetitle"></view>
+                    <view class="priceView">
+                        <text>*{{createOrder.goods[20]}}{{numberUtil.moneySwitch(par.compensationPrice)}}CNY</text>
+                    </view>
+                </view>
+            </view>
+            <view class="line"></view>
+            <view class="goodeItem">
+                <view class="spaceBetween marginLeft pricecontent">
+                    <view class="pricetitle">
+                        <text>{{createOrder.goods[17]}}</text>
+                    </view>
+                    <view bindtap="shocup" class="priceView spaceBetween">
+                        <view class="content spaceBetween maxcontent">
+                            <view class="picker">
+								{{counp}}
+							</view>
+                        </view>
+                        <image mode="widthFix" src="https://app.huyuntong.com/app/static/images/mini/icon_dropdown.png"></image>
+                    </view>
+                </view>
+            </view>
+            <view class="line"></view>
+            <view class="goodeItem">
+                <view class="spaceBetween marginLeft pricecontent">
+                    <text style="color:rgba(236, 112, 74, 1);font-size:24rpx">{{alltip}}</text>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="line"></view>
+    <view class="bottomButton spaceBetween" wx:if="{{par.address.id&&countryList.length>0}}">
+        <view class="priceTotal aliNocenter">
+            <view class="price">
+                <text>{{createOrder.goods[10]}}：</text>
+            </view>
+            <text>{{allprice}} CNY</text>
+        </view>
+        <view bindtap="submitOrder" class="savebutton allCenter">
+            <text>{{createOrder.goods[12]}}</text>
+        </view>
+    </view>
+</view>
+<van-popup closeable bind:close="onClose" customStyle="height: 80%" position="bottom" show="{{show}}">
+    <view class="cuplist">
+        <view bindtap="getcoup" class="{{item.thresholdPrice<=pric?'couponItem marginLeft aliNocenter':'couponItem marginLeft aliNocenter nobanner'}}" data-index="{{index}}" wx:if="{{allcoupons.length>0}}" wx:for="{{allcoupons}}" wx:key="index">
+            <image class="shoseimg" mode="widthFix" src="https://app.huyuntong.com/app/static/images/mini/chose.jpg" wx:if="{{index==code}}"></image>
+            <view class="priceContaine">
+                <text class="price" wx:if="{{item.type!=2}}">￥{{numberUtil.moneySwitch(item.price)}}</text>
+                <text class="price" wx:if="{{item.type==2}}">{{numberUtil.moneySwitch(item.price)}}{{coupononother[12]}}</text>
+                <text class="rule" wx:if="{{item.thresholdPrice>0}}">{{coupononother[4]}}{{numberUtil.moneySwitch(item.thresholdPrice)}}{{coupononother[5]}}</text>
+                <text class="rule" wx:if="{{item.thresholdPrice==0}}">{{coupononother[6]}}</text>
+            </view>
+            <view class="priceContaine">
+                <text class="name">{{item.name}}</text>
+                <text class="rule">{{coupononother[7]}}：{{numberUtil.dateFormat(item.beginTime,'yyyy.MM.dd')}}-{{numberUtil.dateFormat(item.endTime,'yyyy.MM.dd')}}</text>
+            </view>
+        </view>
+    </view>
+    <view bindtap="getcoupprice" class="buttonshur aliNocenter">
+        <text>{{createOrder.goods[21]}}</text>
+    </view>
+</van-popup>
+<wxs module="numberUtil" src="../template/template.wxs" />

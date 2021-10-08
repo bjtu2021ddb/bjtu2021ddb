@@ -1,0 +1,7 @@
+{
+    "component": true,
+    "usingComponents": {
+        "iconfont": "../Iconfont/index",
+        "u-voice": "./u-voice/index"
+    }
+}

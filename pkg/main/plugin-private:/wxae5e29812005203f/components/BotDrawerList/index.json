@@ -1,0 +1,9 @@
+{
+    "component": true,
+    "usingComponents": {
+        "float-layout": "../FloatLayout/index",
+        "m-tab-list": "./m-tab-list/index",
+        "m-card": "../Bot/m-card/index",
+        "m-group": "../Bot/m-group/index"
+    }
+}

@@ -1,0 +1,86 @@
+.goodsList {
+    margin-top: 20rpx;
+}
+
+page {
+    background-color: #fff;
+}
+
+.newtip {
+    width: 94%;
+    margin-left: 3%;
+    background-image: linear-gradient(90deg,#e94e3a,#f85d1b);
+    color: #fff;
+    font-size: 24rpx;
+    margin-top: 20rpx;
+    position: relative;
+}
+
+.newbanner {
+    width: 90%;
+    margin-left: 4%;
+    height: 100rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20rpx 0;
+}
+
+.jermjjr {
+    color: #3291f8;
+}
+
+.close {
+    position: absolute;
+    right: 5px;
+    top: 5rpx;
+    font-size: 36rpx;
+}
+
+.inputsearcj {
+    margin-top: 20rpx;
+    display: flex;
+    align-items: center;
+    height: 80rpx;
+    margin-bottom: 10rpx;
+}
+
+.shure {
+    padding: 10rpx 40rpx;
+    border-radius: 35rpx;
+    color: #fff;
+    background-image: linear-gradient(90deg,#e94e3a,#f85d1b);
+}
+
+.tips {
+    margin-top: 10px;
+    color: #e64340;
+    font-size: 24rpx;
+}
+
+.weui-input {
+    width: 72%;
+    margin-left: 5%;
+    height: 100%;
+    border-bottom: 1rpx solid #f0f0f2;
+}
+
+.toplist {
+    width: 100%;
+    margin: 10rpx 10rpx 20rpx;
+}
+
+.goodlisContainer {
+    margin-top: 10rpx;
+    margin-left: 10rpx;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.goodname {
+    margin-right: 15rpx;
+    padding: 5rpx 24rpx;
+    background-color: #f0f0f2;
+    border-radius: 10rpx;
+    margin-bottom: 20rpx;
+}

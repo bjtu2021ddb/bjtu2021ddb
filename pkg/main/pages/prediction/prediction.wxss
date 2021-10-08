@@ -1,0 +1,200 @@
+.preditView,.titleView {
+    height: 80rpx;
+}
+
+.preditView {
+    width: 100%;
+    background-color: #fff;
+}
+
+.otheer {
+    height: 80rpx;
+    background-color: #f0f0f2;
+}
+
+.preditItem {
+    height: 100%;
+    font-size: 28rpx;
+}
+
+.preditRightContainer {
+    height: 100%;
+    width: 72%;
+}
+
+.addshopitem {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80rpx;
+    border: 1rpx solid #307dfd;
+    background-color: #fff;
+    border-radius: 10rpx;
+    margin-top: 40rpx;
+}
+
+.place {
+    color: #307dfd;
+}
+
+.preditRightContainer input {
+    width: 100%;
+    height: 50%;
+}
+
+.fontmin {
+    font-size: 24rpx;
+}
+
+.button {
+    height: 90rpx;
+    bottom: 0rpx;
+}
+
+.button,.radio {
+    width: 100%;
+    position: fixed;
+    left: 0rpx;
+    z-index: 1;
+    background-color: #fff;
+}
+
+.radio {
+    height: 100rpx;
+    bottom: 90rpx;
+    padding: 10rpx;
+    font-size: 28rpx;
+    color: #f84d3c;
+}
+
+.list {
+    width: 100%;
+}
+
+.rule text {
+    margin-left: 10rpx;
+}
+
+.rulemin text {
+    font-size: 20rpx;
+}
+
+.valuall {
+    margin-left: 10rpx;
+}
+
+.priceall {
+    color: #ec704a;
+}
+
+.wrapper {
+    background-color: #fff;
+    padding: 0 0 20rpx;
+    position: fixed;
+    top: 15%;
+    border-radius: 15rpx;
+}
+
+.delet {
+    margin-left: 100rpx;
+    color: #e64340;
+}
+
+.topcross {
+    height: 90rpx;
+    font-weight: 500;
+}
+
+.tip {
+    display: flex;
+    flex-direction: column;
+    font-size: 26rpx;
+}
+
+.tip text {
+    margin-bottom: 10rpx;
+}
+
+.shop {
+    width: 85%;
+    margin: 30rpx auto 0;
+    border: 1rpx solid #f0f0f2;
+    border-radius: 10rpx;
+    color: #888;
+    font-size: 24rpx;
+    padding: 10rpx;
+}
+
+.itemview {
+    width: 35%;
+    height: 55rpx;
+    font-size: 28rpx;
+    display: flex;
+    align-items: center;
+}
+
+.itemview text {
+    margin-left: 20rpx;
+    color: #101010;
+}
+
+.newtip {
+    width: 94%;
+    margin-left: 3%;
+    background-image: linear-gradient(90deg,#e94e3a,#f85d1b);
+    color: #fff;
+    font-size: 24rpx;
+    margin-bottom: 30rpx;
+    position: relative;
+}
+
+.newbanner {
+    width: 90%;
+    margin-left: 4%;
+    height: 100rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close {
+    position: absolute;
+    right: 5px;
+    top: 5rpx;
+    font-size: 36rpx;
+}
+
+.listItem {
+    box-shadow: 0 2px 7px 0 #fff;
+    border-radius: 15rpx;
+    background-color: #fff;
+    padding: 10rpx 0;
+    font-size: 28rpx;
+    margin-bottom: 20rpx;
+}
+
+.itemName {
+    width: 26%;
+}
+
+.colorpre,.itemName {
+    height: 60rpx;
+    padding-left: 20rpx;
+}
+
+.colorpre {
+    width: 100%;
+    color: #f44444;
+}
+
+.blockContainer {
+    width: 100%;
+    height: 140rpx;
+}
+
+.suball {
+    width: 30%;
+    height: 100%;
+    background-image: linear-gradient(90deg,#e94e3a,#f85d1b);
+    color: #fff;
+}

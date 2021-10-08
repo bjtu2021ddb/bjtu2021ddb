@@ -1,0 +1,352 @@
+.seracrContainer {
+    position: fixed;
+    top: 0rpx;
+    width: 100%;
+    z-index: 99;
+}
+
+.packageList {
+    background-color: #fff;
+    color: #101010;
+    font-size: 28rpx;
+    box-shadow: 2px 2px 7px 2px hsla(0,0%,81.2%,.5);
+    margin-top: 20rpx;
+    border-radius: 10rpx;
+    width: 94%;
+    margin-left: 3%;
+}
+
+.newcomntainer {
+    display: flex;
+    justify-content: center;
+    border-bottom: 28rpx solid #fe0805;
+    border-left: 30rpx solid transparent;
+    border-right: 30rpx solid transparent;
+    height: 0;
+    width: 45rpx;
+    transform: rotate(-45deg);
+    color: #fff;
+    position: absolute;
+    top: 12rpx;
+    left: -26rpx;
+    font-size: 20rpx;
+    font-weight: 500;
+}
+
+.jejje {
+    margin-left: 10rpx;
+}
+
+.bc {
+    background-color: #fcedea;
+}
+
+.bhfehjwj {
+    width: 15%;
+    min-height: 145rpx;
+    padding-top: 38rpx;
+    display: flex;
+    align-items: center;
+}
+
+.packageListTitle {
+    height: 90rpx;
+    border-bottom: 1rpx solid #fcedea;
+}
+
+.nibtbeh {
+    padding: 10rpx 0;
+    color: #e64340;
+    border: 1rpx solid #e64340;
+    border-radius: 5rpx;
+}
+
+.menuView {
+    height: 55rpx;
+}
+
+.minwith {
+    width: 25%;
+    height: 100%;
+}
+
+.operation {
+    width: 100%;
+    height: 100rpx;
+    justify-content: flex-end;
+    position: relative;
+}
+
+.opearbutton,.operation {
+    display: flex;
+    align-items: center;
+}
+
+.opearbutton {
+    justify-content: center;
+    height: 60%;
+    width: 150rpx;
+    border: 2rpx solid #888;
+    border-radius: 50rpx;
+    margin-left: 30rpx;
+}
+
+.nowidtg {
+    width: 94%;
+    margin-left: 3%;
+    position: relative;
+}
+
+.look {
+    position: absolute;
+    left: 0;
+    display: flex;
+    align-items: center;
+}
+
+.statusCompent {
+    width: 100%;
+    height: 100rpx;
+    background-color: #f2f2f2;
+    border-radius: 8rpx;
+}
+
+.deliverTitle {
+    height: 50rpx;
+}
+
+.delivery {
+    height: 80%;
+    padding: 0 10rpx;
+    background-color: #3f51b5;
+    color: #fff;
+    border-radius: 6rpx;
+    margin-left: 10rpx;
+    font-size: 22rpx;
+}
+
+.palet {
+    height: 40rpx;
+    margin: 0 10rpx;
+}
+
+.bootomviewcontainer {
+    position: fixed;
+    bottom: 0rpx;
+    width: 100%;
+    height: 100rpx;
+    background-color: #f0f0f2;
+}
+
+.packageSave {
+    width: 90%;
+    margin-left: 5%;
+    height: 80rpx;
+    background-image: linear-gradient(90deg,#e94e3a,#f85d1b);
+    border-radius: 5rpx;
+    margin-top: 10rpx;
+    z-index: 99;
+}
+
+.packageSave text {
+    color: #fff;
+    font-size: 28rpx;
+}
+
+.allsave {
+    width: 100%;
+    height: 80rpx;
+    position: fixed;
+    bottom: 0;
+    z-index: 99;
+    background-color: #fff;
+}
+
+.cicele {
+    height: 100%;
+    margin-left: 5%;
+    font-size: 24rpx;
+    font-weight: 400;
+}
+
+.cicele text {
+    margin-left: 10rpx;
+}
+
+.allwight {
+    color: #e64340;
+}
+
+.circontainer {
+    width: 63%;
+    display: flex;
+    align-items: center;
+}
+
+.kekllr {
+    margin-left: 20rpx;
+    font-size: 28rpx;
+    font-weight: 500;
+}
+
+.submitcontainer {
+    width: 40%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.packageType {
+    padding: 4rpx 11rpx;
+    border-radius: 7rpx;
+    color: #fff;
+    background-color: #52cc6f;
+}
+
+.sumbit {
+    width: 45%;
+    height: 72%;
+    margin-right: 8%;
+    font-size: 28rpx;
+    border-radius: 30rpx;
+    background-color: #f0f0f2;
+}
+
+.sumbitred {
+    width: 50%;
+    height: 80%;
+    background-image: linear-gradient(90deg,#e94e3a,#f85d1b);
+    color: #fff;
+    font-size: 28rpx;
+    border-radius: 35rpx;
+}
+
+.cancle {
+    width: 40%;
+    height: 100%;
+}
+
+.sumnrn {
+    color: #0052ff;
+}
+
+.dejnrnnr,.sumnrn {
+    font-size: 24rpx;
+    margin-right: 10rpx;
+}
+
+.dejnrnnr {
+    color: #888;
+}
+
+.delet {
+    border: 2rpx solid #f44;
+    color: #f44;
+}
+
+.mianfnrcontaine {
+    width: 100%;
+    justify-content: space-between;
+    font-size: 30rpx;
+    color: #000;
+    margin-top: 20rpx;
+}
+
+.circlor,.mianfnrcontaine {
+    display: flex;
+    align-items: center;
+}
+
+.circlor {
+    width: 70%;
+}
+
+.buhuo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26rpx;
+    color: #666;
+    border: 1rpx solid #666;
+    width: 100rpx;
+    height: 40rpx;
+    border-radius: 10rpx;
+    margin-right: 22rpx;
+}
+
+.rukfjnt {
+    color: #999;
+    font-size: 28rpx;
+}
+
+.mismnmf {
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    color: #999;
+    font-size: 26rpx;
+}
+
+.redcorlt {
+    color: #fe0805;
+    border-color: #fe0805;
+}
+
+.shocnnnt {
+    width: 100%;
+    min-height: 100rpx;
+    border-top: 1rpx solid #f5f5f5;
+    border-bottom: 1rpx solid #f5f5f5;
+    margin-top: 20rpx;
+}
+
+.topheaer {
+    width: 94%;
+    margin-left: 3%;
+    height: 60rpx;
+    display: flex;
+    align-items: center;
+    font-size: 24rpx;
+    color: #000;
+}
+
+.ueuje {
+    display: none;
+}
+
+.closeBox {
+    transition: transform .5s;
+    transition: transform .5s,-webkit-transform .5s;
+}
+
+.ckrk {
+    transform: rotate(180deg);
+}
+
+.enjkrt {
+    width: 94%;
+    margin-left: 3%;
+    flex-wrap: wrap;
+}
+
+.enjkrt,.itennrt {
+    display: flex;
+}
+
+.itennrt {
+    margin-right: 20rpx;
+    margin-bottom: 17rpx;
+    padding: 5rpx 22rpx;
+    border-radius: 22rpx;
+    align-items: center;
+    justify-content: center;
+    border: 1rpx solid #666;
+    color: #666;
+    font-size: 26rpx;
+}
+
+.redjrk {
+    color: #fe0805;
+}

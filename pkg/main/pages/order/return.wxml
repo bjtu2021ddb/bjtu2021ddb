@@ -1,0 +1,82 @@
+<import src="../template/template.wxml"></import>
+<view class="createContainer" wx:if="{{allprice}}">
+    <view bindtap="addAddress" class="address spaceBetween">
+        <van-icon color="rgba(204, 204, 204, 1)" name="location-o" size="25px" wx:if="{{par.address}}"></van-icon>
+        <view class="details" wx:if="{{par.address}}">
+            <view class="addressName spaceBetween">
+                <text>{{par.address.name}}，{{par.address.mobile}}</text>
+            </view>
+            <view class="ads">
+			{{par.address.provinceName}}{{par.address.cityName}}{{par.address.areaName}}{{par.address.address}}
+			</view>
+        </view>
+        <view class="addads aliNocenter" wx:else>
+            <van-icon color="rgba(204, 204, 204, 1)" name="location-o" size="25px"></van-icon>
+            <text>{{createOrder.goods[23]}}</text>
+        </view>
+        <van-icon color="rgba(204, 204, 204, 1)" name="arrow" size="22px"></van-icon>
+    </view>
+    <view class="goodsVontainer">
+        <view class="goodsTitleone marginLeft aliNocenter">
+            <text>{{prediction[22]}}</text>
+        </view>
+        <view class="goodeItem" wx:for="{{list}}" wx:key="index">
+            <view class="goodsView aliNocenter marginLeft">
+                <view class="goodesDetils">
+                    <view class="goodsTitle">
+                        <view class="goodsNme aliNocenter">
+                            <view class="nameItem">
+                                <text>{{prediction[0]}}:</text>
+                            </view>
+                            <text>{{item.express}}</text>
+                        </view>
+                        <view class="goodsNme aliNocenter">
+                            <view class="nameItem">
+                                <text>{{prediction[24]}}:</text>
+                            </view>
+                            <text>{{item.weight}} KG</text>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="priceContainer">
+            <view class="goodsTitleone marginLeft aliNocenter">
+                <text>{{createOrder.name[1]}}</text>
+            </view>
+            <view class="goodeItem">
+                <view class="aliNocenter marginLeft pricecontent">
+                    <view class="pricetitle">
+                        <text>{{createOrder.name[2]}}</text>
+                    </view>
+                    <view class="priceView aliNocenter">
+                        <text>{{allprice}} CNY</text>
+                    </view>
+                </view>
+            </view>
+            <view class="goodeItem" wx:if="{{timeprice>0}}">
+                <view class="aliNocenter marginLeft pricecontent">
+                    <view class="pricetitle">
+                        <text>{{createOrder.goods[8]}}</text>
+                    </view>
+                    <view class="priceView aliNocenter">
+                        <text>{{timeprice}} CNY</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="line"></view>
+    <view class="bottomButton spaceBetween">
+        <view class="priceTotal aliNocenter">
+            <view class="price">
+                <text>{{createOrder.goods[10]}}：</text>
+            </view>
+            <text>{{price}} CNY</text>
+        </view>
+        <view bindtap="submitOrder" class="savebutton allCenter">
+            <text>{{createOrder.goods[12]}}</text>
+        </view>
+    </view>
+</view>
+<wxs module="numberUtil" src="../template/template.wxs" />

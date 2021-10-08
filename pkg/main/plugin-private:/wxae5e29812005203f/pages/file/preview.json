@@ -1,0 +1,8 @@
+{
+    "usingComponents": {
+        "iconfont": "../../components/Iconfont/index",
+        "g-img": "../../components/GImg/index",
+        "g-audio": "../../components/GAudio/index"
+    },
+    "navigationBarTitleText": "文件预览"
+}

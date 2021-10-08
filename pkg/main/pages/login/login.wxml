@@ -1,0 +1,61 @@
+<view class="loginContainer alicenter">
+    <image class="loginhrebr" mode="widthFix" src="/images/logo.png"></image>
+    <button bindtap="onGotUserInfo" class="allJustCenter button" wx:if="{{canIUseGetUserProfile}}">
+        <van-icon color="#07c160" name="chat" size="22px"></van-icon>
+        <text>{{login.sing}}</text>
+    </button>
+    <button bindgetuserinfo="getUserInfouejnnr" class="allJustCenter button" openType="getUserInfo" wx:else>
+        <van-icon color="#07c160" name="chat" size="22px"></van-icon>
+        <text>{{login.sing}}</text>
+    </button>
+    <view class="rule">
+        <text class="span">{{login.tip}}</text>
+        <text bindtap="geturlone">{{login.hts}}</text>
+        <text bindtap="geturltwo">{{login.rule}}</text>
+    </view>
+</view>
+<van-overlay bind:click="onClickHide" show="{{show}}">
+    <view class="wrapper">
+        <view class="bangtitle">
+            <text>绑定邮箱</text>
+            <text bindtap="gobacek" wx:if="{{!isshowkls}}">下次再说</text>
+        </view>
+        <form catchsubmit="formSubmit">
+            <view class="page-section">
+                <input bindblur="getemail" class="weui-input" name="userName" placeholder="请输入emai地址"></input>
+            </view>
+            <view class="page-section">
+                <input bindblur="getCode" class="weui-input" name="code" placeholder="请输入邮箱验证码"></input>
+                <button bindtap="send" class="mini-btn" plain="true">{{time}}</button>
+            </view>
+            <view class="page-section">
+                <input bindblur="getpassward" class="weui-input" maxlength="20" name="passWord" placeholder="请输入6~20位非纯数字密码" type="{{typeName}}"></input>
+                <van-icon bindtap="oppone" class="icone" name="closed-eye" size="30px" wx:if="{{!close}}"></van-icon>
+                <van-icon bindtap="oppone" class="icone" name="eye-o" size="30px" wx:if="{{close}}"></van-icon>
+            </view>
+            <button class="sumitbtn" formType="submit">绑定</button>
+            <view class="tops">
+                <text>绑定后，邮箱不可修改</text>
+            </view>
+            <view class="tops" style="padding-bottom:20rpx">
+                <text>您下次可使用该邮箱作为app账号登陆</text>
+            </view>
+        </form>
+    </view>
+</van-overlay>
+<van-popup round show="{{showcontainer&&option.length>0}}">
+    <view class="checkradio">
+        <image mode="widthFix" src="https://app.huyuntong.com/app/static/images/mini/success.png"></image>
+        <view class="group">
+            <view class="alicenter" style="margin-bottom:40rpx">
+                <text>{{tips[4]}}</text>
+            </view>
+            <view bindtap="radioChange" class="label-2 spaceBetween" data-id="{{item.value}}" data-name="{{item.text}}" wx:for="{{option}}" wx:key="index">
+                <text>{{item.text}}</text>
+                <view class="shurbtn">
+                    <text>{{confirmText}}</text>
+                </view>
+            </view>
+        </view>
+    </view>
+</van-popup>

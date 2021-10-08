@@ -1,0 +1,7 @@
+{
+    "component": true,
+    "usingComponents": {
+        "we-modal": "../Modal/index",
+        "m-card": "../Bot/m-card/index"
+    }
+}

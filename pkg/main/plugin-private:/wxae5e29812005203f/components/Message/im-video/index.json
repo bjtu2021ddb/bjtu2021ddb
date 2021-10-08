@@ -1,0 +1,7 @@
+{
+    "component": true,
+    "usingComponents": {
+        "avatar": "../u-avatar/index",
+        "iconfont": "../../Iconfont/index"
+    }
+}

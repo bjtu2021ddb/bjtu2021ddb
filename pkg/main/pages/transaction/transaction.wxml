@@ -1,0 +1,41 @@
+<import src="../template/template.wxml"></import>
+<view class="transactionContainer" wx:if="{{none}}">
+    <view class="tralist" wx:if="{{list.length>0}}" wx:for="{{list}}" wx:key="index">
+        <view class="title marginLeft spaceBetween">
+            <view class="kekkrm">
+                <view class="kejrej" wx:if="{{item.status===0}}">
+                    <text>{{order.status[1]}}</text>
+                </view>
+                <view class="kejrej ker" wx:if="{{item.status===1}}">
+                    <text>{{order.status[4]}}</text>
+                </view>
+                <view class="kejrej rkkr" wx:if="{{item.status===2}}">
+                    <text>{{order.status[0]}}</text>
+                </view>
+                <view class="kejrej krkk" wx:if="{{item.status===3}}">
+                    <text>{{order.status[6]}}</text>
+                </view>
+                <text wx:if="{{item.businessType===1}}">{{order.busj[0]}}</text>
+                <text wx:if="{{item.businessType===2}}">{{order.busj[1]}}</text>
+                <text wx:if="{{item.businessType===3}}">{{order.busj[2]}}</text>
+                <text wx:if="{{item.businessType===4}}">{{order.busj[3]}}</text>
+            </view>
+            <text class="price">{{numberUtil.moneySwitch(item.price)}} {{item.mType}}</text>
+        </view>
+        <view class="title marginLeft spaceBetween lkellr">
+            <text class="time">{{numberUtil.dateFormat(item.updateTime,'yyyy-MM-dd hh:mm')}}</text>
+            <text class="time" wx:if="{{item.payType==1}}">{{order.patTYpe[0]}}</text>
+            <text class="time" wx:if="{{item.payType==2}}">{{order.patTYpe[1]}}</text>
+            <text class="time" wx:if="{{item.payType==3}}">{{order.patTYpe[2]}}</text>
+            <text class="time" wx:if="{{item.payType==4}}">{{order.patTYpe[3]}}</text>
+        </view>
+        <view class="line"></view>
+    </view>
+    <view wx:if="{{list.length<1}}">
+        <template is="notging" data></template>
+    </view>
+</view>
+<view wx:if="{{!none}}">
+    <template is="none" data></template>
+</view>
+<wxs module="numberUtil" src="../template/template.wxs" />

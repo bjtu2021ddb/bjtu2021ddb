@@ -1,0 +1,98 @@
+<van-notify id="van-notify"></van-notify>
+<view class="predictionContainer" wx:if="{{ishow}}">
+    <view class="titleView marginLeft aliNocenter">
+        <text>{{title}}</text>
+    </view>
+    <view class="preditView">
+        <view class="preditItem marginLeft spaceBetween">
+            <text>{{address}}</text>
+            <view class="preditRightContainer aliNocenter">
+                <view class="picker">
+                    <input disabled placeholder="{{prediction[17]}}" value="{{country.name}} 【{{countryname}}】"></input>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="line"></view>
+    <view class="preditView">
+        <view class="preditItem  marginLeft spaceBetween">
+            <text>{{prediction[0]}}</text>
+            <view class="preditRightContainer aliNocenter">
+                <input bindblur="getnumber" placeholder="{{prediction[1]}}" type="text" value="{{number}}"></input>
+            </view>
+        </view>
+    </view>
+    <view class="line"></view>
+    <view class="preditView">
+        <view class="preditItem marginLeft spaceBetween">
+            <text>{{prediction[2]}}</text>
+            <view class="preditRightContainer aliNocenter">
+                <text>{{tips}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="line"></view>
+    <view class="preditView otheer">
+        <view class="preditItem  marginLeft spaceBetween">
+            <text>{{prediction[4]}}</text>
+            <view class="preditRightContainer aliNocenter">
+                <view class="spaceBetween list"></view>
+            </view>
+        </view>
+    </view>
+    <view class="newtip" wx:if="{{showbanner}}">
+        <view class="newbanner">
+            <text>{{goonamtips}}</text>
+        </view>
+        <van-icon bindtap="closebanner" class="close" name="cross"></van-icon>
+    </view>
+    <view>
+        <view class="listItem marginLeftMInwidth" wx:for="{{list}}" wx:key="index">
+            <view bindtap="godetalie" class="itemViewContainer aliNocenter" data-goodname="{{item.name}}" data-index="{{index}}" data-name="{{prediction[10]}}" data-place="{{prediction[1]}}{{prediction[10]}}">
+                <view class="itemName aliNocenter">
+                    <text>{{prediction[10]}}</text>
+                </view>
+                <input disabled class="place" data-index="{{index}}" placeholder="{{mes}}" placeholderStyle="color:rgba(48, 125, 253, 1);" type="text" value="{{item.name}}"></input>
+                <text catchtap="delet" class="delet" data-index="{{index}}" wx:if="{{list.length>1}}">{{prediction[15]}}</text>
+            </view>
+            <view class="itemViewContainer aliNocenter">
+                <view class="itemName aliNocenter">
+                    <text>{{prediction[12]}}</text>
+                </view>
+                <input bindblur="getvalue" data-index="{{index}}" placeholder="{{prediction[1]}}{{prediction[12]}}" style="width:35%" type="digit" value="{{item.price>0?item.price:null}}"></input>
+                <text style="margin-left:20rpx;">(人民币) CNY</text>
+            </view>
+            <view class="itemViewContainer aliNocenter">
+                <view class="itemName aliNocenter">
+                    <text>{{prediction[11]}}</text>
+                </view>
+                <view class="inpuadd">
+                    <van-stepper integer bind:change="onChange" data-inde="{{index}}" min="1" value="{{item.num}}"></van-stepper>
+                </view>
+            </view>
+            <view bindtap="godeurl" class="itemViewContainer aliNocenter" data-index="{{index}}" data-name="{{item.url}}" data-place="{{prediction[1]}}{{prediction[26]}}" wx:if="{{counCode.code=='JP'&&counCode.isGoodsLink==1}}">
+                <view class="itemName aliNocenter">
+                    <text>{{prediction[26]}}</text>
+                </view>
+                <input disabled class="place" data-index="{{index}}" placeholder="{{prediction[27]}}" placeholderStyle="color:rgba(48, 125, 253, 1);" type="text" value="{{item.url}}"></input>
+            </view>
+        </view>
+    </view>
+    <view bindtap="addshop" class="addshopitem marginLeft">
+        <van-icon color="rgba(48, 125, 253, 1)" name="add-o" size="20"></van-icon>
+        <text style="color:rgba(48, 125, 253, 1)">{{prediction[9]}}</text>
+    </view>
+    <view class="blockContainer"></view>
+    <view class="radio" wx:if="{{counCode.code=='JP'}}">
+        <text>{{prediction[30]}}</text>
+    </view>
+    <view class="button spaceBetween">
+        <view class="valuall">
+            <text>{{prediction[19]}}：</text>
+            <text class="priceall">{{allprice}} CNY</text>
+        </view>
+        <view bindtap="shure" class="suball allCenter">
+            <text>{{prediction[6]}}</text>
+        </view>
+    </view>
+</view>

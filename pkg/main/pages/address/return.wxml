@@ -1,0 +1,59 @@
+<van-notify id="van-notify"></van-notify>
+<view class="addAdressContainer">
+    <view class="addView marginLeft aliNocenter">
+        <view class="minwidth aliNocenter">
+            <text>
+                <text class="tig">*</text>{{address[4]}}</text>
+        </view>
+        <view class="inputView aliNocenter">
+            <input bindblur="getname" placeholder="{{address[5]}}" value="{{par.name}}"></input>
+        </view>
+    </view>
+    <view class="allLine"></view>
+    <view class="addView marginLeft aliNocenter">
+        <view class="minwidth aliNocenter">
+            <text>
+                <text class="tig">*</text>{{address[6]}}</text>
+        </view>
+        <view class="inputView aliNocenter">
+            <input bindblur="getmobile" placeholder="{{address[7]}}" type="number" value="{{par.mobile}}"></input>
+        </view>
+    </view>
+    <view class="allLine"></view>
+    <view class="addView marginLeft aliNocenter">
+        <view class="minwidth aliNocenter">
+            <text>
+                <text class="tig">*</text>{{address[31]}}</text>
+        </view>
+        <view class="'inputView spaceBetween weiinput">
+            <picker bindchange="bindPickerChange" mode="region" range="{{countryList}}">
+                <view class="picker">
+                    <input disabled placeholder="{{address[31]}}" value="{{par.allname}}"></input>
+                </view>
+            </picker>
+            <image mode="widthFix" src="https://app.huyuntong.com/app/static/images/mini/icon_dropdown.png"></image>
+        </view>
+    </view>
+    <view class="allLine"></view>
+    <view class="addView marginLeft aliNocenter">
+        <view class="minwidth aliNocenter">
+            <text>
+                <text class="tig">*</text>{{address[32]}}</text>
+        </view>
+        <view class="inputView aliNocenter">
+            <input bindblur="getaddress" placeholder="{{address[13]}}" value="{{par.address}}"></input>
+        </view>
+    </view>
+    <view class="allLine"></view>
+    <view class="addView marginLeft aliNocenter">
+        <view class="minwidth aliNocenter">
+            <text>{{address[14]}}</text>
+        </view>
+        <view class="inputView aliNocenter">
+            <input bindblur="getpostalCode" placeholder="{{address[14]}}" type="number" value="{{par.postalCode}}"></input>
+        </view>
+    </view>
+</view>
+<view style="width:100%;height:30rpx"></view>
+<text class="tip">{{address[33]}}</text>
+<button bindtap="submit">{{address[16]}}</button>

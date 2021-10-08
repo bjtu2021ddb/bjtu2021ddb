@@ -1,0 +1,92 @@
+{
+    "pages": [
+        "pages/homePage/homePage",
+        "pages/paylist/paylist",
+        "pages/recharge/recharge",
+        "pages/accountlist/accountlist",
+        "pages/coust/coust",
+        "pages/account/account",
+        "pages/userjifen/userjifen",
+        "pages/smallActive/smallActive",
+        "pages/oldActive/oldActive",
+        "pages/order/order",
+        "pages/login/login",
+        "pages/urlPage/urlPage",
+        "pages/address/return",
+        "pages/package/package",
+        "pages/package/details",
+        "pages/package/logistics",
+        "pages/prediction/prediction",
+        "pages/prediction/goodsName",
+        "pages/prediction/goodsUrl",
+        "pages/createOrder/createOrder",
+        "pages/order/details",
+        "pages/order/logistics",
+        "pages/order/return",
+        "pages/transaction/transaction",
+        "pages/record/record",
+        "pages/address/addAddress",
+        "pages/my/my",
+        "pages/feedback/feedback",
+        "pages/inviteFriends/inviteFriends",
+        "pages/coupon/coupon",
+        "pages/address/address",
+        "pages/news/news",
+        "pages/news/newsDetaile",
+        "pages/receiving/receiving",
+        "pages/receiving/warehouse",
+        "pages/server/details",
+        "pages/course/course",
+        "pages/problem/problem",
+        "pages/trial/trial",
+        "pages/template/template",
+        "pages/webView/webView",
+        "pages/active/active",
+        "pages/packageSearch/packageSearch",
+        "pages/orderSearch/orderSearch",
+        "__plugin__/wxae5e29812005203f/pages/chat/chat",
+        "__plugin__/wxae5e29812005203f/pages/tpl/detailView",
+        "__plugin__/wxae5e29812005203f/pages/tpl/cardLayoutView",
+        "__plugin__/wxae5e29812005203f/pages/file/preview"
+    ],
+    "window": {
+        "backgroundColorTop": "#e32c1a",
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#e32c1a",
+        "navigationBarTitleText": "biubiulink",
+        "navigationBarTextStyle": "white"
+    },
+    "tabBar": {
+        "color": "#888888",
+        "selectedColor": "#e94e3a",
+        "list": [
+            {
+                "pagePath": "pages/homePage/homePage",
+                "text": "首页",
+                "iconPath": "images/homePage.png",
+                "selectedIconPath": "images/homePageActive.png"
+            },
+            {
+                "pagePath": "pages/package/package",
+                "text": "包裹",
+                "iconPath": "images/package.png",
+                "selectedIconPath": "images/packageActive.png"
+            },
+            {
+                "pagePath": "pages/order/order",
+                "text": "订单",
+                "iconPath": "images/order.png",
+                "selectedIconPath": "images/orderActive.png"
+            },
+            {
+                "pagePath": "pages/my/my",
+                "text": "我的",
+                "iconPath": "images/my.png",
+                "selectedIconPath": "images/myActive.png"
+            }
+        ]
+    },
+    "networkTimeout": {
+        "request": 200000
+    }
+}

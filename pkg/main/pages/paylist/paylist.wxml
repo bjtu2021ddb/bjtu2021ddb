@@ -1,0 +1,49 @@
+<view class="listconur">
+    <view class="liitenm">
+        <text>{{ddje}}</text>
+        <text>￥{{numberUtil.moneySwitch(je)}}</text>
+    </view>
+    <view class="liitenm kfkkf">
+        <text>{{jysxf}}</text>
+        <text>￥0.00</text>
+    </view>
+    <view class="liitenm">
+        <text>{{yfze}}</text>
+        <text class="price">￥{{numberUtil.moneySwitch(je)}}</text>
+    </view>
+</view>
+<view class="kekkr">
+    <text>{{zffs}}</text>
+</view>
+<view bindtap="geyinr" class="{{index<list.length-1?'jkekkbnnr':'jkekkbnnr border'}}" data-index="{{index}}" wx:for="{{list}}" wx:key="index">
+    <view class="lithenn" wx:if="{{index==0}}">
+        <view class="jmekkr">
+            <van-icon color="#FF3A30" name="bill-o" size="22px"></van-icon>
+            <text>{{qbye}}</text>
+        </view>
+        <view class="kekkr4r4r" wx:if="{{je<=yhq}}">
+            <text>¥{{yhq}}</text>
+            <icon color="#e32c1a" size="22" type="success" wx:if="{{code==index}}"></icon>
+            <van-icon name="circle" size="22" wx:else></van-icon>
+        </view>
+        <view bindtap="gochonzhi" class="kekkr4r4r" wx:if="{{je>yhq}}">
+            <view class="jejkrjjr">
+                <text class="price">¥{{yhq}}</text>
+                <text>余额不足</text>
+            </view>
+            <image class="chonzhi" mode="widthFix" src="/images/cz2.png"></image>
+        </view>
+    </view>
+    <view class="lithenn" wx:if="{{index==1}}">
+        <view class="jmekkr">
+            <van-icon color="#07c160" name="wechat" size="22px"></van-icon>
+            <text>{{wxzf}}</text>
+        </view>
+        <icon color="#e32c1a" size="22" type="success" wx:if="{{code==index}}"></icon>
+        <van-icon name="circle" size="22" wx:else></van-icon>
+    </view>
+</view>
+<view bindtap="submitehcone" class="quenr">
+    <text>{{qrcz}}</text>
+</view>
+<wxs module="numberUtil" src="../template/template.wxs" />

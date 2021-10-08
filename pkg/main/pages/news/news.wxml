@@ -1,0 +1,47 @@
+<import src="../template/template.wxml"></import>
+<view class="newsContainer" wx:if="{{none}}">
+    <van-tabs active="{{active}}" bind:change="onChange">
+        <van-tab disabled="{{disabled}}" title="{{status[1]}}">
+            <view class="newscontainer">
+                <view bindtap="godetaile" class="newsItem" data-item="{{item}}" wx:if="{{newone.length>0}}" wx:for="{{newone}}" wx:key="index">
+                    <view class="newsList marginLeft">
+                        <view class="itemTitle spaceBetween">
+                            <view class="messagetitle aliNocenter">
+                                <view class="lineorde" wx:if="{{item.isRead==0}}"></view>
+                                <text>{{item.title}}</text>
+                            </view>
+                            <text>{{numberUtil.filter(item.createTime,timestamp,num)}}</text>
+                        </view>
+                        <view class="newsContent">
+                            <text>{{item.messageContext}}</text>
+                        </view>
+                    </view>
+                </view>
+                <view wx:if="{{newone.length<1}}">
+                    <template is="notging" data></template>
+                </view>
+            </view>
+        </van-tab>
+        <van-tab title="{{status[2]}}">
+            <view class="newscontainer">
+                <view bindtap="hdjwjkr" class="newsItem" data-id="{{item.id}}" wx:if="{{newtwo.length>0}}" wx:for="{{newtwo}}" wx:key="index">
+                    <view class="newsList marginLeft">
+                        <view class="itemTitle spaceBetween">
+                            <view class="messagetitle aliNocenter">
+                                <text>{{item.title}}</text>
+                            </view>
+                            <text style="color:#888888">{{numberUtil.dateFormat(item.createTime,'yyyy-MM-dd hh:mm')}}</text>
+                        </view>
+                    </view>
+                </view>
+                <view wx:if="{{newtwo.length<1}}">
+                    <template is="notging" data></template>
+                </view>
+            </view>
+        </van-tab>
+    </van-tabs>
+</view>
+<view wx:if="{{!none}}">
+    <template is="none" data></template>
+</view>
+<wxs module="numberUtil" src="../template/template.wxs" />

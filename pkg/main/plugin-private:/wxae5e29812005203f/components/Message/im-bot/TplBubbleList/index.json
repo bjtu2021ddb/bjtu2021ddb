@@ -1,0 +1,7 @@
+{
+    "component": true,
+    "usingComponents": {
+        "m-card": "../../../Bot/m-card/index",
+        "m-group": "../../../Bot/m-group/index"
+    }
+}

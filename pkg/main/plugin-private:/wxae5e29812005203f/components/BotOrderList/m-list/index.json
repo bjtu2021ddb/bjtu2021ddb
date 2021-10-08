@@ -1,0 +1,7 @@
+{
+    "component": true,
+    "usingComponents": {
+        "g-list": "../../GList/index",
+        "m-shop": "../../Bot/m-shop/index"
+    }
+}

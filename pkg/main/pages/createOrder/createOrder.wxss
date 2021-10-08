@@ -1,0 +1,391 @@
+page {
+    font-size: 28rpx;
+}
+
+.address {
+    padding: 10rpx 0;
+    background-color: #fff;
+    min-height: 100rpx;
+}
+
+.details {
+    width: 80%;
+    font-size: 28rpx;
+}
+
+.fcolum {
+    display: flex;
+    flex-direction: column;
+}
+
+.addads {
+    width: 100%;
+    height: 100%;
+}
+
+van-icon {
+    margin: 0 5rpx;
+}
+
+.shoseimg {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 10%;
+}
+
+.status {
+    margin-top: 5rpx;
+}
+
+.ads {
+    color: #888;
+    font-size: 24rpx;
+}
+
+.default {
+    color: #ec704a;
+}
+
+.goodsTitleone {
+    height: 70rpx;
+}
+
+.goodeItem {
+    background-color: #fff;
+    padding-top: 1rpx;
+}
+
+.goodsView {
+    margin-top: 20rpx;
+    border-radius: 10rpx;
+    padding: 10rpx 0;
+    position: relative;
+}
+
+.goodesDetils {
+    padding-left: 10%;
+}
+
+.autoheigh {
+    width: 100%;
+    padding: 10rpx 0;
+    background-color: #fff;
+}
+
+.goodsTitle {
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-left: 10rpx;
+    width: 100%;
+}
+
+.goodsTitle,.iviewcle {
+    display: flex;
+}
+
+.iviewcle {
+    align-items: center;
+}
+
+.peiview {
+    width: 100%;
+    height: 100rpx;
+    background-color: #fff;
+    justify-content: space-between;
+    border-bottom: 2rpx solid #f0f0f2;
+}
+
+.divcriel,.peiview {
+    display: flex;
+    align-items: center;
+}
+
+.divcriel {
+    background-image: linear-gradient(90deg,#e94e3a,#f85d1b);
+    padding: 10xpr 15rpx;
+    width: 100rpx;
+    color: #f0f0f2;
+    justify-content: center;
+    margin: 0 20rpx;
+}
+
+.divcriel,.goodsNme {
+    height: 60rpx;
+}
+
+.nameItem {
+    width: 34%;
+    color: #888;
+}
+
+.spaceil {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-color: #e64340 transparent transparent;
+    border-style: solid;
+    border-width: 100rpx 100rpx 0 0;
+}
+
+.spaceil text {
+    position: absolute;
+    bottom: 50rpx;
+    left: 20rpx;
+    font-size: 28rpx;
+    color: #fff;
+}
+
+.goodsBottom {
+    height: 70rpx;
+}
+
+.pricecontent {
+    height: 80rpx;
+}
+
+.pricetitle {
+    width: 31%;
+}
+
+.priceView {
+    width: 70%;
+    height: 100%;
+}
+
+.priceView image {
+    width: 40rpx;
+}
+
+.priceView input {
+    height: 70%;
+    padding-left: 10rpx;
+    border: 1rpx solid #f0f0f2;
+    border-radius: 10rpx;
+    margin-right: 5rpx;
+    width: 52%;
+}
+
+.goodindex {
+    width: 100%;
+    display: flex;
+    font-size: 24rpx;
+    height: 50rpx;
+    align-items: center;
+    color: #888;
+}
+
+.goodindexleft {
+    width: 10%;
+    text-align: center;
+}
+
+.macleye {
+    width: 15%;
+}
+
+.goodindexexp {
+    width: 47%;
+    overflow: hidden;
+}
+
+.minnde {
+    width: 43%;
+}
+
+.goodindextype {
+    width: 10%;
+}
+
+.goodindexkg {
+    width: 15%;
+    margin-left: 5%;
+}
+
+.goodindexvalue {
+    width: 17%;
+}
+
+.goodindexitem {
+    width: 100%;
+    display: flex;
+    height: 50rpx;
+    align-items: center;
+    font-size: 24rpx;
+}
+
+.marigh {
+    margin-left: 5%;
+}
+
+.godnine {
+    margin-bottom: 20rpx;
+    max-height: 500rpx;
+    overflow-y: scroll;
+}
+
+.content {
+    width: 95%;
+    height: 60%;
+    border-radius: 10rpx;
+}
+
+.maxcontent {
+    width: 65%;
+}
+
+picker {
+    width: 100%;
+}
+
+.maxcontent picker {
+    width: 92%;
+}
+
+.color {
+    color: #e64340;
+}
+
+.minheight {
+    height: 30rpx;
+    font-size: 22rpx!important;
+}
+
+.minheight .pricecontent {
+    height: 50rpx;
+    color: #888;
+}
+
+.minheight .pricecontent.priceView {
+    height: 50rpx;
+    display: flex;
+    color: #888;
+}
+
+.bottomButton {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 100rpx;
+    background-color: #fff;
+    font-size: 28rpx;
+}
+
+.goodsVontainer {
+    margin-bottom: 110rpx;
+}
+
+.priceTotal {
+    height: 100%;
+    margin-left: 3%;
+    color: #e64340;
+}
+
+.price {
+    color: #101010;
+}
+
+.savebutton {
+    width: 220rpx;
+    background-color: #ec704a;
+    height: 100%;
+    color: #fff;
+}
+
+.couponItem {
+    height: 160rpx;
+    border-radius: 8rpx;
+    box-shadow: 0 2px 7px 0 #fff;
+    background-color: #fff;
+    position: relative;
+    border: 1rpx solid #f0f0f2;
+    margin-bottom: 20rpx;
+}
+
+.nobanner {
+    background-color: #f0f0f2;
+}
+
+.priceContaine {
+    height: 48%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 3%;
+    margin-right: 10%;
+}
+
+.price {
+    color: #e64340;
+    font-size: 44rpx;
+}
+
+.noprice {
+    font-size: 44rpx;
+    color: #b7b7b7;
+}
+
+.name {
+    padding-top: 10rpx;
+    color: #333;
+    font-size: 32rpx;
+    font-weight: 500;
+}
+
+.minheight {
+    height: 70%;
+}
+
+.minheight .priceContaine {
+    padding-bottom: 35rpx;
+}
+
+.rule {
+    color: #b7b7b7;
+    font-size: 24rpx;
+}
+
+.noname {
+    padding-top: 10rpx;
+    color: #b7b7b7;
+    font-size: 32rpx;
+    font-weight: 500;
+}
+
+.banner {
+    width: 100%;
+    height: 30%;
+    background-color: #f8f8f8;
+    color: #b7b7b7;
+}
+
+.banner text {
+    margin-left: 3%;
+}
+
+.cuplist {
+    margin-bottom: 100rpx;
+    height: 80%;
+    margin-top: 80rpx;
+    overflow-y: scroll;
+}
+
+.buttonshur {
+    position: fixed;
+    bottom: 10rpx;
+    width: 550rpx;
+    height: 80rpx;
+    margin-left: 100rpx;
+    justify-content: center;
+    border-radius: 10px;
+    background-image: linear-gradient(90deg,#e94e3a,#f85d1b);
+    color: #f8f8f8;
+}
+
+.keklk {
+    border: 2rpx solid #e94e3a;
+    padding-left: 10rpx;
+}

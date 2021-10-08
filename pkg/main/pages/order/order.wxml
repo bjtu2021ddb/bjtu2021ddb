@@ -1,0 +1,455 @@
+<import src="../template/template.wxml"></import>
+<view class="orderContainer" style="margin-bottom:20rpx" wx:if="{{token}}">
+    <view class="seracrContainer aliNocenter">
+        <view bindtap="getSearch" class="input">
+            <input disabled placeholder="{{order.placeholder}}" placeholderStyle="color:rgb(255,255,255);"></input>
+        </view>
+    </view>
+    <view style="height:180rpx"></view>
+    <van-tabs animated swipeable bind:change="onChange" titleActiveColor="#e64340">
+        <van-tab disabled="{{disabled}}" title="{{order.menu[0]}} {{orderone}}">
+            <view bindtap="toDetail" class="packageList marginLeftMInwidth" data-id="{{item.id}}" wx:if="{{packageList.length>0}}" wx:for="{{packageList}}" wx:key="index">
+                <view>
+                    <view class="packageListTitle marginLeftMInwidth spaceBetween">
+                        <view catchtap="copy" class="aliNocenter titleIMg" data-name="{{item.code}}">
+                            <text>{{order.listTitle[1]}}：</text>
+                            <text>{{item.code}}</text>
+                            <van-icon name="description" style="margin-left:20rpx;font-size:30rpx"></van-icon>
+                        </view>
+                    </view>
+                </view>
+                <view class="marginLeftMInwidth">
+                    <view class="aliNocenter">
+                        <view class="menuView aliNocenter">
+                            <view class="packageType aliNocenter" wx:if="{{item.transportType==1}}">
+                                <text>{{package.details[8]}}</text>
+                            </view>
+                            <view class="packageType othercolor aliNocenter" wx:else>
+                                <text>{{package.details[10]}}</text>
+                            </view>
+                            <text style="margin-left:10rpx">{{item.transCode}}</text>
+                        </view>
+                        <view class="contview alignAround centconte coaomde">
+                            <text style="padding-right: 50rpx;">{{item.weight}}KG</text>
+                        </view>
+                    </view>
+                    <view class="aliNocenter">
+                        <view class="menuView alignAround contview">
+                            <text class="countrychine">{{item.sendCountry}}</text>
+                            <text style="color:rgba(80, 85, 89, 100)">{{item.warehouse}}</text>
+                        </view>
+                        <view class="contview alignAround centconte coaomde">
+                            <image class="arrowline" mode="widthFix" src="https://app.huyuntong.com/app/static/images/mini/link.png"></image>
+                            <text style="color:rgba(229, 28, 35, 1)" wx:if="{{item.status==1}}">{{order.status[1]}}</text>
+                            <text style="color:rgba(229, 28, 35, 1)" wx:if="{{item.status==2}}">{{order.status[2]}}</text>
+                            <text style="color:rgba(229, 28, 35, 1)" wx:if="{{item.status==3}}">{{order.status[3]}}</text>
+                            <text style="color:rgba(229, 28, 35, 1)" wx:if="{{item.status==4}}">{{order.status[4]}}</text>
+                            <text style="color:rgba(229, 28, 35, 1)" wx:if="{{item.status==5}}">{{order.status[7]}}</text>
+                        </view>
+                        <view class="centconte alignAround contview">
+                            <text class="countrychine">{{item.countryName}}</text>
+                            <text style="color:rgba(80, 85, 89, 100)">{{item.name}}</text>
+                        </view>
+                    </view>
+                    <view class="operation" wx:if="{{item.status==1}}">
+                        <view class="payminey">
+                            <text>需支付￥{{numberUtil.moneySwitch(item.totalPrice)}}</text>
+                        </view>
+                        <view catchtap="cancel" class="opearbutton" data-countryid="{{item.countryId}}" data-id="{{item.id}}">
+                            <text>{{order.opearation[0]}}</text>
+                        </view>
+                        <view catchtap="pay" class="opearbutton paycontaine" data-id="{{item.id}}" data-totalPrice="{{item.totalPrice}}">
+                            <text>{{order.opearation[1]}}</text>
+                        </view>
+                    </view>
+                    <view class="aliNocenter matowp" style="color:rgba(0, 0, 0,0.65)" wx:if="{{item.status==2||item.status==3}}">
+                        <view class="aliNocenter minwith">
+                            <text>{{order.listTitle[3]}}:</text>
+                        </view>
+                        <text>{{numberUtil.dateFormat(item.updateTime,'yyyy-MM-dd hh:mm')}}</text>
+                    </view>
+                    <view class="statusCompent" wx:if="{{item.trackInfo}}">
+                        <view class="deliverTitle spaceBetween">
+                            <view class="delivery aliNocenter" style="background-color:rgba(139, 195, 74, 1)">
+                                <text>{{item.trackInfo}}</text>
+                            </view>
+                            <text style="margin-right:20rpx">{{item.trackDetail.eventtime}}</text>
+                        </view>
+                        <view class="textoverflowline palet">
+                            <text>{{item.trackDetail.eventscan}}</text>
+                        </view>
+                    </view>
+                    <view class="operation border" wx:if="{{item.status==4}}">
+                        <view catchtap="deletd" class="opearbutton" data-id="{{item.id}}">
+                            <text>{{order.opearation[6]}}</text>
+                        </view>
+                        <view catchtap="toDetail" class="opearbutton" data-id="{{item.id}}">
+                            <text>{{order.opearation[5]}}</text>
+                        </view>
+                    </view>
+                    <view class="operation border" wx:if="{{item.status==2||item.status==3}}">
+                        <view catchtap="deletd" class="opearbutton" data-id="{{item.id}}">
+                            <text>{{order.opearation[6]}}</text>
+                        </view>
+                        <view catchtap="toDetail" class="opearbutton" data-id="{{item.id}}">
+                            <text>{{order.opearation[5]}}</text>
+                        </view>
+                        <view catchtap="getwhouse" class="opearbutton" data-id="{{item.id}}">
+                            <text>{{order.opearation[2]}}</text>
+                        </view>
+                        <view catchtap="canceorder" class="opearbutton" data-id="{{item.id}}">
+                            <text>{{sqqx}}</text>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view wx:if="{{packageList.length<1}}">
+                <template is="notging" data></template>
+            </view>
+        </van-tab>
+        <van-tab disabled="{{disabled}}" title="{{order.menu[1]}} {{ordertwo}}">
+            <view bindtap="toDetail" class="packageList marginLeftMInwidth" data-id="{{item.id}}" wx:if="{{packageList.length>0}}" wx:for="{{packageList}}" wx:key="index">
+                <view>
+                    <view class="packageListTitle marginLeftMInwidth spaceBetween">
+                        <view catchtap="copy" class="aliNocenter titleIMg" data-name="{{item.code}}">
+                            <text>{{order.listTitle[1]}}：</text>
+                            <text>{{item.code}}</text>
+                            <van-icon name="description" style="margin-left:20rpx;font-size:30rpx"></van-icon>
+                        </view>
+                    </view>
+                </view>
+                <view class="marginLeftMInwidth">
+                    <view class="aliNocenter">
+                        <view class="menuView aliNocenter">
+                            <view class="packageType aliNocenter" wx:if="{{item.transportType==1}}">
+                                <text>{{package.details[8]}}</text>
+                            </view>
+                            <view class="packageType othercolor aliNocenter" wx:else>
+                                <text>{{package.details[10]}}</text>
+                            </view>
+                            <text style="margin-left:10rpx">{{item.transCode}}</text>
+                        </view>
+                        <view class="contview alignAround centconte coaomde">
+                            <text style="padding-right: 50rpx;">{{item.weight}}KG</text>
+                        </view>
+                    </view>
+                    <view class="aliNocenter">
+                        <view class="menuView alignAround contview">
+                            <text class="countrychine">{{item.sendCountry}}</text>
+                            <text style="color:rgba(80, 85, 89, 100)">{{item.warehouse}}</text>
+                        </view>
+                        <view class="contview alignAround centconte coaomde">
+                            <image class="arrowline" mode="widthFix" src="https://app.huyuntong.com/app/static/images/mini/link.png"></image>
+                            <text style="color:rgba(229, 28, 35, 1)" wx:if="{{item.status==1}}">{{order.status[1]}}</text>
+                            <text style="color:rgba(229, 28, 35, 1)" wx:if="{{item.status==2}}">{{order.status[2]}}</text>
+                            <text style="color:rgba(229, 28, 35, 1)" wx:if="{{item.status==3}}">{{order.status[3]}}</text>
+                            <text style="color:rgba(229, 28, 35, 1)" wx:if="{{item.status==4}}">{{order.status[4]}}</text>
+                        </view>
+                        <view class="centconte alignAround contview">
+                            <text class="countrychine">{{item.countryName}}</text>
+                            <text style="color:rgba(80, 85, 89, 100)">{{item.name}}</text>
+                        </view>
+                    </view>
+                    <view class="operation" wx:if="{{item.status==1}}">
+                        <view catchtap="cancel" class="opearbutton" data-countryid="{{item.countryId}}" data-id="{{item.id}}">
+                            <text>{{order.opearation[0]}}</text>
+                        </view>
+                        <view catchtap="pay" class="opearbutton paycontaine" data-id="{{item.id}}" data-totalPrice="{{item.totalPrice}}">
+                            <text>{{order.opearation[1]}}</text>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view wx:if="{{packageList.length<1}}">
+                <template is="notging" data></template>
+            </view>
+        </van-tab>
+        <van-tab disabled="{{disabled}}" title="{{order.menu[2]}} {{orderthree}}">
+            <view bindtap="toDetail" class="packageList marginLeftMInwidth" data-id="{{item.id}}" wx:if="{{packageList.length>0}}" wx:for="{{packageList}}" wx:key="index">
+                <view>
+                    <view class="packageListTitle marginLeftMInwidth spaceBetween">
+                        <view catchtap="copy" class="aliNocenter titleIMg" data-name="{{item.code}}">
+                            <text>{{order.listTitle[1]}}：</text>
+                            <text>{{item.code}}</text>
+                            <van-icon name="description" style="margin-left:20rpx;font-size:30rpx"></van-icon>
+                        </view>
+                    </view>
+                </view>
+                <view class="marginLeftMInwidth">
+                    <view class="aliNocenter">
+                        <view class="menuView aliNocenter">
+                            <view class="packageType aliNocenter" wx:if="{{item.transportType==1}}">
+                                <text>{{package.details[8]}}</text>
+                            </view>
+                            <view class="packageType othercolor aliNocenter" wx:else>
+                                <text>{{package.details[10]}}</text>
+                            </view>
+                            <text style="margin-left:10rpx">{{item.transCode}}</text>
+                        </view>
+                        <view class="contview alignAround centconte coaomde">
+                            <text style="padding-right: 50rpx;">{{item.weight}}KG</text>
+                        </view>
+                    </view>
+                    <view class="aliNocenter">
+                        <view class="menuView alignAround contview">
+                            <text class="countrychine">{{item.sendCountry}}</text>
+                            <text style="color:rgba(80, 85, 89, 100)">{{item.warehouse}}</text>
+                        </view>
+                        <view class="contview alignAround centconte coaomde">
+                            <image class="arrowline" mode="widthFix" src="https://app.huyuntong.com/app/static/images/mini/link.png"></image>
+                            <text style="color:rgba(229, 28, 35, 1)" wx:if="{{item.status==1}}">{{order.status[1]}}</text>
+                            <text style="color:rgba(229, 28, 35, 1)" wx:if="{{item.status==2}}">{{order.status[2]}}</text>
+                            <text style="color:rgba(229, 28, 35, 1)" wx:if="{{item.status==3}}">{{order.status[3]}}</text>
+                            <text style="color:rgba(229, 28, 35, 1)" wx:if="{{item.status==4}}">{{order.status[4]}}</text>
+                            <text style="color:rgba(229, 28, 35, 1)" wx:if="{{item.status==5}}">{{order.status[7]}}</text>
+                        </view>
+                        <view class="centconte alignAround contview">
+                            <text class="countrychine">{{item.countryName}}</text>
+                            <text style="color:rgba(80, 85, 89, 100)">{{item.name}}</text>
+                        </view>
+                    </view>
+                    <view class="operation" wx:if="{{item.status==1}}">
+                        <view class="payminey">
+                            <text>需支付￥{{numberUtil.moneySwitch(item.totalPrice)}}</text>
+                        </view>
+                        <view catchtap="cancel" class="opearbutton" data-countryid="{{item.countryId}}" data-id="{{item.id}}">
+                            <text>{{order.opearation[0]}}</text>
+                        </view>
+                        <view catchtap="pay" class="opearbutton paycontaine" data-id="{{item.id}}" data-totalPrice="{{item.totalPrice}}">
+                            <text>{{order.opearation[1]}}</text>
+                        </view>
+                    </view>
+                    <view class="aliNocenter matowp" style="color:rgba(0, 0, 0,0.65)" wx:if="{{item.status==2||item.status==3}}">
+                        <view class="aliNocenter minwith">
+                            <text>{{order.listTitle[3]}}:</text>
+                        </view>
+                        <text>{{numberUtil.dateFormat(item.updateTime,'yyyy-MM-dd hh:mm')}}</text>
+                    </view>
+                    <view class="statusCompent" wx:if="{{item.trackInfo}}">
+                        <view class="deliverTitle spaceBetween">
+                            <view class="delivery aliNocenter" style="background-color:rgba(139, 195, 74, 1)">
+                                <text>{{item.trackInfo}}</text>
+                            </view>
+                            <text style="margin-right:20rpx">{{item.trackDetail.eventtime}}</text>
+                        </view>
+                        <view class="textoverflowline palet">
+                            <text>{{item.trackDetail.eventscan}}</text>
+                        </view>
+                    </view>
+                    <view class="operation border" wx:if="{{item.status!=2}}">
+                        <view catchtap="toDetail" class="opearbutton" data-id="{{item.id}}">
+                            <text>{{order.opearation[5]}}</text>
+                        </view>
+                        <view catchtap="deletd" class="opearbutton" data-id="{{item.id}}">
+                            <text>{{order.opearation[6]}}</text>
+                        </view>
+                        <view catchtap="canceorder" class="opearbutton" data-id="{{item.id}}">
+                            <text>{{sqqx}}</text>
+                        </view>
+                    </view>
+                    <view class="operation border" wx:if="{{item.status==2}}">
+                        <view catchtap="toDetail" class="opearbutton" data-id="{{item.id}}">
+                            <text>{{order.opearation[5]}}</text>
+                        </view>
+                        <view catchtap="canceorder" class="opearbutton" data-id="{{item.id}}">
+                            <text>{{sqqx}}</text>
+                        </view>
+                        <view catchtap="deletd" class="opearbutton" data-id="{{item.id}}">
+                            <text>{{order.opearation[6]}}</text>
+                        </view>
+                        <view catchtap="getwhouse" class="opearbutton" data-id="{{item.id}}">
+                            <text>{{order.opearation[2]}}</text>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view wx:if="{{packageList.length<1}}">
+                <template is="notging" data></template>
+            </view>
+        </van-tab>
+        <van-tab disabled="{{disabled}}" title="{{order.menu[3]}} {{orderfour}}">
+            <view bindtap="toDetail" class="packageList marginLeftMInwidth" data-id="{{item.id}}" wx:if="{{packageList.length>0}}" wx:for="{{packageList}}" wx:key="index">
+                <view>
+                    <view class="packageListTitle marginLeftMInwidth spaceBetween">
+                        <view catchtap="copy" class="aliNocenter titleIMg" data-name="{{item.code}}">
+                            <text>{{order.listTitle[1]}}：</text>
+                            <text>{{item.code}}</text>
+                            <van-icon name="description" style="margin-left:20rpx;font-size:30rpx"></van-icon>
+                        </view>
+                    </view>
+                </view>
+                <view class="marginLeftMInwidth">
+                    <view class="aliNocenter">
+                        <view class="menuView aliNocenter">
+                            <view class="packageType aliNocenter" wx:if="{{item.transportType==1}}">
+                                <text>{{package.details[8]}}</text>
+                            </view>
+                            <view class="packageType othercolor aliNocenter" wx:else>
+                                <text>{{package.details[10]}}</text>
+                            </view>
+                            <text style="margin-left:10rpx">{{item.transCode}}</text>
+                        </view>
+                        <view class="contview alignAround centconte coaomde">
+                            <text style="padding-right: 50rpx;">{{item.weight}}KG</text>
+                        </view>
+                    </view>
+                    <view class="aliNocenter">
+                        <view class="menuView alignAround contview">
+                            <text class="countrychine">{{item.sendCountry}}</text>
+                            <text style="color:rgba(80, 85, 89, 100)">{{item.warehouse}}</text>
+                        </view>
+                        <view class="contview alignAround centconte coaomde">
+                            <image class="arrowline" mode="widthFix" src="https://app.huyuntong.com/app/static/images/mini/link.png"></image>
+                            <text style="color:rgba(229, 28, 35, 1)" wx:if="{{item.status==1}}">{{order.status[1]}}</text>
+                            <text style="color:rgba(229, 28, 35, 1)" wx:if="{{item.status==2}}">{{order.status[2]}}</text>
+                            <text style="color:rgba(229, 28, 35, 1)" wx:if="{{item.status==3}}">{{order.status[3]}}</text>
+                            <text style="color:rgba(229, 28, 35, 1)" wx:if="{{item.status==4}}">{{order.status[4]}}</text>
+                            <text style="color:rgba(229, 28, 35, 1)" wx:if="{{item.status==5}}">{{order.status[7]}}</text>
+                        </view>
+                        <view class="centconte alignAround contview ">
+                            <text class="countrychine">{{item.countryName}}</text>
+                            <text style="color:rgba(80, 85, 89, 100)">{{item.name}}</text>
+                        </view>
+                    </view>
+                    <view class="operation" wx:if="{{item.status==1}}">
+                        <view class="payminey">
+                            <text>需支付￥{{numberUtil.moneySwitch(item.totalPrice)}}</text>
+                        </view>
+                        <view catchtap="cancel" class="opearbutton" data-countryid="{{item.countryId}}" data-id="{{item.id}}">
+                            <text>{{order.opearation[0]}}</text>
+                        </view>
+                        <view catchtap="pay" class="opearbutton paycontaine" data-id="{{item.id}}">
+                            <text>{{order.opearation[1]}}</text>
+                        </view>
+                    </view>
+                    <view class="aliNocenter matowp" style="color:rgba(0, 0, 0,0.65)" wx:if="{{item.status==2||item.status==3}}">
+                        <view class="aliNocenter minwith">
+                            <text>{{order.listTitle[3]}}:</text>
+                        </view>
+                        <text>{{numberUtil.dateFormat(item.updateTime,'yyyy-MM-dd hh:mm')}}</text>
+                    </view>
+                    <view class="statusCompent" wx:if="{{item.trackInfo}}">
+                        <view class="deliverTitle spaceBetween">
+                            <view class="delivery aliNocenter" style="background-color:rgba(139, 195, 74, 1)">
+                                <text>{{item.trackInfo}}</text>
+                            </view>
+                            <text style="margin-right:20rpx">{{item.trackDetail.eventtime}}</text>
+                        </view>
+                        <view class="textoverflowline palet">
+                            <text>{{item.trackDetail.eventscan}}</text>
+                        </view>
+                    </view>
+                    <view class="operation border">
+                        <view catchtap="toDetail" class="opearbutton" data-id="{{item.id}}">
+                            <text>{{order.opearation[5]}}</text>
+                        </view>
+                        <view catchtap="deletd" class="opearbutton" data-id="{{item.id}}">
+                            <text>{{order.opearation[6]}}</text>
+                        </view>
+                        <view catchtap="getwhouse" class="opearbutton" data-id="{{item.id}}">
+                            <text>{{order.opearation[2]}}</text>
+                        </view>
+                        <view catchtap="canceorder" class="opearbutton" data-id="{{item.id}}">
+                            <text>{{sqqx}}</text>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view wx:if="{{packageList.length<1}}">
+                <template is="notging" data></template>
+            </view>
+        </van-tab>
+        <van-tab disabled="{{disabled}}" title="{{order.menu[4]}} {{orderfive}}">
+            <view bindtap="toDetail" class="packageList marginLeftMInwidth" data-id="{{item.id}}" wx:if="{{packageList.length>0}}" wx:for="{{packageList}}" wx:key="index">
+                <view>
+                    <view class="packageListTitle marginLeftMInwidth spaceBetween">
+                        <view catchtap="copy" class="aliNocenter titleIMg" data-name="{{item.code}}">
+                            <text>{{order.listTitle[1]}}：</text>
+                            <text>{{item.code}}</text>
+                            <van-icon name="description" style="margin-left:20rpx;font-size:30rpx"></van-icon>
+                        </view>
+                    </view>
+                </view>
+                <view class="marginLeftMInwidth">
+                    <view class="aliNocenter">
+                        <view class="menuView aliNocenter">
+                            <view class="packageType aliNocenter" wx:if="{{item.transportType==1}}">
+                                <text>{{package.details[8]}}</text>
+                            </view>
+                            <view class="packageType othercolor aliNocenter" wx:else>
+                                <text>{{package.details[10]}}</text>
+                            </view>
+                            <text style="margin-left:10rpx">{{item.transCode}}</text>
+                        </view>
+                        <view class="contview alignAround centconte coaomde">
+                            <text style="padding-right: 50rpx;">{{item.weight}}KG</text>
+                        </view>
+                    </view>
+                    <view class="aliNocenter">
+                        <view class="menuView alignAround contview">
+                            <text class="countrychine">{{item.sendCountry}}</text>
+                            <text style="color:rgba(80, 85, 89, 100)">{{item.warehouse}}</text>
+                        </view>
+                        <view class="contview alignAround centconte coaomde">
+                            <image class="arrowline" mode="widthFix" src="https://app.huyuntong.com/app/static/images/mini/link.png"></image>
+                            <text style="color:rgba(229, 28, 35, 1)" wx:if="{{item.status==1}}">{{order.status[1]}}</text>
+                            <text style="color:rgba(229, 28, 35, 1)" wx:if="{{item.status==2}}">{{order.status[2]}}</text>
+                            <text style="color:rgba(229, 28, 35, 1)" wx:if="{{item.status==3}}">{{order.status[3]}}</text>
+                            <text style="color:rgba(229, 28, 35, 1)" wx:if="{{item.status==4}}">{{order.status[4]}}</text>
+                            <text style="color:rgba(229, 28, 35, 1)" wx:if="{{item.status==5}}">{{order.status[7]}}</text>
+                        </view>
+                        <view class="centconte alignAround contview">
+                            <text class="countrychine">{{item.countryName}}</text>
+                            <text style="color:rgba(80, 85, 89, 100)">{{item.name}}</text>
+                        </view>
+                    </view>
+                    <view class="operation" wx:if="{{item.status==1}}">
+                        <view class="payminey">
+                            <text>需支付￥{{numberUtil.moneySwitch(item.totalPrice)}}</text>
+                        </view>
+                        <view catchtap="cancel" class="opearbutton" data-countryid="{{item.countryId}}" data-id="{{item.id}}">
+                            <text>{{order.opearation[0]}}</text>
+                        </view>
+                        <view catchtap="pay" class="opearbutton paycontaine" data-id="{{item.id}}">
+                            <text>{{order.opearation[1]}}</text>
+                        </view>
+                    </view>
+                    <view class="aliNocenter matowp" style="color:rgba(0, 0, 0,0.65)" wx:if="{{item.status==2||item.status==3}}">
+                        <view class="aliNocenter minwith">
+                            <text>{{order.listTitle[3]}}:</text>
+                        </view>
+                        <text>{{numberUtil.dateFormat(item.updateTime,'yyyy-MM-dd hh:mm')}}</text>
+                    </view>
+                    <view class="statusCompent" wx:if="{{item.trackInfo}}">
+                        <view class="deliverTitle spaceBetween">
+                            <view class="delivery aliNocenter" style="background-color:rgba(139, 195, 74, 1)">
+                                <text>{{item.trackInfo}}</text>
+                            </view>
+                            <text style="margin-right:20rpx">{{item.trackDetail.eventtime}}</text>
+                        </view>
+                        <view class="textoverflowline palet">
+                            <text>{{item.trackDetail.eventscan}}</text>
+                        </view>
+                    </view>
+                    <view class="operation border" wx:if="{{item.status!=2}}">
+                        <view catchtap="deletd" class="opearbutton" data-id="{{item.id}}">
+                            <text>{{order.opearation[6]}}</text>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view wx:if="{{packageList.length<1}}">
+                <template is="notging" data></template>
+            </view>
+        </van-tab>
+    </van-tabs>
+</view>
+<view bindtap="gologin" class="alicenter" wx:if="{{!token}}">
+    <view class="nothingBannewr">
+        <template is="notging" data></template>
+    </view>
+    <view class="notokenbutton alicenter">
+        <text>login</text>
+    </view>
+</view>
+<wxs module="numberUtil" src="../template/template.wxs" />

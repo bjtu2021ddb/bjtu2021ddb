@@ -1,0 +1,7 @@
+{
+    "enablePullDownRefresh": true,
+    "usingComponents": {
+        "van-icon": "../../dist/icon/index",
+        "van-notify": "../../dist/notify/index"
+    }
+}

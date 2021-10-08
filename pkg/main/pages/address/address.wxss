@@ -1,0 +1,65 @@
+.addressitem {
+    padding: 10rpx 0;
+}
+
+.addressView {
+    width: 100%;
+    background-color: #fff;
+}
+
+.addressDetails {
+    max-width: 70%;
+    font-size: 28rpx;
+}
+
+.ischeck {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.context {
+    font-size: 24rpx;
+}
+
+.addressname {
+    margin-left: 10rpx;
+    padding: 15rpx 0;
+}
+
+.default {
+    border-radius: 5rpx;
+    padding: 4rpx 8rpx;
+    margin-left: 20rpx;
+    color: #fff;
+    background-color: #ec704a;
+    font-size: 20rpx;
+}
+
+.checke {
+    margin-right: 10rpx;
+}
+
+button {
+    width: 750rpx!important;
+    position: fixed;
+    bottom: 0;
+    color: #fff;
+    background-image: linear-gradient(90deg,#e94e3a,#f85d1b);
+    font-size: 28rpx;
+}
+
+.van-swipe-cell__right {
+    color: #fff;
+    background-image: linear-gradient(90deg,#e94e3a,#f85d1b);
+}
+
+.delet,.van-swipe-cell__right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.delet {
+    width: 110rpx;
+}

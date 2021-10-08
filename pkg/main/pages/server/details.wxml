@@ -1,0 +1,89 @@
+<view class="detailsContainer">
+    <view class="detailsItem marginLeft" wx:for="{{par}}" wx:key="index">
+        <view class="itemContainer marginLeft">
+            <view class="itemShow spaceBetween">
+                <text style="font-size:32rpx;color:rgba(16, 16, 16, 1);">{{item.transCode}}</text>
+                <text style="color:rgba(16, 16, 16, 1);">
+                    <text decode="{{true}}" style="color: #f30000;">{{item.priceText}}</text>
+                </text>
+            </view>
+            <view class="price" style="color: #1890FF;">
+                <text>{{server[6]}}：{{item.fastestDay}}~{{item.latestDay}}{{server[17]}} {{server[8]}}</text>
+            </view>
+            <view class="itemShow spaceBetween">
+                <text style="font-size:30rpx;color:rgba(16, 16, 16, 1);">{{server[7]}}</text>
+            </view>
+            <view class="price" style="padding-bottom:15rpx">
+                <text>{{item.notice}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="detailsItem marginLeft">
+        <view class="itemContainer marginLeft">
+            <text class="title">{{server[9]}}</text>
+            <view class="list">
+                <view class="listItem spaceBetween">
+                    <view class="allCenter ">
+                        <image mode="widthFix" src="https://app.huyuntong.com/app/static/images/mini/zhaopianpaizhao.png"></image>
+                        <text>{{server[10]}}</text>
+                    </view>
+                    <view class="des">
+                        <text>{{serlist[0]}}</text>
+                    </view>
+                </view>
+                <view class="listItem spaceBetween">
+                    <view class="allCenter ">
+                        <image mode="widthFix" src="https://app.huyuntong.com/app/static/images/mini/cangchu.png"></image>
+                        <text>{{server[11]}}</text>
+                    </view>
+                    <view class="des">
+                        <text>{{serlist[1]}}</text>
+                    </view>
+                </view>
+                <view class="listItem spaceBetween">
+                    <view class="allCenter ">
+                        <image mode="widthFix" src="https://app.huyuntong.com/app/static/images/mini/jiagubao.png"></image>
+                        <text>{{server[12]}}</text>
+                    </view>
+                    <view class="des">
+                        <text>{{serlist[2]}}</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="detailsItem marginLeft">
+        <view class="itemContainer marginLeft">
+            <text class="title">{{server[13]}}</text>
+            <view class="list">
+                <view class="listItem spaceBetween">
+                    <view class="allCenter ">
+                        <image mode="widthFix" src="https://app.huyuntong.com/app/static/images/mini/gaojijiagu.png"></image>
+                        <text>{{server[14]}}</text>
+                    </view>
+                    <view class="des">
+                        <text>{{serlist[3]}}</text>
+                    </view>
+                </view>
+                <view class="listItem spaceBetween">
+                    <view class="allCenter ">
+                        <image mode="widthFix" src="https://app.huyuntong.com/app/static/images/mini/tui.png"></image>
+                        <text>{{server[15]}}</text>
+                    </view>
+                    <view class="des">
+                        <text>{{serlist[4]}}</text>
+                    </view>
+                </view>
+                <view class="listItem spaceBetween">
+                    <view class="allCenter ">
+                        <image mode="widthFix" src="https://app.huyuntong.com/app/static/images/mini/icon_index_baojia.png"></image>
+                        <text>{{server[18]}}</text>
+                    </view>
+                    <view class="des">
+                        <text>{{serlist[5]}}</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,11 @@
+<view class="section">
+    <view class="coantaine">
+        <textarea autoHeight bindinput="bindTextAreaBlur" placeholder="{{place}}" value="{{name}}"></textarea>
+        <view class="spaceBetween">
+            <text style="color:red">{{prediction[29]}}</text>
+            <view bindtap="shure" class="btn">
+                <text>{{opeartion[1]}}</text>
+            </view>
+        </view>
+    </view>
+</view>

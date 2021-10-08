@@ -1,0 +1,5 @@
+{
+    "usingComponents": {
+        "m-detail-view-list": "../../components/Bot/m-detail-view-list/index"
+    }
+}

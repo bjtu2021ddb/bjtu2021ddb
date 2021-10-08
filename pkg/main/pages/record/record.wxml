@@ -1,0 +1,41 @@
+<import src="../template/template.wxml"></import>
+<view class="recordContainer">
+    <view class="allLine"></view>
+    <view class="recordItem">
+        <view class="recordcontent spaceBetween">
+            <view class="recordView alignAround">
+                <text class="bigfont">{{inviteCount}}</text>
+                <text class="samllfont">{{record[1]}}</text>
+            </view>
+            <view class="recordView alignAround">
+                <text class="bigfont price">￥{{numberUtil.moneySwitch(invitePrice)}}</text>
+                <text class="samllfont">{{record[2]}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="listContent">
+        <view class="listItem" wx:if="{{list.length>0}}" wx:for="{{list}}" wx:key="index">
+            <view class="listVioew marginLeft spaceBetween">
+                <view class="userimg spaceBetween">
+                    <image mode="widthFix" src="{{item.avatarUrl}}" wx:if="{{item.avatarUrl}}"></image>
+                    <image mode="widthFix" src="https://app.huyuntong.com/app/static/images/mini/icon_not_login.png" wx:if="{{!item.avatarUrl}}"></image>
+                    <view class="username">
+                        <text>{{item.nickName}}</text>
+                        <text class="time">{{numberUtil.dateFormat(item.lastTime)}}</text>
+                    </view>
+                </view>
+                <view class="stautse alignAround" wx:if="{{item.payType==0||item.payType==1}}">
+                    <text>{{record[3]}}</text>
+                </view>
+                <view class="stats alignAround" wx:if="{{item.payType==2}}">
+                    <text>{{record[4]}}</text>
+                </view>
+            </view>
+            <view class="allLine" wx:if="{{index!=list.length}}"></view>
+        </view>
+        <view class="postview" wx:if="{{list.length<1}}">
+            <template is="notging" data></template>
+        </view>
+    </view>
+</view>
+<wxs module="numberUtil" src="../template/template.wxs" />

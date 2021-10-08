@@ -1,0 +1,7 @@
+{
+    "component": true,
+    "usingComponents": {
+        "g-img": "../../../GImg/index",
+        "parser-rich-text": "../../../ParserRichText/parserRichText"
+    }
+}
