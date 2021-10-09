@@ -1,6 +1,5 @@
 package com.osm.station.ui
 
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import cn.leancloud.LCObject
@@ -14,16 +13,10 @@ import com.luck.picture.lib.listener.OnResultCallbackListener
 import com.luck.picture.lib.config.PictureMimeType
 import com.luck.picture.lib.PictureSelector
 import com.luck.picture.lib.config.PictureConfig
-import com.osm.station.ext.GlideEngine
-import com.osm.station.ext.addRoom
-import com.osm.station.ext.submitToServer
-import com.osm.station.ext.updateRoom
+import com.osm.station.ext.*
 import com.osm.station.net.Api
 import com.osm.station.net.RetrofitManager
-import com.osm.station.room.PicConvert
-import com.osm.station.room.SQLConstant
 import com.osm.station.room.SQLConstant.KEY_DATA
-import com.osm.station.room.SQLConstant.STATION_KEY_FLAG
 import com.osm.station.room.SQLConstant.STATION_KEY_FLAG_INT
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
@@ -83,12 +76,12 @@ class StationActivity : BaseActivity<StationViewModel, ActivityAddBinding>() {
         if (mData == null) {
             mData = StationBean()
         }
-        if (flag && mData != null) {
+        if (flag) {
             showData(mData!!)
-            mViewBinding?.tvOk?.visibility = View.GONE
+            mViewBinding?.tvOk?.text = "修改"
             mViewBinding?.tvTitle?.text = "查看信息"
         } else {
-            mViewBinding?.tvOk?.visibility = View.VISIBLE
+            mViewBinding?.tvOk?.text = "保存"
             mViewBinding?.tvTitle?.text = "添加信息"
         }
     }
@@ -177,8 +170,11 @@ class StationActivity : BaseActivity<StationViewModel, ActivityAddBinding>() {
         }
     }
 
+
+
+
     /**
-     * 保存到数据库
+     * 读取页面的信息
      */
     private fun submitToDb() {
         mViewBinding?.apply {
@@ -199,10 +195,58 @@ class StationActivity : BaseActivity<StationViewModel, ActivityAddBinding>() {
             //备注
             mData?.remark = etRemark.text.toString()
         }
-        //上传数据
-        uploadData(mData)
+        if(flag){
+            //修改数据
+            modifyToDb(mData)
+        }else{
+            //上传数据
+            uploadData(mData)
+        }
+
     }
 
+    /**
+     * 修改数据(修改并保存)
+     */
+    private fun modifyToDb(mData: StationBean?)  {
+        modifyToServer(mData,::onModifySuccess,::onModifyError)
+    }
+
+    private fun onModifySuccess(mData: StationBean?,t:LCObject){
+        t.saveInBackground().subscribe(object : Observer<LCObject> {
+            override fun onSubscribe(d: Disposable) {
+
+            }
+
+            override fun onNext(t: LCObject) {
+                //update本地数据
+                updateRoom(this@StationActivity,mData)
+                Toast.makeText(this@StationActivity,"数据更新成功", Toast.LENGTH_LONG).show()
+                finish()
+            }
+
+            override fun onError(e: Throwable) {
+                Toast.makeText(this@StationActivity,"数据更新失败", Toast.LENGTH_LONG).show()
+                finish()
+            }
+
+            override fun onComplete() {
+            }
+
+        })
+    }
+
+    private fun onModifyError(){
+        Toast.makeText(this@StationActivity,"数据更新失败", Toast.LENGTH_LONG).show()
+        finish()
+    }
+
+
+
+
+    /**
+     * 添加数据
+     */
     private fun uploadData(mData: StationBean?) {
         submitToServer(mData,::onSuccess,::onError)
     }

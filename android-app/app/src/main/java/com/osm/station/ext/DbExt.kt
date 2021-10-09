@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LifecycleOwner
 import cn.leancloud.LCObject
+import cn.leancloud.LCQuery
 import com.osm.station.bean.StationBean
 import com.osm.station.room.AppDataBase
 import com.osm.station.room.PicConvert
@@ -137,4 +138,44 @@ fun AppCompatActivity.submitToServer(
 
     })
 
+}
+
+/**
+ * 修改数据到server端,并保存
+ */
+fun AppCompatActivity.modifyToServer(
+    mData: StationBean?,
+    success: ((mData: StationBean?,t:LCObject) -> Unit),
+    error: (() -> Unit)
+){
+    val query = LCQuery<LCObject>(SQLConstant.LC_OBJECT_NAME)
+    query.getInBackground(mData?.objectId).subscribe(object : Observer<LCObject> {
+        override fun onSubscribe(d: Disposable) {
+        }
+
+        override fun onNext(uploadData: LCObject) {
+            //为属性赋值
+            uploadData.put(SQLConstant.TABLE_KEY_TYPE, mData?.keyType)
+            uploadData.put(SQLConstant.TABLE_NAME, mData?.name)
+            uploadData.put(SQLConstant.TABLE_TYPE, mData?.type)
+            uploadData.put(SQLConstant.TABLE_TRACK_ID, mData?.trackNum)
+            uploadData.put(SQLConstant.TABLE_POSITION, mData?.position)
+            uploadData.put(SQLConstant.TABLE_MILEAGE, mData?.mileage)
+            uploadData.put(SQLConstant.TABLE_REMARK, mData?.remark)
+            uploadData.put(SQLConstant.TABLE_STATION_NAME, mData?.stationName)
+            uploadData.put(
+                SQLConstant.TABLE_IMG,
+                PicConvert().storePicToString(mData?.picImg ?: arrayListOf())
+            )
+            success.invoke(mData,uploadData)
+        }
+
+        override fun onError(e: Throwable) {
+            error.invoke()
+        }
+
+        override fun onComplete() {
+        }
+
+    })
 }
