@@ -15,12 +15,15 @@ class TaskEdit extends React.Component {
     super(props);
 
     this.state = {
+      fileList: [],
       loading: false,
     };
 
     this.formRef = React.createRef();
 
     this.back = this.back.bind(this);
+    this.changeFileList = this.changeFileList.bind(this);
+    this.uploadFile = this.uploadFile.bind(this);
     this.uploadData = this.uploadData.bind(this);
   }
 
@@ -48,8 +51,23 @@ class TaskEdit extends React.Component {
     this.setState({ loading: true });
   }
 
+  changeFileList(fileList) {
+    console.log(fileList);
+  }
+
+  uploadFile(file) {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    return new Promise((resolve, reject) => {
+      reader.onload = (e) => {
+        console.log(e.target.result);
+        resolve({ url: e.target.result });
+      };
+    });
+  }
+
   render() {
-    const { loading } = this.state;
+    const { loading, fileList } = this.state;
 
     return (
       <>
@@ -102,7 +120,11 @@ class TaskEdit extends React.Component {
           </Form.Item>
 
           <Form.Item name="images" label="图片">
-            <ImageUploader />
+            <ImageUploader
+              value={fileList}
+              onChange={this.changeFileList}
+              upload={this.uploadFile}
+            />
           </Form.Item>
         </Form>
 
