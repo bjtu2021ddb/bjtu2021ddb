@@ -1,6 +1,8 @@
 import AV from 'leancloud-storage/live-query';
+import { Route } from 'react-router-dom';
 import './App.css';
-import Home from './pages/Home';
+import routes from './routes';
+
 AV.init({
   appId: 'D2Lp5opsBuU0pViwGNsM9I88-gzGzoHsz',
   appKey: 'sTjoMU6UUPTSV127KrTJcC0Q',
@@ -9,9 +11,16 @@ AV.init({
 
 function App() {
   return (
-    <div className="App">
-      <Home />
-    </div>
+    <>
+      {routes.map((route) => (
+        <Route
+          key={route.key}
+          path={route.path}
+          component={route.component}
+          exact={route.exact}
+        ></Route>
+      ))}
+    </>
   );
 }
 
