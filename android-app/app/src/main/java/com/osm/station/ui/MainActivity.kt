@@ -66,6 +66,7 @@ class MainActivity : BaseActivity<StationViewModel, ActivityMainBinding>() {
             it?.onSyncClick = {
                 //获取本地数据库数据
                 queryRoomBySync(this, ::getSyncData)
+//                showDialog()
             }
             it?.onTitleClick = {
 //                RoomExplorer.show(this, AppDataBase::class.java, "station_db")
@@ -86,6 +87,11 @@ class MainActivity : BaseActivity<StationViewModel, ActivityMainBinding>() {
     }
 
     private fun getSyncData(list: List<StationEntity>) {
+        if(list.isEmpty()){
+            Toast.makeText(this,"已是最新数据", Toast.LENGTH_LONG).show()
+            dismissDialog()
+            return
+        }
         list.forEach {
             submitToServer(SQLConstant.convertStationEntity(it),::onSuccess,::onError)
         }
@@ -94,9 +100,12 @@ class MainActivity : BaseActivity<StationViewModel, ActivityMainBinding>() {
     private fun onSuccess(mData: StationBean?){
         deleteRoom(this,mData)
         refreshData()
+        dismissDialog()
+        Toast.makeText(this,"同步成功", Toast.LENGTH_LONG).show()
     }
 
     private fun onError(){
+        dismissDialog()
         Toast.makeText(this,"同步失败", Toast.LENGTH_LONG).show()
     }
 

@@ -1,5 +1,6 @@
 package com.osm.station.base
 
+import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
@@ -7,7 +8,8 @@ import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
-import org.greenrobot.eventbus.EventBus
+import com.osm.station.R
+import com.osm.station.widget.LoadingDialog
 import java.lang.reflect.ParameterizedType
 
 /**
@@ -19,11 +21,14 @@ abstract class BaseActivity<VM : ViewModel, VB : ViewBinding> : AppCompatActivit
     protected var mViewBinding: VB? = null
     protected var mViewModel: VM? = null
 
+    private var loadingDialog: LoadingDialog? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initViewModel(this)
         initViewBindingLayout(this)
         startObserve()
+        loadingDialog = LoadingDialog(this, R.style.Loading)
         initView()
         initData()
     }
@@ -67,6 +72,14 @@ abstract class BaseActivity<VM : ViewModel, VB : ViewBinding> : AppCompatActivit
 
     override fun onDestroy() {
         super.onDestroy()
+    }
+
+    fun showDialog(){
+        loadingDialog?.showDialog()
+    }
+
+    fun dismissDialog(){
+        loadingDialog?.dismiss()
     }
 
     abstract fun initView()

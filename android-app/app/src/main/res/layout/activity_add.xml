@@ -132,8 +132,7 @@
 
                     <EditText
                         android:id="@+id/etPosition"
-                        style="@style/AddEditorStyle"
-                        android:inputType="number"/>
+                        style="@style/AddEditorStyle" />
                 </LinearLayout>
                 <!--里程-->
                 <LinearLayout style="@style/AddLlContainer">
