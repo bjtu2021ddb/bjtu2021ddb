@@ -28,6 +28,9 @@ interface StationDao {
     @Query("select * from station_db where isSyncData = :isSync order by _id desc")
     fun queryDataByIsSyncData(isSync: Int): LiveData<List<StationEntity>>
 
+    @Query("select _id from station_db where objectId = :objectId")
+    fun queryIdByObjectId(objectId:String):LiveData<Int>
+
 
     @Delete
     fun deleteItem(data: StationEntity)

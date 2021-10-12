@@ -3,6 +3,7 @@ package com.osm.station.ui
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import cn.leancloud.LCObject
@@ -65,8 +66,8 @@ class MainActivity : BaseActivity<StationViewModel, ActivityMainBinding>() {
 
             it?.onSyncClick = {
                 //获取本地数据库数据
+                showDialog()
                 queryRoomBySync(this, ::getSyncData)
-//                showDialog()
             }
             it?.onTitleClick = {
 //                RoomExplorer.show(this, AppDataBase::class.java, "station_db")
@@ -84,12 +85,16 @@ class MainActivity : BaseActivity<StationViewModel, ActivityMainBinding>() {
             mLocalData.add(SQLConstant.convertStationEntity(it))
         }
         mAdapter?.insertLocalData(mLocalData)
+        if(list.isNotEmpty()){
+            mViewBinding?.title?.setDotState(View.VISIBLE)
+        }
     }
 
     private fun getSyncData(list: List<StationEntity>) {
         if(list.isEmpty()){
             Toast.makeText(this,"已是最新数据", Toast.LENGTH_LONG).show()
             dismissDialog()
+            mViewBinding?.title?.setDotState(View.GONE)
             return
         }
         list.forEach {
@@ -97,16 +102,38 @@ class MainActivity : BaseActivity<StationViewModel, ActivityMainBinding>() {
         }
     }
 
-    private fun onSuccess(mData: StationBean?){
-        deleteRoom(this,mData)
-        refreshData()
-        dismissDialog()
-        Toast.makeText(this,"同步成功", Toast.LENGTH_LONG).show()
+    private fun onSuccess(mData: StationBean?,t:LCObject){
+        t.saveInBackground().subscribe(object : Observer<LCObject> {
+            override fun onSubscribe(d: Disposable) {
+
+            }
+
+            override fun onNext(t: LCObject) {
+                //update本地数据
+                mData?.isSyncData = true
+                updateRoom(this@MainActivity,mData)
+                refreshData(true)
+                dismissDialog()
+                Toast.makeText(this@MainActivity,"同步成功", Toast.LENGTH_LONG).show()
+                mViewBinding?.title?.setDotState(View.GONE)
+            }
+
+            override fun onError(e: Throwable) {
+                updateRoom(this@MainActivity,mData)
+                Toast.makeText(this@MainActivity,"更新失败,已保存本地", Toast.LENGTH_LONG).show()
+                finish()
+            }
+
+            override fun onComplete() {
+            }
+
+        })
     }
 
     private fun onError(){
         dismissDialog()
         Toast.makeText(this,"同步失败", Toast.LENGTH_LONG).show()
+        mViewBinding?.title?.setDotState(View.VISIBLE)
     }
 
     /**
@@ -195,7 +222,10 @@ class MainActivity : BaseActivity<StationViewModel, ActivityMainBinding>() {
         }
     }
 
-    private fun refreshData() {
+    private fun refreshData(flag:Boolean? = false) {
+        if (flag == true){
+            mViewBinding?.refreshLayout?.autoRefresh()
+        }
         isRefresh = true
         PAGE_INDEX = 1
         mAdapter?.clearData()

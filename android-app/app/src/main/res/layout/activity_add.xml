@@ -132,7 +132,8 @@
 
                     <EditText
                         android:id="@+id/etPosition"
-                        style="@style/AddEditorStyle" />
+                        style="@style/AddEditorStyle"
+                        android:inputType="number"/>
                 </LinearLayout>
                 <!--里程-->
                 <LinearLayout style="@style/AddLlContainer">
@@ -144,7 +145,7 @@
                     <EditText
                         android:id="@+id/etMileage"
                         style="@style/AddEditorStyle"
-                        android:inputType="number"/>
+                        />
                 </LinearLayout>
                 <!--备注-->
                 <LinearLayout style="@style/AddLlContainer">

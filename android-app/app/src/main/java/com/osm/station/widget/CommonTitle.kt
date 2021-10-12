@@ -16,6 +16,7 @@ import com.osm.station.R
 class CommonTitle : LinearLayout {
 
     var addBtn: ImageView? = null
+    var ivDot: ImageView? = null
     var syncBtn: ImageView? = null
     var title: TextView? = null
     var onAddClick: (() -> Unit)? = null
@@ -42,6 +43,7 @@ class CommonTitle : LinearLayout {
     private fun initView(context: Context?) {
         val view = LayoutInflater.from(context).inflate(R.layout.view_title, null)
         addBtn = view.findViewById(R.id.add)
+        ivDot = view.findViewById(R.id.dot)
         syncBtn = view.findViewById(R.id.sync)
         title = view.findViewById(R.id.title)
         val param = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
@@ -57,6 +59,10 @@ class CommonTitle : LinearLayout {
         title?.setOnClickListener {
             onTitleClick?.invoke()
         }
+    }
+
+    fun setDotState(state:Int){
+        ivDot?.visibility = state
     }
 
 }

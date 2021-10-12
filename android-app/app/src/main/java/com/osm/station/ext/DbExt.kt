@@ -12,6 +12,7 @@ import com.osm.station.room.SQLConstant
 import com.osm.station.room.StationEntity
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
+import kotlin.reflect.KFunction1
 
 /**
  * @des:
@@ -52,6 +53,23 @@ fun AppCompatActivity.queryRoomBySync(
         ?.stationDao()
         ?.queryDataByIsSyncData(0)
         ?.observe(context as LifecycleOwner, {
+            onResult.invoke(it)
+        })
+}
+
+/**
+ * 通过isSyncData数据条数判断是否上传
+ */
+fun AppCompatActivity.queryIDByObjectID(
+    context: Context,
+    data:StationBean?,
+    onResult: ((list: Int) -> Unit)
+) {
+    AppDataBase.getDataBase(context)
+        ?.stationDao()
+        ?.queryIdByObjectId(data?.objectId?:"")
+        ?.observe(context as LifecycleOwner,{
+
             onResult.invoke(it)
         })
 }
@@ -103,40 +121,44 @@ fun AppCompatActivity.deleteRoom(context: Context, mData: StationBean?) {
  */
 fun AppCompatActivity.submitToServer(
     mData: StationBean?,
-    success: ((mData: StationBean?) -> Unit),
+    success: ((mData: StationBean?,t:LCObject) -> Unit),
     error: (() -> Unit)
 ) {
-    val uploadData = LCObject(SQLConstant.LC_OBJECT_NAME)
-    //为属性赋值
-    uploadData.put(SQLConstant.TABLE_KEY_TYPE, mData?.keyType)
-    uploadData.put(SQLConstant.TABLE_NAME, mData?.name)
-    uploadData.put(SQLConstant.TABLE_TYPE, mData?.type)
-    uploadData.put(SQLConstant.TABLE_TRACK_ID, mData?.trackNum)
-    uploadData.put(SQLConstant.TABLE_POSITION, mData?.position)
-    uploadData.put(SQLConstant.TABLE_MILEAGE, mData?.mileage)
-    uploadData.put(SQLConstant.TABLE_REMARK, mData?.remark)
-    uploadData.put(SQLConstant.TABLE_STATION_NAME, mData?.stationName)
-    uploadData.put(
-        SQLConstant.TABLE_IMG,
-        PicConvert().storePicToString(mData?.picImg ?: arrayListOf())
-    )
-    //将对象保存到云端
-    uploadData.saveInBackground().subscribe(object : Observer<LCObject> {
-        override fun onSubscribe(d: Disposable) {
-        }
+    if(mData?.objectId?.isEmpty() != true){
+        modifyToServer(mData,success,error)
+    }else{
+        val uploadData = LCObject(SQLConstant.LC_OBJECT_NAME)
+        //为属性赋值
+        uploadData.put(SQLConstant.TABLE_KEY_TYPE, mData.keyType)
+        uploadData.put(SQLConstant.TABLE_NAME, mData.name)
+        uploadData.put(SQLConstant.TABLE_TYPE, mData.type)
+        uploadData.put(SQLConstant.TABLE_TRACK_ID, mData.trackNum)
+        uploadData.put(SQLConstant.TABLE_POSITION, mData.position)
+        uploadData.put(SQLConstant.TABLE_MILEAGE, mData.mileage)
+        uploadData.put(SQLConstant.TABLE_REMARK, mData.remark)
+        uploadData.put(SQLConstant.TABLE_STATION_NAME, mData.stationName)
+        uploadData.put(
+            SQLConstant.TABLE_IMG,
+            PicConvert().storePicToString(mData.picImg)
+        )
+        //将对象保存到云端
+        uploadData.saveInBackground().subscribe(object : Observer<LCObject> {
+            override fun onSubscribe(d: Disposable) {
+            }
 
-        override fun onNext(t: LCObject) {
-            success.invoke(mData)
-        }
+            override fun onNext(t: LCObject) {
+                success.invoke(mData,t)
+            }
 
-        override fun onError(e: Throwable) {
-            error.invoke()
-        }
+            override fun onError(e: Throwable) {
+                error.invoke()
+            }
 
-        override fun onComplete() {
-        }
+            override fun onComplete() {
+            }
 
-    })
+        })
+    }
 
 }
 

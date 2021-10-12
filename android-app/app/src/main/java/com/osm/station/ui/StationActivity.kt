@@ -71,7 +71,6 @@ class StationActivity : BaseActivity<StationViewModel, ActivityAddBinding>() {
     override fun initData() {
         mData = intent.extras?.getSerializable(KEY_DATA) as StationBean?
         flagInt = intent.extras?.getInt(STATION_KEY_FLAG_INT) ?: 0
-
         flag = flagInt == 1
         if (mData == null) {
             mData = StationBean()
@@ -209,6 +208,7 @@ class StationActivity : BaseActivity<StationViewModel, ActivityAddBinding>() {
      * 修改数据(修改并保存)
      */
     private fun modifyToDb(mData: StationBean?)  {
+        mData?.isSyncData = false
         modifyToServer(mData,::onModifySuccess,::onModifyError)
     }
 
@@ -220,13 +220,15 @@ class StationActivity : BaseActivity<StationViewModel, ActivityAddBinding>() {
 
             override fun onNext(t: LCObject) {
                 //update本地数据
+                mData?.isSyncData = true
                 updateRoom(this@StationActivity,mData)
                 Toast.makeText(this@StationActivity,"数据更新成功", Toast.LENGTH_LONG).show()
                 finish()
             }
 
             override fun onError(e: Throwable) {
-                Toast.makeText(this@StationActivity,"数据更新失败", Toast.LENGTH_LONG).show()
+                updateRoom(this@StationActivity,mData)
+                Toast.makeText(this@StationActivity,"更新失败,已保存本地", Toast.LENGTH_LONG).show()
                 finish()
             }
 
@@ -237,8 +239,8 @@ class StationActivity : BaseActivity<StationViewModel, ActivityAddBinding>() {
     }
 
     private fun onModifyError(){
-
-        Toast.makeText(this@StationActivity,"数据更新失败", Toast.LENGTH_LONG).show()
+        updateRoom(this@StationActivity,mData)
+        Toast.makeText(this@StationActivity,"更新失败,已保存本地", Toast.LENGTH_LONG).show()
         finish()
     }
 
@@ -252,7 +254,7 @@ class StationActivity : BaseActivity<StationViewModel, ActivityAddBinding>() {
         submitToServer(mData,::onSuccess,::onError)
     }
 
-    private fun onSuccess(mData: StationBean?){
+    private fun onSuccess(mData: StationBean?,t:LCObject){
         Toast.makeText(this@StationActivity,"数据上传服务器成功", Toast.LENGTH_LONG).show()
         finish()
     }
@@ -267,6 +269,10 @@ class StationActivity : BaseActivity<StationViewModel, ActivityAddBinding>() {
      * 查看详情
      */
     private fun showData(mData: StationBean) {
+        //修改的情况 设置下id
+        if(mData.objectId?.isEmpty() != true){
+            queryIDByObjectID(this,mData,::getID)
+        }
         mViewBinding?.apply {
             etStationName.setText(mData.stationName)
             etKeyType.setText(mData.keyType)
@@ -280,5 +286,9 @@ class StationActivity : BaseActivity<StationViewModel, ActivityAddBinding>() {
                 showImg(mData.picImg[0])
             }
         }
+    }
+
+    private fun getID(id: Int){
+        this.mData?.id = id
     }
 }
