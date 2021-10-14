@@ -9,7 +9,7 @@ const routes = [
   },
   {
     key: 'TaskEdit',
-    path: '/task/:objectId',
+    path: '/task/:_id',
     component: TaskEdit,
   },
 ];

@@ -5,10 +5,11 @@ import {
   NavBar,
   TextArea,
 } from 'antd-mobile';
-import AV from 'leancloud-storage/live-query';
+import PouchDB from 'pouchdb';
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { Loading, UploadButton } from '../../components';
+import { dbName, allDocs } from '../../KeyPoints';
 
 class TaskEdit extends React.Component {
   constructor(props) {
@@ -20,28 +21,36 @@ class TaskEdit extends React.Component {
     };
 
     this.formRef = React.createRef();
+    this.dbRef = React.createRef();
+    this.dbRef.current = new PouchDB(dbName);
 
     this.back = this.back.bind(this);
-    this.changeFileList = this.changeFileList.bind(this);
     this.uploadFile = this.uploadFile.bind(this);
     this.uploadData = this.uploadData.bind(this);
   }
 
   componentDidMount() {
-    const { objectId } = this.props.match.params;
-
-    const query = new AV.Query('KeyPoint');
-    query.equalTo('objectId', objectId);
-    query.find().then((result) => {
-      const data = result.map((value) => value.toFullJSON());
-
-      console.log(data[0]);
-      this.formRef.current?.setFieldsValue(data[0]);
-    });
+    const { _id } = this.props.match.params;
+    this.refresh(_id);
+  }
+  componentWillUnmount() {
+    this.dbRef.current.close();
   }
 
   back() {
     this.props.history.go(-1);
+  }
+
+  /**
+   * 刷新数据
+   */
+  refresh(_id) {
+    allDocs(this.dbRef.current)
+      .then((docs) => {
+        const row = docs.rows.find((row) => row.doc._id === _id);
+        this.formRef.current?.setFieldsValue(row.doc);
+      })
+      .catch((err) => {});
   }
 
   /**
@@ -56,14 +65,7 @@ class TaskEdit extends React.Component {
   }
 
   uploadFile(file) {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    return new Promise((resolve, reject) => {
-      reader.onload = (e) => {
-        console.log(e.target.result);
-        resolve({ url: e.target.result });
-      };
-    });
+    return { url: URL.createObjectURL(file) };
   }
 
   render() {
@@ -122,7 +124,6 @@ class TaskEdit extends React.Component {
           <Form.Item name="images" label="图片">
             <ImageUploader
               value={fileList}
-              onChange={this.changeFileList}
               upload={this.uploadFile}
             />
           </Form.Item>

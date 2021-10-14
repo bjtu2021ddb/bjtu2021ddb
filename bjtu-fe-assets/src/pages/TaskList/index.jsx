@@ -1,19 +1,23 @@
 import { Empty, List, NavBar, PullToRefresh } from 'antd-mobile';
-import AV from 'leancloud-storage/live-query';
+import PouchDB from 'pouchdb';
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import { UploadButton, Loading } from '../../components';
+import { Loading, UploadButton } from '../../components';
+import { allDocs, bulkDocs, dbName } from '../../KeyPoints';
 import { showText } from '../utils';
 
 class TaskList extends React.Component {
   constructor(props) {
     super(props);
 
+    this.dbRef = React.createRef();
+
     this.state = {
       data: [],
       loading: false,
     };
 
+    this.dbRef.current = new PouchDB(dbName);
     this.uploadData = this.uploadData.bind(this);
     this.refreshList = this.refreshList.bind(this);
 
@@ -24,6 +28,10 @@ class TaskList extends React.Component {
     this.refreshList();
   }
 
+  componentWillUnmount() {
+    this.dbRef.current.close();
+  }
+
   /**
    * 上传同步数据
    */
@@ -32,18 +40,32 @@ class TaskList extends React.Component {
   }
 
   itemClick(item) {
-    this.props.history.push(`/task/${item.objectId}`);
+    this.props.history.push(`/task/${item._id}`);
   }
 
   /**
    * 刷新数据
    */
   refreshList() {
-    const query = new AV.Query('KeyPoint');
-    query.find().then((result) => {
-      const data = result.map((value) => value.toFullJSON());
-      this.setState({ data });
-    });
+    allDocs(this.dbRef.current)
+      .then((docs) => {
+        if (docs.rows.length === 0) {
+          bulkDocs(this.dbRef.current).then((result) => {
+            allDocs(this.dbRef.current).then((results) => {
+              const data = results.rows
+                .map((row) => row.doc)
+                .sort((a, b) => a.key_index - b.key_index);
+              this.setState({ data });
+            });
+          });
+        } else {
+          const data = docs.rows
+            .map((row) => row.doc)
+            .sort((a, b) => a.key_index - b.key_index);
+          this.setState({ data });
+        }
+      })
+      .catch((err) => console.error(err));
   }
 
   render() {
@@ -66,7 +88,7 @@ class TaskList extends React.Component {
               {data.map((item) => (
                 <List.Item
                   onClick={(e) => this.itemClick(item)}
-                  key={item.objectId}
+                  key={item._id}
                   prefix={item.key_index}
                   title={`名称: ${showText(item.name)} (${showText(
                     item.remark,
