@@ -1,3 +1,5 @@
+import PouchDB from 'pouchdb';
+
 const KeyPoints = [
   {
     //createdAt: '2021-10-10T06:45:47.245Z',
@@ -13168,20 +13170,38 @@ const KeyPoints = [
   },
 ];
 
-export const dbName = 'KeyPoints';
+const dbName = 'KeyPoints';
+const NOOP = () => {};
 
-export const allDocs = (db) => {
-  return db.allDocs({ include_docs: true, attachments: true });
+let db = null;
+
+export const createDB = () => {
+  db = new PouchDB(dbName);
 };
 
-export const getOne = (db, id) => {
-  return db.get(id);
+export const closeDB = () => {
+  db.close();
 };
 
-export const putOne = (db, doc) => {
-  return db.put(doc);
+export const allDocs = (cb = NOOP) => {
+  return db.allDocs(
+    { include_docs: true, attachments: true },
+    (err, docs) => {
+      if (!err) cb(docs);
+    },
+  );
 };
 
-export const bulkDocs = (db) => {
+export const bulkDocs = () => {
   return db.bulkDocs(KeyPoints);
+};
+
+export const getOne = (id, cb = NOOP) => {
+  return db.get(id, (err, doc) => {
+    if (!err) cb(doc);
+  });
+};
+
+export const putOne = (doc) => {
+  return db.put(doc);
 };

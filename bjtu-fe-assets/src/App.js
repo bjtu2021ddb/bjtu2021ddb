@@ -1,27 +1,33 @@
-import AV from 'leancloud-storage/live-query';
+import React from 'react';
 import { Route } from 'react-router-dom';
 import './App.css';
 import routes from './routes';
+import { createDB, closeDB } from './KeyPoints';
 
-AV.init({
-  appId: 'D2Lp5opsBuU0pViwGNsM9I88-gzGzoHsz',
-  appKey: 'sTjoMU6UUPTSV127KrTJcC0Q',
-  serverURL: 'https://d2lp5ops.lc-cn-n1-shared.com',
-});
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    createDB();
+  }
 
-function App() {
-  return (
-    <>
-      {routes.map((route) => (
-        <Route
-          key={route.key}
-          path={route.path}
-          component={route.component}
-          exact={route.exact}
-        ></Route>
-      ))}
-    </>
-  );
+  componentWillUnmount() {
+    closeDB();
+  }
+
+  render() {
+    return (
+      <>
+        {routes.map((route) => (
+          <Route
+            key={route.key}
+            path={route.path}
+            component={route.component}
+            exact={route.exact}
+          ></Route>
+        ))}
+      </>
+    );
+  }
 }
 
 export default App;

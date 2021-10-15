@@ -1,23 +1,19 @@
 import { Empty, List, NavBar, PullToRefresh } from 'antd-mobile';
-import PouchDB from 'pouchdb';
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { Loading, UploadButton } from '../../components';
-import { allDocs, bulkDocs, dbName } from '../../KeyPoints';
+import { allDocs, bulkDocs } from '../../KeyPoints';
 import { showText } from '../utils';
 
 class TaskList extends React.Component {
   constructor(props) {
     super(props);
 
-    this.dbRef = React.createRef();
-
     this.state = {
       data: [],
       loading: false,
     };
 
-    this.dbRef.current = new PouchDB(dbName);
     this.uploadData = this.uploadData.bind(this);
     this.refreshList = this.refreshList.bind(this);
 
@@ -27,10 +23,6 @@ class TaskList extends React.Component {
   componentDidMount() {
     this.refreshList();
   }
-
-  // componentWillUnmount() {
-  //   this.dbRef.current.close();
-  // }
 
   /**
    * 上传同步数据
@@ -47,25 +39,25 @@ class TaskList extends React.Component {
    * 刷新数据
    */
   refreshList() {
-    allDocs(this.dbRef.current)
-      .then((docs) => {
-        if (docs.rows.length === 0) {
-          bulkDocs(this.dbRef.current).then((result) => {
-            allDocs(this.dbRef.current).then((results) => {
-              const data = results.rows
-                .map((row) => row.doc)
-                .sort((a, b) => a.key_index - b.key_index);
-              this.setState({ data });
-            });
+    allDocs((docs) => {
+      if (docs.rows.length === 0) {
+        bulkDocs((result) => {
+          allDocs((results) => {
+            this.setData(results);
           });
-        } else {
-          const data = docs.rows
-            .map((row) => row.doc)
-            .sort((a, b) => a.key_index - b.key_index);
-          this.setState({ data });
-        }
-      })
-      .catch((err) => console.error(err));
+        });
+      } else {
+        this.setData(docs);
+      }
+    });
+  }
+
+  setData(docs) {
+    const data = docs.rows
+      .map((row) => row.doc)
+      .sort((a, b) => a.key_index - b.key_index);
+
+    this.setState({ data });
   }
 
   render() {

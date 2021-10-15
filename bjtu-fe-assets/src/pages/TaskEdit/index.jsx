@@ -1,16 +1,15 @@
 import {
+  Dialog,
   Form,
   ImageUploader,
   Input,
   NavBar,
   TextArea,
-  Dialog,
 } from 'antd-mobile';
-import PouchDB from 'pouchdb';
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import { Loading, UploadButton } from '../../components';
-import { dbName, getOne } from '../../KeyPoints';
+import { Loading } from '../../components';
+import { getOne } from '../../KeyPoints';
 
 class TaskEdit extends React.Component {
   constructor(props) {
@@ -22,8 +21,6 @@ class TaskEdit extends React.Component {
     };
 
     this.formRef = React.createRef();
-    this.dbRef = React.createRef();
-    this.dbRef.current = new PouchDB(dbName);
 
     this.back = this.back.bind(this);
     this.uploadFile = this.uploadFile.bind(this);
@@ -35,10 +32,6 @@ class TaskEdit extends React.Component {
     this.refresh(_id);
   }
 
-  // componentWillUnmount() {
-  //   this.dbRef.current.close();
-  // }
-
   back() {
     this.props.history.go(-1);
   }
@@ -47,12 +40,9 @@ class TaskEdit extends React.Component {
    * 刷新数据
    */
   refresh(_id) {
-    getOne(this.dbRef.current, _id)
-      .then((doc) => {
-        console.log(doc);
-        this.formRef.current?.setFieldsValue(doc);
-      })
-      .catch((err) => {});
+    getOne(_id, (doc) => {
+      this.formRef.current?.setFieldsValue(doc);
+    });
   }
 
   changeFileList(fileList) {
@@ -126,7 +116,6 @@ class TaskEdit extends React.Component {
               value={fileList}
               onChange={this.changeFileList}
               upload={this.uploadFile}
-              beforeUploadFile={this.beforeUploadFile}
               onDelete={(file) => {
                 return Dialog.confirm({
                   content: '是否确认删除',
