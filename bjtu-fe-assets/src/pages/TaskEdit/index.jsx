@@ -4,12 +4,13 @@ import {
   Input,
   NavBar,
   TextArea,
+  Dialog,
 } from 'antd-mobile';
 import PouchDB from 'pouchdb';
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { Loading, UploadButton } from '../../components';
-import { dbName, allDocs } from '../../KeyPoints';
+import { dbName, getOne } from '../../KeyPoints';
 
 class TaskEdit extends React.Component {
   constructor(props) {
@@ -26,13 +27,14 @@ class TaskEdit extends React.Component {
 
     this.back = this.back.bind(this);
     this.uploadFile = this.uploadFile.bind(this);
-    this.uploadData = this.uploadData.bind(this);
+    this.changeFileList = this.changeFileList.bind(this);
   }
 
   componentDidMount() {
     const { _id } = this.props.match.params;
     this.refresh(_id);
   }
+
   componentWillUnmount() {
     this.dbRef.current.close();
   }
@@ -45,26 +47,26 @@ class TaskEdit extends React.Component {
    * 刷新数据
    */
   refresh(_id) {
-    allDocs(this.dbRef.current)
-      .then((docs) => {
-        const row = docs.rows.find((row) => row.doc._id === _id);
-        this.formRef.current?.setFieldsValue(row.doc);
+    getOne(this.dbRef.current, _id)
+      .then((doc) => {
+        this.formRef.current?.setFieldsValue(doc);
       })
       .catch((err) => {});
   }
 
-  /**
-   * 上传同步数据
-   */
-  uploadData() {
-    this.setState({ loading: true });
-  }
-
   changeFileList(fileList) {
-    console.log(fileList);
+    this.setState({ fileList });
   }
 
   uploadFile(file) {
+    console.log('uplaod file', file);
+// lastModified: 1632085881000
+// lastModifiedDate: Mon Sep 20 2021 05:11:21 GMT+0800 (中国标准时间) {}
+// name: "1.png"
+// size: 91861
+// type: "image/png"
+// webkitRelativePath: ""
+
     return { url: URL.createObjectURL(file) };
   }
 
@@ -73,11 +75,7 @@ class TaskEdit extends React.Component {
 
     return (
       <>
-        <NavBar
-          className="nav-bar"
-          onBack={this.back}
-          right={<UploadButton upload={this.uploadData} />}
-        >
+        <NavBar className="nav-bar" onBack={this.back}>
           修改关键点
         </NavBar>
 
@@ -123,8 +121,17 @@ class TaskEdit extends React.Component {
 
           <Form.Item name="images" label="图片">
             <ImageUploader
+              multiple
               value={fileList}
+              onChange={this.changeFileList}
               upload={this.uploadFile}
+              beforeUploadFile={this.beforeUploadFile}
+              onDelete={(file) => {
+                return Dialog.confirm({
+                  content: '是否确认删除',
+                  onConfirm: () => {},
+                });
+              }}
             />
           </Form.Item>
         </Form>

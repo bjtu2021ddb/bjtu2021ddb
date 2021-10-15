@@ -13174,6 +13174,14 @@ export const allDocs = (db) => {
   return db.allDocs({ include_docs: true, attachments: true });
 };
 
+export const getOne = (db, id) => {
+  return db.get(id);
+};
+
+export const putOne = (db, doc) => {
+  return db.put(doc);
+};
+
 export const bulkDocs = (db) => {
   return db.bulkDocs(KeyPoints);
 };
