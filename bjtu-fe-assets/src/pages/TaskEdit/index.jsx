@@ -35,9 +35,9 @@ class TaskEdit extends React.Component {
     this.refresh(_id);
   }
 
-  componentWillUnmount() {
-    this.dbRef.current.close();
-  }
+  // componentWillUnmount() {
+  //   this.dbRef.current.close();
+  // }
 
   back() {
     this.props.history.go(-1);
@@ -49,6 +49,7 @@ class TaskEdit extends React.Component {
   refresh(_id) {
     getOne(this.dbRef.current, _id)
       .then((doc) => {
+        console.log(doc);
         this.formRef.current?.setFieldsValue(doc);
       })
       .catch((err) => {});
@@ -60,12 +61,12 @@ class TaskEdit extends React.Component {
 
   uploadFile(file) {
     console.log('uplaod file', file);
-// lastModified: 1632085881000
-// lastModifiedDate: Mon Sep 20 2021 05:11:21 GMT+0800 (中国标准时间) {}
-// name: "1.png"
-// size: 91861
-// type: "image/png"
-// webkitRelativePath: ""
+    // lastModified: 1632085881000
+    // lastModifiedDate: Mon Sep 20 2021 05:11:21 GMT+0800 (中国标准时间) {}
+    // name: "1.png"
+    // size: 91861
+    // type: "image/png"
+    // webkitRelativePath: ""
 
     return { url: URL.createObjectURL(file) };
   }

@@ -28,9 +28,9 @@ class TaskList extends React.Component {
     this.refreshList();
   }
 
-  componentWillUnmount() {
-    this.dbRef.current.close();
-  }
+  // componentWillUnmount() {
+  //   this.dbRef.current.close();
+  // }
 
   /**
    * 上传同步数据
