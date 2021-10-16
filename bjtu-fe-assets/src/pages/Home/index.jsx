@@ -32,17 +32,9 @@ class Home extends React.Component {
       <>
         <div className="tab-content">{this.renderContent()}</div>
 
-        <TabBar
-          className="tab-bar"
-          activeKey={activeKey}
-          onChange={this.tabChange}
-        >
+        <TabBar className="tab-bar" activeKey={activeKey} onChange={this.tabChange}>
           {tabs.map((item) => (
-            <TabBar.Item
-              key={item.key}
-              icon={item.icon}
-              title={item.title}
-            />
+            <TabBar.Item key={item.key} icon={item.icon} title={item.title} />
           ))}
         </TabBar>
       </>

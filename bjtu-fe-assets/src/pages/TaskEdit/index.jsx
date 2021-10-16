@@ -1,13 +1,6 @@
 import { Loading } from '@/components';
 import { getOne } from '@/db';
-import {
-  Dialog,
-  Form,
-  ImageUploader,
-  Input,
-  NavBar,
-  TextArea,
-} from 'antd-mobile';
+import { Dialog, Form, ImageUploader, Input, NavBar, TextArea } from 'antd-mobile';
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 
@@ -70,11 +63,7 @@ class TaskEdit extends React.Component {
           修改关键点
         </NavBar>
 
-        <Form
-          ref={this.formRef}
-          layout="horizontal"
-          style={{ marginTop: '45px' }}
-        >
+        <Form ref={this.formRef} layout="horizontal" style={{ marginTop: '45px' }}>
           <Form.Item name="station_name" label="车站">
             <Input placeholder="请输入车站" />
           </Form.Item>
@@ -104,10 +93,7 @@ class TaskEdit extends React.Component {
           </Form.Item>
 
           <Form.Item name="remark" label="备注">
-            <TextArea
-              autoSize={{ minRows: 3, maxRows: 5 }}
-              placeholder="请输入备注"
-            />
+            <TextArea autoSize={{ minRows: 3, maxRows: 5 }} placeholder="请输入备注" />
           </Form.Item>
 
           <Form.Item name="images" label="图片">

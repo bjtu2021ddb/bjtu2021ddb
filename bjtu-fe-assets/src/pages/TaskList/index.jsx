@@ -53,9 +53,7 @@ class TaskList extends React.Component {
   }
 
   setData(docs) {
-    const data = docs.rows
-      .map((row) => row.doc)
-      .sort((a, b) => a.key_index - b.key_index);
+    const data = docs.rows.map((row) => row.doc).sort((a, b) => a.key_index - b.key_index);
 
     this.setState({ data });
   }
@@ -66,11 +64,7 @@ class TaskList extends React.Component {
 
     return (
       <>
-        <NavBar
-          className="nav-bar"
-          backArrow={false}
-          right={<UploadButton upload={this.uploadData} />}
-        >
+        <NavBar className="nav-bar" backArrow={false} right={<UploadButton upload={this.uploadData} />}>
           {title}
         </NavBar>
 
@@ -82,13 +76,9 @@ class TaskList extends React.Component {
                   onClick={(e) => this.itemClick(item)}
                   key={item._id}
                   prefix={item.key_index}
-                  title={`名称: ${showText(item.name)} (${showText(
-                    item.remark,
-                  )})`}
+                  title={`名称: ${showText(item.name)} (${showText(item.remark)})`}
                   extra={`${showText(item.key_point_type)}`}
-                  description={`车站: ${showText(
-                    item.station_name,
-                  )} 位置: ${showText(item.position)}CM`}
+                  description={`车站: ${showText(item.station_name)} 位置: ${showText(item.position)}CM`}
                   clickable
                 >
                   {`里程: ${item.mile}`}
@@ -96,11 +86,7 @@ class TaskList extends React.Component {
               ))}
             </List>
           ) : (
-            <Empty
-              style={{ padding: '128px 0' }}
-              imageStyle={{ width: 128 }}
-              description="暂无数据"
-            />
+            <Empty style={{ padding: '128px 0' }} imageStyle={{ width: 128 }} description="暂无数据" />
           )}
         </PullToRefresh>
 

@@ -15,12 +15,9 @@ export const closeDB = () => {
 };
 
 export const allDocs = (cb = NOOP) => {
-  return db.allDocs(
-    { include_docs: true, attachments: true },
-    (err, docs) => {
-      if (!err) cb(docs);
-    },
-  );
+  return db.allDocs({ include_docs: true, attachments: true }, (err, docs) => {
+    if (!err) cb(docs);
+  });
 };
 
 export const bulkDocs = () => {

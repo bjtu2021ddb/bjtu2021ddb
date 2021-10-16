@@ -18,12 +18,7 @@ class App extends React.Component {
     return (
       <>
         {routes.map((route) => (
-          <Route
-            key={route.key}
-            path={route.path}
-            component={route.component}
-            exact={route.exact}
-          ></Route>
+          <Route key={route.key} path={route.path} component={route.component} exact={route.exact}></Route>
         ))}
       </>
     );

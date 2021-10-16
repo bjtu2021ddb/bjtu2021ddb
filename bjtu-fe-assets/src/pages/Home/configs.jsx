@@ -1,10 +1,4 @@
-import {
-  AppOutline,
-  MessageFill,
-  MessageOutline,
-  UnorderedListOutline,
-  UserOutline,
-} from 'antd-mobile-icons';
+import { AppOutline, MessageFill, MessageOutline, UnorderedListOutline, UserOutline } from 'antd-mobile-icons';
 
 export const tabs = [
   {
