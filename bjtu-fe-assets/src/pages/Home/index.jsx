@@ -1,7 +1,7 @@
+import TaskList from '@/pages/TaskList';
 import { TabBar } from 'antd-mobile';
 import React from 'react';
-import TaskList from '../TaskList';
-import { tabs } from './consts';
+import { tabs } from './configs';
 
 class Home extends React.Component {
   constructor(props) {

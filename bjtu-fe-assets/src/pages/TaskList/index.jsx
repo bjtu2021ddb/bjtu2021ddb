@@ -1,9 +1,9 @@
+import { Loading, UploadButton } from '@/components';
+import { allDocs, bulkDocs } from '@/db';
+import { showText } from '@/pages/utils';
 import { Empty, List, NavBar, PullToRefresh } from 'antd-mobile';
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import { Loading, UploadButton } from '../../components';
-import { allDocs, bulkDocs } from '../../KeyPoints';
-import { showText } from '../utils';
 
 class TaskList extends React.Component {
   constructor(props) {

@@ -1,3 +1,5 @@
+import { Loading } from '@/components';
+import { getOne } from '@/db';
 import {
   Dialog,
   Form,
@@ -8,8 +10,6 @@ import {
 } from 'antd-mobile';
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import { Loading } from '../../components';
-import { getOne } from '../../KeyPoints';
 
 class TaskEdit extends React.Component {
   constructor(props) {
